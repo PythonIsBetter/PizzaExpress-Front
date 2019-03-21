@@ -5,13 +5,13 @@
         <div class="w-box">
           <div class="nav-logo">
             <h1 @click="changePage(-1)">
-              <router-link to="/" title="XMall商城官网">PizzaExpress</router-link>
+              <router-link to="/" title="XMall商城官网">XMall商城</router-link>
             </h1>
           </div>
           <div class="right-box">
             <div class="nav-list">
               <el-autocomplete
-                placeholder="请输入披萨信息"
+                placeholder="请输入商品信息"
                 icon="search"
                 v-model="input"
                 minlength=1
@@ -21,15 +21,16 @@
                 :on-icon-click="handleIconClick"
                 @keydown.enter.native="handleIconClick">
               </el-autocomplete>
-              <router-link to="/goods"><a @click="changePage(2)">全部商品</a></router-link>
-              <router-link to="/thanks"><a @click="changePage(4)">捐赠</a></router-link>
-              <!-- <router-link to="/">Smartisan M1 / M1L</router-link>
-              <router-link to="/">Smartisan OS</router-link>
-              <router-link to="/">欢喜云</router-link>
-              <router-link to="/">应用下载</router-link>
-              <router-link to="/">官方论坛</router-link> -->
+              <router-link to="/home"><a @click="changePage(2)">首页</a></router-link>
+              <!--<router-link to="/thanks"><a @click="changePage(4)">捐赠</a></router-link>-->
+               <router-link to="/goods"><a @click="changePage(2)">菜单</a></router-link>
+              <!--<router-link to="/">Smartisan OS</router-link>-->
+              <!--<router-link to="/">欢喜云</router-link>-->
+              <!--<router-link to="/">应用下载</router-link>-->
+              <!--<router-link to="/">官方论坛</router-link> -->
             </div>
             <div class="nav-aside" ref="aside" :class="{fixed:st}">
+
               <div class="user pr">
                 <router-link to="/user">个人中心</router-link>
                 <!--用户信息显示-->
@@ -119,6 +120,7 @@
                   </div>
                 </div>
               </div>
+
             </div>
           </div>
         </div>
@@ -391,11 +393,9 @@
 <style lang="scss" rel="stylesheet/scss" scoped>
   @import "../assets/style/theme";
   @import "../assets/style/mixin";
-
   .move_in_cart {
     animation: mymove .5s ease-in-out;
   }
-
   @keyframes mymove {
     0% {
       transform: scale(1)
@@ -413,7 +413,6 @@
       transform: scale(1)
     }
   }
-
   @-moz-keyframes mymove {
     0% {
       transform: scale(1)
@@ -431,7 +430,6 @@
       transform: scale(1)
     }
   }
-
   @-webkit-keyframes mymove {
     0% {
       transform: scale(1)
@@ -449,7 +447,6 @@
       transform: scale(1)
     }
   }
-
   @-o-keyframes mymove {
     0% {
       transform: scale(1)
@@ -467,21 +464,17 @@
       transform: scale(1)
     }
   }
-
   .header-box {
     background: $head-bgc;
     background-image: -webkit-linear-gradient(#000, #121212);
     background-image: linear-gradient(#000, #121212);
     width: 100%;
-
   }
-
   header {
-    height: 100px;
+    height: 60px;
     z-index: 30;
     position: relative;
   }
-
   .w-box {
     display: flex;
     justify-content: space-between;
@@ -493,10 +486,10 @@
       display: flex;
       align-items: center;
       > a {
-        background: url(/static/images/global-logo-red@2x.png) no-repeat 50%;
+        background: url(/static/images/icon.png) no-repeat 50%;
         background-size: cover;
         display: block;
-        @include wh(50px, 40px);
+        @include wh(50px, 50px);
         text-indent: -9999px;
         background-position: 0 0;
       }
@@ -570,7 +563,6 @@
         }
       }
     }
-
     .right-box {
       display: flex;
     }
@@ -609,7 +601,6 @@
           background-size: 240px 107px;
           transition: none;
         }
-
       }
       li + li {
         text-align: center;
@@ -650,7 +641,6 @@
             background-repeat: no-repeat;
             background-size: contain;
           }
-
         }
         .name {
           margin-bottom: 16px;
@@ -670,7 +660,6 @@
         &:before {
           left: 50%;
         }
-
       }
     }
     .shop {
@@ -737,7 +726,6 @@
             box-shadow: inset 0 0 1px #838383, 0 1px 2px #838383;
           }
         }
-
       }
       .nav-user-wrapper {
         right: 0;
@@ -771,7 +759,6 @@
               display: block;
             }
           }
-
         }
         li:first-child .cart-item:first-child {
           border-top: none;
@@ -855,7 +842,6 @@
               margin-left: 10px;
             }
           }
-
         }
         .cart-cell {
           display: table-cell;
@@ -911,25 +897,21 @@
       }
     }
   }
-
   @media (max-height: 780px) {
     .nav-cart-items {
       max-height: 423px !important;
     }
   }
-
   @media (max-height: 900px) {
     .nav-cart-items {
       max-height: 544px !important;
     }
   }
-
   @media (max-height: 1080px) {
     .nav-cart-items {
       max-height: 620px !important;
     }
   }
-
   // 用户信息弹出
   .nav-user-wrapper {
     position: absolute;
@@ -958,7 +940,6 @@
       }
     }
   }
-
   .nav-sub {
     position: relative;
     z-index: 20;
@@ -1044,13 +1025,11 @@
       }
     }
   }
-
   @media (min-width: 1px) {
     .nav-sub .nav-sub-wrapper:after {
       display: block;
     }
   }
-
   .cart-con {
     /*display: flex;*/
     text-align: center;
@@ -1061,7 +1040,6 @@
       font-size: 16px;
     }
   }
-
   .cart-con:before {
     position: absolute;
     content: ' ';
@@ -1072,7 +1050,6 @@
     height: 62px;
     background: url("/static/images/cart-empty-new.png") no-repeat;
     background-size: cover;
-
   }
 </style>
 
