@@ -2,7 +2,8 @@
   <div>
     <y-shelf v-bind:title="orderTitle">
       <div slot="content">
-        <div v-loading="loading" element-loading-text="加载中..." style="min-height: 10vw;" v-if="orderList.length">
+        <!--暂时去除-->
+        <!--<div v-loading="loading" element-loading-text="加载中..." style="min-height: 10vw;" v-if="orderList.length">-->
           <div class="orderStatus" v-if="orderStatus !== -1 && orderStatus !== 6">
             <el-steps :space="200" :active="orderStatus">
               <el-step title="下单" v-bind:description="createTime"></el-step>
@@ -137,23 +138,33 @@
             </div>
           </div>
           <div>
-            <!--这里放地图-->
-            <!--这里放地图-->
-            <!--这里放地图-->
-            <!--这里放地图-->
-            <!--这里放地图-->
-            <!--这里放地图-->
-            <!--这里放地图-->
+            <b-map-component></b-map-component>
+            <!--<baidu-map class="map" :center="{lng: 121.47 , lat: 32.23}" :zoom="14">-->
+              <!--&lt;!&ndash;https://dafrok.github.io/vue-baidu-map/#/zh/bmaplib/lushu&ndash;&gt;-->
+              <!--&lt;!&ndash;起点：start&ndash;&gt;-->
+              <!--&lt;!&ndash;重点：end&ndash;&gt;-->
+              <!--<bm-driving start="华东师范大学" end="上海虹桥机场" @searchcomplete="handleSearchComplete" :panel="false" :autoViewport="true"></bm-driving>-->
+              <!--<bml-lushu-->
+                <!--@stop="reset"-->
+                <!--:path="path"-->
+                <!--:icon="icon"-->
+                <!--:play="play"-->
+                <!--:rotation="true"-->
+                <!--:autoView="true"-->
+                <!--:speed="2000">-->
+              <!--</bml-lushu>-->
+            <!--</baidu-map>-->
           </div>
 
 
         </div>
-        <div v-loading="loading" element-loading-text="加载中..." v-else>
-          <div style="padding: 100px 0;text-align: center">
-            获取该订单信息失败
-          </div>
-        </div>
-      </div>
+        <!--<div v-loading="loading" element-loading-text="加载中..." v-else>-->
+          <!--<div style="padding: 100px 0;text-align: center">-->
+            <!--获取该订单信息失败-->
+          <!--</div>-->
+      <!--暂时去除-->
+        <!--</div>-->
+      <!--</div>-->
     </y-shelf>
 
   </div>
@@ -163,7 +174,8 @@
   import YShelf from '/components/shelf'
   import {getStore} from '/utils/storage'
   import countDown from '/components/countDown'
-
+  import BMapComponent from '/components/BMapComponent.vue'
+  // 引入地图组件
   export default {
     data () {
       return {
@@ -248,7 +260,8 @@
     },
     components: {
       YShelf,
-      countDown
+      countDown,
+      BMapComponent
     }
   }
 </script>
@@ -490,7 +503,10 @@
     line-height: 54px;
     font-size: 18px;
   }
-
+  .map {
+    width: 100%;
+    height: 400px;
+  }
   .price-red {
     font-weight: 700;
     color: #d44d44;
