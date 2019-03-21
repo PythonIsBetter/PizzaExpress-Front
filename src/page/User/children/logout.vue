@@ -1,12 +1,11 @@
 <template>
   <div>
-    <y-shelf title="账户资料">
+    <y-shelf title="退出登录">
       <div slot="content">
         <div class="avatar-box">
           <!--<div class=img-box><img :src="userInfo.info.file" alt=""></div>-->
           <div class="r-box">
-            <h3 style="margin-left: 13px;">修改头像</h3>
-            <y-button text="上传头像" classStyle="main-btn" style="margin: 0;" @btnClick="editAvatar()"></y-button>
+            <y-button text="退出登录" classStyle="main-btn" style="margin: 0;" @btnClick="editAvatar()"></y-button>
           </div>
         </div>
         <div class="edit-avatar" v-if="editAvatarShow">

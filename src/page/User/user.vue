@@ -7,9 +7,9 @@
       <div class="content">
         <div class="account-sidebar">
           <div class="avatar gray-box ">
-            <div>
-              <img :src="userInfo.info.file"> <h5>
-              {{userInfo.info.username}}</h5></div>
+            <!--<div>-->
+              <!--<img :src="userInfo.info.file"> <h5>-->
+              <!--{{userInfo.info.username}}</h5></div>-->
             <div class="box-inner">
               <ul class="account-nav">
                 <li v-for="(item,i) in nav" :key='i' :class="{current:item.name===title}"
@@ -25,9 +25,7 @@
       </div>
     </div>
     <y-footer></y-footer>
-
   </div>
-
 </template>
 <script>
   import YFooter from '/common/footer'
@@ -41,9 +39,7 @@
           {name: '我的订单', path: 'orderList'},
           {name: '账户资料', path: 'information'},
           {name: '收货地址', path: 'addressList'},
-          {name: '我的优惠', path: 'coupon'},
-          {name: '售后服务', path: 'support'},
-          {name: '以旧换新', path: 'aihuishou'}
+          {name: '退出登录', path: 'Logout'}
         ],
         editAvatar: true
       }
