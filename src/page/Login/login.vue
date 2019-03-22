@@ -3,45 +3,93 @@
     <div class="wrapper">
       <div class="dialog dialog-shadow" style="display: block; margin-top: -362px;">
         <div class="title">
-          <h4>使用 XMall 账号 登录官网</h4>
+          <h4>赵玉乔老师推荐作品</h4>
         </div>
         <div v-if="loginPage" class="content">
+
           <ul class="common-form">
+            <li>
+              <div class="tab-tit" v-model="tabView">
+                <a href="javascript:;" @click="logintype2" class="register">手机验证码登录</a>
+                <a href="javascript:;" @click="logintype1" class="register">手机密码登录</a>
+              </div>
+            </li>
+            <!--<loginPart1 v-show="loginPart1Show"></loginPart1>-->
+            <!--<loginPart2 @getYanZheng2 = 'sendMessage' v-show="loginPart2Show"></loginPart2>-->
+            <div v-show="loginPart1Show">
+              <li class="username border-1p">
+                <div class="input">
+                  <input type="text" v-model="ruleForm.userName" placeholder="手机号">
+                </div>
+
+
+              </li>
+              <li>
+                <div class="input">
+                  <input type="password" v-model="ruleForm.userPwd" @keyup.enter="login" placeholder="密码">
+                  <div id="container"></div>
+                </div>
+
+              </li>
+            </div>
+
+
+            <div v-show="loginPart2Show">
             <li class="username border-1p">
               <div class="input">
-                <input type="text" v-model="ruleForm.userName" placeholder="账号">
+                <input type="text" v-model="ruleForm.userName" placeholder="手机号">
               </div>
             </li>
             <li>
-              <div class="input">
-                <input type="password" v-model="ruleForm.userPwd" @keyup.enter="login" placeholder="密码">
+              <div class="passwordInput">
+                <input type="text" v-model="ruleForm.YanZhengCode" @keyup.enter="login" placeholder="请输入验证码">
+                <y-button :text="btnText"
+                          :classStyle="btnText === '获取验证码'?'main-btn':'disabled-btn'"
+                          style="margin-left: 10px;" @btnClick="sendMessage"></y-button>
               </div>
             </li>
+            </div>
+            <!--<li class="username border-1p">-->
+              <!--<div class="input">-->
+              <!--<input type="text" v-model="ruleForm.userName" placeholder="手机号">-->
+              <!--</div>-->
 
+
+            <!--</li>-->
+            <!--<li>-->
+              <!--<div class="input">-->
+                <!--<input type="password" v-model="ruleForm.userPwd" @keyup.enter="login" placeholder="密码">-->
+              <!--<div id="container"></div>-->
+              <!--</div>-->
+
+            <!--</li>-->
             <li style="text-align: right" class="pr">
-              <el-checkbox class="auto-login" v-model="autoLogin">记住密码</el-checkbox>
+              <!--<el-checkbox class="auto-login" v-model="autoLogin">记住密码</el-checkbox>-->
               <!-- <span class="pa" style="top: 0;left: 0;color: #d44d44">{{ruleForm.errMsg}}</span> -->
-              <a href="javascript:;" class="register" @click="toRegister">注册 XMall 账号</a>
-              <a style="padding: 1px 0 0 10px" @click="open('找回密码','请联系作者邮箱找回密码或使用测试账号登录：test | test')">忘记密码 ?</a>
+              <a href="javascript:;"  @click="toRegister">注册 XMall 账号</a>
+              <!--<a style="padding: 1px 0 0 10px" @click="open('biegao','请联系作者邮箱找回密码或使用测试账号登录：test | test')">忘记密码 ?</a>-->
             </li>
           </ul>
           <!--登陆-->
           <div style="margin-top: 25px">
             <y-button :text="logintxt"
-                      :classStyle="ruleForm.userPwd&& ruleForm.userName&& logintxt === '登录'?'main-btn':'disabled-btn'"
+                      :classStyle="(ruleForm.YanZhengCode&& ruleForm.userName&& logintxt === '登录') ||
+                                   (ruleForm.userName&& ruleForm.userPwd && logintxt === '登录') ?'main-btn':'disabled-btn'"
                       @btnClick="login"
                       style="margin: 0;width: 100%;height: 48px;font-size: 18px;line-height: 48px"></y-button>
           </div>
           <!--返回-->
           <div>
-            <y-button text="返回" @btnClick="login_back"
+            <y-button text="返回" @btnClick="test"
               style="marginTop: 10px;marginBottom: 15px;width: 100%;height: 48px;font-size: 18px;line-height: 48px">
             </y-button>
           </div>
           <div class="border"></div>
           <div class="footer">
             <div class="other">其它账号登录：</div>
-            <a><img @click="open('待开发','此功能开发中...')" style="height: 15px; margin-top: 22px;" src="/static/images/other-login.png"></a>
+            <!--<a><img @click="open(loginType)" style="height: 15px; margin-top: 22px;" src="/static/images/other-login.png"></a>-->
+            <!--<div class="dsflogin_1"><a class="icon-qq" href="#" @click.stop.prevent="login_qq" title="QQ登录"></a></div>-->
+            <span id="qqLoginBtn"></span>
           </div>
         </div>
       </div>
@@ -49,12 +97,28 @@
   </div>
 </template>
 <script src="../../../static/geetest/gt.js"></script>
+
+<script type="text/javascript"  charset="utf-8"
+        src="http://connect.qq.com/qc_jssdk.js"
+        data-appid="APPID"
+        data-redirecturi="REDIRECTURI"
+></script>
+
+<!--<script type="text/javascript">-->
+  <!--QC.Login({-->
+    <!--btnId: 'qqLoginBtn'-->
+  <!--})-->
+<!--</script>-->
+
 <script>
+// import loginPart1 from '/page/Login/login_part1'
+// import loginPart2 from '/page/Login/login_part2'
 import YFooter from '/common/footer'
 import YButton from '/components/YButton'
 import { userLogin, geetest } from '/api/index.js'
 import { addCart } from '/api/goods.js'
 import { setStore, getStore, removeStore } from '/utils/storage.js'
+
 require('../../../static/geetest/gt.js')
 var captcha
 export default {
@@ -62,10 +126,18 @@ export default {
     return {
       cart: [],
       loginPage: true,
+      tabView: 'loginPart1',
+      loginPart1Show: true,
+      loginPart2Show: false,
+      vercode: '',
+      btnDisabled: false,
+      btnText: '获取验证码',
       ruleForm: {
         userName: '',
         userPwd: '',
-        errMsg: ''
+        errMsg: '',
+        userCode: '',
+        YanZhengCode: ''
       },
       registered: {
         userName: '',
@@ -84,6 +156,9 @@ export default {
     }
   },
   methods: {
+    test () {
+      this.open(this.ruleForm.userName)
+    },
     open (t, m) {
       this.$notify.info({
         title: t,
@@ -144,7 +219,50 @@ export default {
       }
       this.cart = cartArr
     },
+    logintype1 () {
+      // const Component = Vue.component('loginType1')
+      // const instance = new Component()
+      // instance.$mount('#container')
+      this.loginPart1Show = true
+      this.loginPart2Show = false
+      this.ruleForm.userName = ''
+      this.ruleForm.YanZhengCode = ''
+    },
+    logintype2 () {
+      // const LoginType2 = Vue.extend(loginPart2)
+      // const logintype2 = new LoginType2()
+      // logintype2.$mount('#container')
+      this.loginPart1Show = false
+      this.loginPart2Show = true
+      this.ruleForm.userName = ''
+      this.ruleForm.userPwd = ''
+    },
+    sendMessage () {
+      this.open('ok')
+      if (this.btnDisabled) {
+        return
+      }
+      this.getSecond(60)
+    },
+    getSecond (wait) {
+      let _this = this
+      let _wait = wait
+      if (wait === 0) {
+        this.btnDisabled = false
+        this.btnText = '获取验证码'
+        wait = _wait
+      } else {
+        this.btnDisabled = true
+        this.btnText = '验证码(' + wait + 's)'
+        wait--
+        setTimeout(function () {
+          _this.getSecond(wait)
+        },
+          1000)
+      }
+    },
     login () {
+      this.open(this.ruleForm.userName, this.ruleForm.userPwd)
       this.logintxt = '登录中...'
       this.rememberPass()
       if (!this.ruleForm.userName || !this.ruleForm.userPwd) {
@@ -219,7 +337,7 @@ export default {
     this.getRemembered()
     this.login_addCart()
     this.init_geetest()
-    this.open('登录提示', '测试体验账号密码：test | test')
+    this.open('登录提示', '没有什么登陆提示，干死赵玉乔就行了')
   },
   components: {
     YFooter,
@@ -230,6 +348,38 @@ export default {
 <style lang="scss" rel="stylesheet/scss" scoped>
 * {
   box-sizing: content-box;
+  margin: 0;
+  padding: 0;
+}
+#box{
+  width: 600px;
+  margin: 0 auto;
+}
+.tab-tit{
+  font-size: 0;
+  width: 600px;
+}
+.tab-tit a{
+  display: inline-block;
+  height: 50px;
+  line-height: 50px;
+  width: 25%;
+  font-size: 18px;
+  text-align: center;
+  background: #ccc;
+  color: #333;
+  text-decoration:none;
+}
+.tab-tit .cur{
+  background: #09f;
+  color: #fff;
+}
+.tab-con div{
+  border: 1px solid #ccc;
+  height: 400px;
+  width: 598px;
+  margin: 0 auto;
+  padding-top: 20px;
 }
 
 .login {
@@ -248,6 +398,21 @@ export default {
       border: 1px solid #ccc;
       border-radius: 6px;
     }
+  }
+  .el-button--primary{
+    color: #fff;
+    background-color: #FF69B4;
+    border-color: #FF69B4;
+    height: 40px;
+    width: 100px;
+  }
+  .el-button--primary:hover{
+    background-color: #FF69B4;
+    border-color: #FF69B4;
+  }
+  .el-button--primary:focus{
+    background-color: #FF69B4;
+    border-color: #FF69B4;
   }
   .wrapper {
     background: url(/static/images/bg_9b9dcb65ff.png) repeat;
@@ -271,7 +436,7 @@ export default {
     overflow: visible;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
     position: relative;
-    background-image: url(/static/images/smartisan_4ada7fecea.png);
+    background-image: url(/static/images/IMG_6620.JPG);
     background-size: 140px;
     background-position: top center;
     background-repeat: no-repeat;
@@ -303,6 +468,51 @@ export default {
       color: #333;
       font-weight: 400;
     }
+  }
+  .buttonItem{
+    margin:15px 10px;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    border:1px solid #ddd;
+    input{
+      height: 45px;
+      font-size: 1rem;
+      padding-left:10px;
+      border:0;
+      outline: none;
+    }
+    .sendCode{
+      border: 0;
+      outline: none;
+      background-color: #fff;
+      cursor: pointer;
+    }
+  }
+  .passwordInput {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    input {
+      font-size: 16px;
+      width: 70%;
+      height: 100%;
+      padding: 10px 15px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    a {
+      text-align: right;
+    }
+  }
+  .disabled{
+    background-color: #ddd;
+    border-color: #ddd;
+    color:#57a3f3;
+    cursor: not-allowed; // 鼠标变化
   }
   .content {
     padding: 0 40px 22px;
@@ -371,8 +581,14 @@ export default {
     left: 2px;
     color: #999;
   }
+  .login-type {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    color: #999;
+  }
   .register {
-    padding: 1px 10px 0;
+    padding: 0px 15px 0;
     border-right: 1px solid #ccc;
   }
   .border {

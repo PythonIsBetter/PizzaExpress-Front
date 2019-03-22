@@ -5,13 +5,13 @@
         <div class="w-box">
           <div class="nav-logo">
             <h1 @click="changePage(-1)">
-              <router-link to="/" title="XMall商城官网">PizzaExpress</router-link>
+              <router-link to="/" title="XMall商城官网">XMall商城</router-link>
             </h1>
           </div>
           <div class="right-box">
             <div class="nav-list">
               <el-autocomplete
-                placeholder="请输入披萨信息"
+                placeholder="请输入商品信息"
                 icon="search"
                 v-model="input"
                 minlength=1
