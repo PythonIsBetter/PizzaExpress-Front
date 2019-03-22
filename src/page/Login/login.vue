@@ -75,7 +75,7 @@
             <y-button :text="logintxt"
                       :classStyle="(ruleForm.YanZhengCode&& ruleForm.userName&& logintxt === '登录') ||
                                    (ruleForm.userName&& ruleForm.userPwd && logintxt === '登录') ?'main-btn':'disabled-btn'"
-                      @btnClick="login"
+                      @btnClick="login2"
                       style="margin: 0;width: 100%;height: 48px;font-size: 18px;line-height: 48px"></y-button>
           </div>
           <!--返回-->
@@ -259,6 +259,20 @@ export default {
           _this.getSecond(wait)
         },
           1000)
+      }
+    },
+    login2 () {
+      if (!this.ruleForm.userName || !this.ruleForm.userPwd) {
+        // this.ruleForm.errMsg = '账号或者密码不能为空!'
+        this.message('账号或者密码不能为空!')
+        return false
+      } else if (this.ruleForm.userName === 'test' && this.ruleForm.userPwd === 'test') {
+        this.logintxt = '登陆中。。'
+        this.$router.push({
+          path: '/'
+        })
+      } else {
+        this.open('狗日的密码不正确')
       }
     },
     login () {
