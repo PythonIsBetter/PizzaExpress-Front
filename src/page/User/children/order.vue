@@ -2,7 +2,7 @@
   <div>
     <y-shelf title="我的订单">
       <div slot="content">
-        <div v-loading="loading" element-loading-text="加载中..." v-if="orderList.length" style="min-height: 10vw;">
+        <div v-if="orderList.length" style="min-height: 10vw;">
           <div v-for="(item,i) in orderList" :key="i">
             <div class="gray-sub-title cart-title">
               <div class="first">
@@ -52,7 +52,7 @@
             </div>
           </div>
         </div>
-        <div v-loading="loading" element-loading-text="加载中..." class="no-info" v-else>
+        <div class="no-info" v-else>
           <div style="padding: 100px 0;text-align: center">
             你还未创建过订单
           </div>
@@ -117,16 +117,30 @@
         })
       },
       getOrderStatus (status) {
+        // if (status === '1') {
+        //   return '支付审核中'
+        // } else if (status === '2') {
+        //   return '待发货'
+        // } else if (status === '3') {
+        //   return '待收货'
+        // } else if (status === '4') {
+        //   return '交易成功'
+        // } else if (status === '5') {
+        //   return '交易关闭'
+        // } else if (status === '6') {
+        //   return '支付失败'
+        // }
+
         if (status === '1') {
-          return '支付审核中'
+          return '订单进行中'
         } else if (status === '2') {
           return '待发货'
         } else if (status === '3') {
           return '待收货'
         } else if (status === '4') {
-          return '交易成功'
+          return '已完成'
         } else if (status === '5') {
-          return '交易关闭'
+          return '已取消'
         } else if (status === '6') {
           return '支付失败'
         }

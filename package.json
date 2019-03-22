@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "axios": "^0.16.2",
+    "bootstrap": "^4.3.1",
     "element-ui": "^1.4.13",
     "geetest3": "^1.0.0",
     "gitment": "0.0.3",

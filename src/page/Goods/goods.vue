@@ -14,7 +14,8 @@
       </div>
     </div>
 
-    <div v-loading="loading" element-loading-text="加载中..." style="min-height: 35vw;">
+
+    <div style="min-height: 35vw;">
       <div class="img-item" v-if="!noResult">
         <!--商品-->
         <div class="goods-box w">
@@ -59,6 +60,8 @@
         </section>
       </div>
     </div>
+
+
   </div>
 </template>
 <script>
@@ -70,7 +73,28 @@
   export default {
     data () {
       return {
-        goods: [],
+        goods: [
+          {
+            productId: 1,
+            productName: '披萨A',
+            subTitle: '榴莲披萨',
+            salePrice: 18
+          },
+
+          {
+            productId: 2,
+            productName: '披萨B',
+            subTitle: '芒果披萨',
+            salePrice: 28
+          },
+
+          {
+            productId: 3,
+            productName: '披萨C',
+            subTitle: '培根披萨',
+            salePrice: 38
+          }
+        ],
         noResult: false,
         error: false,
         min: '',
@@ -117,18 +141,29 @@
           }
         }
         getAllGoods(params).then(res => {
-          if (res.success === true) {
-            this.total = res.result.total
-            this.goods = res.result.data
-            this.noResult = false
-            if (this.total === 0) {
-              this.noResult = true
+          this.total = res.result.total
+          this.goods = [
+            {
+              productId: 1,
+              productName: '披萨A',
+              subTitle: '榴莲披萨',
+              salePrice: 18
+            },
+
+            {
+              productId: 2,
+              productName: '披萨B',
+              subTitle: '芒果披萨',
+              salePrice: 28
+            },
+
+            {
+              productId: 2,
+              productName: '披萨C',
+              subTitle: '培根披萨',
+              salePrice: 38
             }
-            this.error = false
-          } else {
-            this.error = true
-          }
-          this.loading = false
+          ]
         })
       },
       // 默认排序

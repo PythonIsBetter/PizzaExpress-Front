@@ -12,9 +12,7 @@ const user = () => import('/page/User/user.vue')
 const orderList = () => import('/page/User/children/order.vue')
 const information = () => import('/page/User/children/information.vue')
 const addressList = () => import('/page/User/children/addressList.vue')
-const coupon = () => import('/page/User/children/coupon.vue')
-const aihuishou = () => import('/page/User/children/aihuishou.vue')
-const support = () => import('/page/User/children/support.vue')
+const logout = () => import('/page/User/children/logout.vue')
 const checkout = () => import('/page/Checkout/checkout.vue')
 const payment = () => import('/page/Order/payment.vue')
 const paysuccess = () => import('/page/Order/paysuccess.vue')
@@ -69,9 +67,7 @@ export default new Router({
         {path: 'orderDetail', name: '订单详情', component: orderDetail},
         {path: 'information', name: '账户资料', component: information},
         {path: 'addressList', name: '收货地址', component: addressList},
-        {path: 'coupon', name: '我的优惠', component: coupon},
-        {path: 'support', name: '售后服务', component: support},
-        {path: 'aihuishou', name: '以旧换新', component: aihuishou}
+        {path: 'logout', name: '退出登录', component: logout}
       ]
     },
     {path: '/checkout', name: 'checkout', component: checkout},
