@@ -3,7 +3,7 @@
     <div class="wrapper">
       <div class="dialog dialog-shadow" style="display: block; margin-top: -362px;">
         <div class="title">
-          <h4>赵玉乔老师推荐作品</h4>
+          <h4>赵老师推荐披萨</h4>
         </div>
         <div v-if="loginPage" class="content">
 
@@ -14,8 +14,6 @@
                 <a href="javascript:;" @click="logintype1" class="register">手机密码登录</a>
               </div>
             </li>
-            <!--<loginPart1 v-show="loginPart1Show"></loginPart1>-->
-            <!--<loginPart2 @getYanZheng2 = 'sendMessage' v-show="loginPart2Show"></loginPart2>-->
             <div v-show="loginPart1Show">
               <li class="username border-1p">
                 <div class="input">
@@ -49,48 +47,28 @@
               </div>
             </li>
             </div>
-            <!--<li class="username border-1p">-->
-              <!--<div class="input">-->
-              <!--<input type="text" v-model="ruleForm.userName" placeholder="手机号">-->
-              <!--</div>-->
-
-
-            <!--</li>-->
-            <!--<li>-->
-              <!--<div class="input">-->
-                <!--<input type="password" v-model="ruleForm.userPwd" @keyup.enter="login" placeholder="密码">-->
-              <!--<div id="container"></div>-->
-              <!--</div>-->
-
-            <!--</li>-->
             <li style="text-align: right" class="pr">
-              <!--<el-checkbox class="auto-login" v-model="autoLogin">记住密码</el-checkbox>-->
-              <!-- <span class="pa" style="top: 0;left: 0;color: #d44d44">{{ruleForm.errMsg}}</span> -->
-              <a href="javascript:;"  @click="toRegister">注册 XMall 账号</a>
-              <!--<a style="padding: 1px 0 0 10px" @click="open('biegao','请联系作者邮箱找回密码或使用测试账号登录：test | test')">忘记密码 ?</a>-->
+              <a href="javascript:;"  @click="toRegister">注册你的账号</a>
             </li>
           </ul>
-          <!--登陆-->
           <div style="margin-top: 25px">
             <y-button :text="logintxt"
                       :classStyle="(ruleForm.YanZhengCode&& ruleForm.userName&& logintxt === '登录') ||
                                    (ruleForm.userName&& ruleForm.userPwd && logintxt === '登录') ?'main-btn':'disabled-btn'"
-                      @btnClick="login"
+                      @btnClick="login2"
                       style="margin: 0;width: 100%;height: 48px;font-size: 18px;line-height: 48px"></y-button>
           </div>
           <!--返回-->
           <div>
-            <y-button text="返回" @btnClick="test"
+            <y-button text="返回" @btnClick="back"
               style="marginTop: 10px;marginBottom: 15px;width: 100%;height: 48px;font-size: 18px;line-height: 48px">
             </y-button>
           </div>
           <div class="border"></div>
-          <div class="footer">
-            <div class="other">其它账号登录：</div>
-            <!--<a><img @click="open(loginType)" style="height: 15px; margin-top: 22px;" src="/static/images/other-login.png"></a>-->
-            <!--<div class="dsflogin_1"><a class="icon-qq" href="#" @click.stop.prevent="login_qq" title="QQ登录"></a></div>-->
-            <span id="qqLoginBtn"></span>
-          </div>
+          <!--<div class="footer">-->
+            <!--<div class="other">其它账号登录：</div>-->
+            <!--<span id="qqLoginBtn"></span>-->
+          <!--</div>-->
         </div>
       </div>
     </div>
@@ -104,15 +82,8 @@
         data-redirecturi="REDIRECTURI"
 ></script>
 
-<!--<script type="text/javascript">-->
-  <!--QC.Login({-->
-    <!--btnId: 'qqLoginBtn'-->
-  <!--})-->
-<!--</script>-->
 
 <script>
-// import loginPart1 from '/page/Login/login_part1'
-// import loginPart2 from '/page/Login/login_part2'
 import YFooter from '/common/footer'
 import YButton from '/components/YButton'
 import { userLogin, geetest } from '/api/index.js'
@@ -200,6 +171,11 @@ export default {
         path: '/register'
       })
     },
+    back () {
+      this.$router.push({
+        path: '/'
+      })
+    },
     // 登录返回按钮
     login_back () {
       this.$router.go(-1)
@@ -259,6 +235,20 @@ export default {
           _this.getSecond(wait)
         },
           1000)
+      }
+    },
+    login2 () {
+      if (!this.ruleForm.userName || !this.ruleForm.userPwd) {
+        // this.ruleForm.errMsg = '账号或者密码不能为空!'
+        this.message('账号或者密码不能为空!')
+        return false
+      } else if (this.ruleForm.userName === 'test' && this.ruleForm.userPwd === 'test') {
+        this.logintxt = '登陆中。。'
+        this.$router.push({
+          path: '/'
+        })
+      } else {
+        this.open('密码不正确')
       }
     },
     login () {
@@ -337,7 +327,7 @@ export default {
     this.getRemembered()
     this.login_addCart()
     this.init_geetest()
-    this.open('登录提示', '没有什么登陆提示，干死赵玉乔就行了')
+    this.open('登录提示', '没有什么登陆提示')
   },
   components: {
     YFooter,

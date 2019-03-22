@@ -5,7 +5,7 @@
         <div class="w-box">
           <div class="nav-logo">
             <h1 @click="changePage(-1)">
-              <router-link to="/" title="XMall商城官网">XMall商城</router-link>
+              <router-link to="/" title="PIZZAEXPRESS">PIZZAEXPRESS</router-link>
             </h1>
           </div>
           <div class="right-box">
@@ -22,22 +22,16 @@
                 @keydown.enter.native="handleIconClick">
               </el-autocomplete>
               <router-link to="/home"><a @click="changePage(2)">首页</a></router-link>
-              <!--<router-link to="/thanks"><a @click="changePage(4)">捐赠</a></router-link>-->
                <router-link to="/goods"><a @click="changePage(2)">菜单</a></router-link>
-              <!--<router-link to="/">Smartisan OS</router-link>-->
-              <!--<router-link to="/">欢喜云</router-link>-->
-              <!--<router-link to="/">应用下载</router-link>-->
-              <!--<router-link to="/">官方论坛</router-link> -->
+
             </div>
             <div class="nav-aside" ref="aside" :class="{fixed:st}">
 
               <div class="user pr">
                 <router-link to="/user">个人中心</router-link>
-                <!--用户信息显示-->
                 <div class="nav-user-wrapper pa" v-if="login">
                   <div class="nav-user-list">
                     <ul>
-                      <!--头像-->
                       <li class="nav-user-avatar">
                         <div>
                           <span class="avatar" :style="{backgroundImage:'url('+userInfo.info.file+')'}">
