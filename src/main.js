@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import BaiduMap from 'vue-baidu-map'
 import App from './App'
 import router from './router'
 import store from './store/'
@@ -36,6 +37,10 @@ Vue.use(VueLazyload, {
   // attempt: 1
 })
 Vue.config.productionTip = false
+Vue.use(BaiduMap, {
+  // ak 是在百度地图开发者平台申请的密钥 详见 http://lbsyun.baidu.com/apiconsole/key */
+  ak: 'dsbaxEYO7qaT6qP9DdMQqiun9XfzI4Ad'
+})
 // const whiteList = ['/home', '/goods', '/login', '/register', '/goodsDetails', '/thanks', '/search', '/refreshsearch', '/refreshgoods'] // 不需要登陆的页面
 // router.beforeEach(function (to, from, next) {
 //   let params = {
