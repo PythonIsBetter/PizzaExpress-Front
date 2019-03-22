@@ -3,7 +3,6 @@
     <y-shelf title="收货地址">
       <span slot="right"><y-button text="添加收货地址" style="margin: 0" @btnClick="update()"></y-button></span>
       <div slot="content">
-        <!--标题-->
         <div class="table-title">
           <span class="name">姓名</span> <span class="address">详细地址</span> <span class="tel">电话</span>
         </div>
@@ -196,10 +195,10 @@
       color: #838383;
     }
     .address {
-      margin-left: 115px; 
+      margin-left: 115px;
     }
     .tel {
-      margin-left: 195px; 
+      margin-left: 195px;
     }
   }
 

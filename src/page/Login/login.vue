@@ -436,8 +436,8 @@ export default {
     overflow: visible;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
     position: relative;
-    background-image: url(/static/images/IMG_6620.JPG);
-    background-size: 140px;
+    background-image: url(/static/images/icon.png);
+    background-size: 120px;
     background-position: top center;
     background-repeat: no-repeat;
     height: 92px;
@@ -568,7 +568,7 @@ export default {
     font-size: 20px;
     height: 61px;
     line-height: 61px;
-    padding: 0 0 0 35px;
+    padding: 10px 0 0 35px;
   }
   .common-form li {
     clear: both;

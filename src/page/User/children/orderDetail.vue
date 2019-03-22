@@ -2,7 +2,8 @@
   <div>
     <y-shelf v-bind:title="orderTitle">
       <div slot="content">
-        <div v-loading="loading" element-loading-text="加载中..." style="min-height: 10vw;" v-if="orderList.length">
+        <!--暂时去除-->
+        <!--<div v-loading="loading" element-loading-text="加载中..." style="min-height: 10vw;" v-if="orderList.length">-->
           <div class="orderStatus" v-if="orderStatus !== -1 && orderStatus !== 6">
             <el-steps :space="200" :active="orderStatus">
               <el-step title="下单" v-bind:description="createTime"></el-step>
@@ -12,18 +13,23 @@
               <el-step title="交易成功" v-bind:description="finishTime"></el-step>
             </el-steps>
           </div>
-          <div class="orderStatus-close" v-if="orderStatus === -1">
+          <div class="orderStatus-close" v-if="orderStatus === -1 || orderStatus === 6">
             <el-steps :space="780" :active="2">
               <el-step title="下单" v-bind:description="createTime"></el-step>
               <el-step title="交易关闭" v-bind:description="closeTime"></el-step>
             </el-steps>
           </div>
-          <div class="orderStatus-close" v-if="orderStatus === 6">
-            <el-steps :space="780" :active="2">
-              <el-step title="下单" v-bind:description="createTime"></el-step>
-              <el-step title="交易关闭" v-bind:description="closeTime"></el-step>
-            </el-steps>
-          </div>
+
+
+          <!--<div class="orderStatus-close" v-if="orderStatus === 6">-->
+          <!--<el-steps :space="780" :active="2">-->
+          <!--<el-step title="下单" v-bind:description="createTime"></el-step>-->
+          <!--<el-step title="交易关闭" v-bind:description="closeTime"></el-step>-->
+          <!--</el-steps>-->
+          <!--</div>-->
+
+
+          <!--未支付的订单-->
           <div class="status-now" v-if="orderStatus === 1">
             <ul>
               <li class="status-title"><h3>订单状态：待付款</h3></li>
@@ -38,22 +44,32 @@
               <span>，超时后订单将自动取消。</span>
             </p>
           </div>
+
+          <!--进行中的订单-->
           <div class="status-now" v-if="orderStatus === 2">
             <ul>
-              <li class="status-title"><h3>订单状态：已支付，待系统审核确认</h3></li>
+              <li class="status-title"><h3>订单状态：进行中，请耐心等待送达</h3></li>
+              <li class="button">
+                <el-button @click="orderPayment(orderId)" type="primary" size="small">修改订单</el-button>
+                <el-button @click="_cancelOrder()" size="small">取消订单</el-button>
+              </li>
             </ul>
             <p class="realtime">
-              <span>请耐心等待审核，审核结果将发送到您的邮箱，并且您所填写的捐赠数据将显示在捐赠表中。</span>
+              <span>请耐心等待骑手将订单送到您手中。</span>
             </p>
           </div>
+
+          <!--已取消的订单-->
           <div class="status-now" v-if="orderStatus === -1 || orderStatus === 6">
             <ul>
-              <li class="status-title"><h3>订单状态：已关闭</h3></li>
+              <li class="status-title"><h3>订单状态：已取消</h3></li>
             </ul>
             <p class="realtime">
-              <span>您的订单已关闭。</span>
+              <span>您的订单已取消。</span>
             </p>
           </div>
+
+          <!--已完成的订单-->
           <div class="status-now" v-if="orderStatus === 5">
             <ul>
               <li class="status-title"><h3>订单状态：已完成</h3></li>
@@ -62,6 +78,8 @@
               <span>您的订单已交易成功，感谢您的惠顾！</span>
             </p>
           </div>
+
+          <!--订单详情-->
           <div class="gray-sub-title cart-title">
             <div class="first">
               <div>
@@ -91,7 +109,7 @@
           </div>
           <!--合计-->
           <div class="order-discount-line">
-            <p style="font-size: 14px;font-weight: bolder;"> <span style="padding-right:47px">商品总计：</span>
+            <p style="font-size: 14px;font-weight: bolder;"><span style="padding-right:47px">商品总计：</span>
               <span style="font-size: 16px;font-weight: 500;line-height: 32px;">¥ {{orderTotal}}</span>
             </p>
             <p><span style="padding-right:30px">运费：</span><span style="font-weight: 700;">+ ¥ 0.00</span></p>
@@ -110,22 +128,54 @@
             <p class="address">联系电话：{{ tel }}</p>
             <p class="address">详细地址：{{ streetName }}</p>
           </div>
-        </div>
-        <div v-loading="loading" element-loading-text="加载中..." v-else>
-          <div style="padding: 100px 0;text-align: center">
-            获取该订单信息失败
+
+
+          <div class="gray-sub-title cart-title" v-if="orderStatus === 2">
+            <div class="first">
+              <div>
+                <span class="order-id">骑手信息</span>
+              </div>
+            </div>
           </div>
+          <div>
+            <b-map-component></b-map-component>
+            <!--<baidu-map class="map" :center="{lng: 121.47 , lat: 32.23}" :zoom="14">-->
+              <!--&lt;!&ndash;https://dafrok.github.io/vue-baidu-map/#/zh/bmaplib/lushu&ndash;&gt;-->
+              <!--&lt;!&ndash;起点：start&ndash;&gt;-->
+              <!--&lt;!&ndash;重点：end&ndash;&gt;-->
+              <!--<bm-driving start="华东师范大学" end="上海虹桥机场" @searchcomplete="handleSearchComplete" :panel="false" :autoViewport="true"></bm-driving>-->
+              <!--<bml-lushu-->
+                <!--@stop="reset"-->
+                <!--:path="path"-->
+                <!--:icon="icon"-->
+                <!--:play="play"-->
+                <!--:rotation="true"-->
+                <!--:autoView="true"-->
+                <!--:speed="2000">-->
+              <!--</bml-lushu>-->
+            <!--</baidu-map>-->
+          </div>
+
+
         </div>
-      </div>
+        <!--<div v-loading="loading" element-loading-text="加载中..." v-else>-->
+          <!--<div style="padding: 100px 0;text-align: center">-->
+            <!--获取该订单信息失败-->
+          <!--</div>-->
+      <!--暂时去除-->
+        <!--</div>-->
+      <!--</div>-->
     </y-shelf>
 
   </div>
 </template>
 <script>
-  import { getOrderDet, cancelOrder } from '/api/goods'
+  import {getOrderDet, cancelOrder} from '/api/goods'
   import YShelf from '/components/shelf'
-  import { getStore } from '/utils/storage'
+  import {getStore} from '/utils/storage'
   import countDown from '/components/countDown'
+  import BMapComponent from '/components/BMapComponent.vue'
+  // 引入地图组件
   export default {
     data () {
       return {
@@ -210,7 +260,8 @@
     },
     components: {
       YShelf,
-      countDown
+      countDown,
+      BMapComponent
     }
   }
 </script>
@@ -272,7 +323,7 @@
     border: 1px solid #EBEBEB;
     margin-left: -80px;
   }
-  
+
   img {
     display: block;
     @include wh(80px);
@@ -452,7 +503,10 @@
     line-height: 54px;
     font-size: 18px;
   }
-
+  .map {
+    width: 100%;
+    height: 400px;
+  }
   .price-red {
     font-weight: 700;
     color: #d44d44;

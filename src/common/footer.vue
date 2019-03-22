@@ -51,28 +51,6 @@
           </ul>
         </ul>
 
-        <ul class="c4">
-          <li class="tel"><a class="c5" href="http://wpa.qq.com/msgrd?v=3&uin=1012139570&site=qq&menu=yes" target="_blank">1012139570</a></li>
-          <li class="time">周一至周日 10:00-23:00（限Starrer或捐赠人联系）</li>
-          <li class="online">
-            <y-button text="在线帮助" class="button" @btnClick="open3"></y-button>
-          </li>
-        </ul>
-      </div>
-
-      <div class="copyright">
-        <h4 class="content-c2">Copyright ©2017, exrick.cn Co., Ltd. All Rights Reserved.本网站设计内容大部分属锤子科技</h4>
-        <ul class="privacy">
-          <li class="content-c1"><a class="content-c0" @click="open1">法律声明</a></li>
-          <li class="content-c1"><a class="content-c0" @click="open2">隐私条款</a></li>
-          <li class="content-c1"><a class="content-c0" target="_blank" href="https://github.com/Exrick">开发者中心</a></li>
-        </ul>
-      </div>
-      <div class="cop">
-        <a class="content-c3" href="http://www.miibeian.gov.cn/" target="_blank">
-          <span class="content-c3">蜀ICP备16030308号-1</span>
-          <span class="content-c3">蜀ICP证16030308号</span>
-        </a>
       </div>
     </div>
   </div>
@@ -138,7 +116,7 @@
   .container {
     width: 1220px;
   }
-  
+
   .siteinfo {
     height: 100px;
     padding: 50px 0 130px;
@@ -247,7 +225,7 @@
     padding: 1px 10px 0;
     border-left: 1px solid #ccc;
   }
-  
+
   .content-c2 {
     float: left;
     height: 15px;
