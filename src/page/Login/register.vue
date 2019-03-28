@@ -148,6 +148,14 @@
           userPhone: userName,
           userPwd: userPwd
         }).then(res => {
+          console.log(res[0])
+          if (res.status === 'success') {
+            this.$router.push({
+              path: '/'
+            })
+          } else {
+            this.open('注册失败')
+          }
           if (res.success === true) {
             this.messageSuccess()
             this.toLogin()
