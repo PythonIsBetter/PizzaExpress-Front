@@ -169,8 +169,9 @@
 
   .window {
     position: relative;
-    width: 1400px;
-    height: 788px;
+    width: 900px;
+    height: 480px;
+    /*margin: 0px 1px 2px 3px;*/
     margin: 0 auto;
     overflow: hidden;
   }

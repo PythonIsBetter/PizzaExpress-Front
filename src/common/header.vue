@@ -937,7 +937,7 @@
   .nav-sub {
     position: relative;
     z-index: 20;
-    height: 90px;
+    height: 40px;
     background: #f7f7f7;
     box-shadow: 0 2px 4px rgba(0, 0, 0, .04);
     &.fixed {
@@ -982,7 +982,7 @@
     }
     .nav-list2 {
       height: 28px;
-      line-height: 28px;
+      line-height: 0px;
       display: flex;
       align-items: center;
       height: 100%;
@@ -998,7 +998,7 @@
         padding-left: 2px;
         a {
           display: block;
-          padding: 0 10px;
+          padding: 0px 10px;
           color: #666;
           &.active {
             font-weight: bold;

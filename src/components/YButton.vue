@@ -80,14 +80,14 @@
 
   // 主色按钮
   .main-btn {
-    @include color(#5c81e3, #fff, #678ee7);
-    background-image: -webkit-linear-gradient(top, #678ee7, #5078df);
-    background-image: linear-gradient(180deg, #678ee7, #5078df);
+    @include color(#ffda8f, #fff, #678ee7);
+    background-image: -webkit-linear-gradient(top, #ffa500, #ff8c00);
+    background-image: linear-gradient(180deg, #ffa500, #ff8c00);
     @extend %style;
     &:hover {
       background-color: #6c8cd4;
-      background-image: -webkit-linear-gradient(top, #6c8cd4, #4769c2);
-      background-image: linear-gradient(180deg, #6c8cd4, #4769c2);
+      background-image: -webkit-linear-gradient(top, #ffa500, #ff7f00);
+      background-image: linear-gradient(180deg, #ffa500, #ff7f00);
     }
   }
 

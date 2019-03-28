@@ -28,9 +28,9 @@
                 </div>
               </li>
               <li>
-                <div id="captcha">
-                  <p id="wait">正在加载验证码...</p>
-                </div>
+                <!--<div id="captcha">-->
+                  <!--<p id="wait">正在加载验证码...</p>-->
+                <!--</div>-->
               </li>
             </ul>
 
@@ -43,7 +43,7 @@
               >
               </y-button>
             </div>
-            <div class="border" style="margin-bottom: 10px;"></div>
+            <!--<div class="border" style="margin-bottom: 10px;"></div>-->
             <ul class="common-form pr">
               <!-- <li class="pa" style="left: 0;top: 0;margin: 0;color: #d44d44">{{registered.errMsg}}</li> -->
               <li style="text-align: center;line-height: 48px;margin-bottom: 0;font-size: 12px;color: #999;">

@@ -64,7 +64,7 @@
               style="marginTop: 10px;marginBottom: 15px;width: 100%;height: 48px;font-size: 18px;line-height: 48px">
             </y-button>
           </div>
-          <div class="border"></div>
+          <!--<div class="border"></div>-->
           <!--<div class="footer">-->
             <!--<div class="other">其它账号登录：</div>-->
             <!--<span id="qqLoginBtn"></span>-->
@@ -389,21 +389,7 @@ export default {
       border-radius: 6px;
     }
   }
-  .el-button--primary{
-    color: #fff;
-    background-color: #FF69B4;
-    border-color: #FF69B4;
-    height: 40px;
-    width: 100px;
-  }
-  .el-button--primary:hover{
-    background-color: #FF69B4;
-    border-color: #FF69B4;
-  }
-  .el-button--primary:focus{
-    background-color: #FF69B4;
-    border-color: #FF69B4;
-  }
+
   .wrapper {
     background: url(/static/images/bg_9b9dcb65ff.png) repeat;
     background-size: 100px;
