@@ -6,10 +6,13 @@ import store from './store/'
 import VueLazyload from 'vue-lazyload'
 import infiniteScroll from 'vue-infinite-scroll'
 import VueCookie from 'vue-cookie'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
 // import { userInfo } from './api'
 import { Button, Pagination, Checkbox, Icon, Autocomplete, Loading, Message, Notification, Steps, Step, Table, TableColumn, Input, Dialog, Select, Option } from 'element-ui'
 // import { getStore } from '/utils/storage'
 import VueContentPlaceholders from 'vue-content-placeholders'
+Vue.use(VueAxios, axios)
 Vue.use(VueContentPlaceholders)
 Vue.use(Button)
 Vue.use(Pagination)

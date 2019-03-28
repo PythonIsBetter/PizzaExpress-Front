@@ -117,7 +117,8 @@
   </div>
 </template>
 <script>
-  import { getCartList, cartEdit, editCheckAll, cartDel, delCartChecked } from '/api/goods'
+  // import { getCartList, cartEdit, editCheckAll, cartDel, delCartChecked } from '/api/goods'
+  import { getCartList, editCheckAll, delCartChecked } from '/api/goods'
   import { mapMutations, mapState } from 'vuex'
   import YButton from '/components/YButton'
   import YHeader from '/common/header'
@@ -160,6 +161,7 @@
       checkPrice () {
         var totalPrice = 0
         this.cartList && this.cartList.forEach(item => {
+          console.log('数量：' + item.productNum + '单价：' + item.salePrice)
           if (item.checked === '1') {
             totalPrice += (item.productNum * item.salePrice)
           }
@@ -198,24 +200,31 @@
       },
       // 修改购物车
       _cartEdit (userId, productId, productNum, checked) {
-        cartEdit(
+        // cartEdit(
+        //   {
+        //     userId,
+        //     productId,
+        //     productNum,
+        //     checked
+        //   }
+        // ).then(res => {
+        //   if (res.success === true) {
+        //     this.EDIT_CART(
+        //       {
+        //         productId,
+        //         checked,
+        //         productNum
+        //       }
+        //     )
+        //   }
+        // })
+        this.EDIT_CART(
           {
-            userId,
             productId,
-            productNum,
-            checked
+            checked,
+            productNum
           }
-        ).then(res => {
-          if (res.success === true) {
-            this.EDIT_CART(
-              {
-                productId,
-                checked,
-                productNum
-              }
-            )
-          }
-        })
+        )
       },
       // 修改购物车
       editCart (type, item) {
@@ -237,9 +246,10 @@
       },
       // 删除整条购物车
       cartdel (productId) {
-        cartDel({userId: this.userId, productId}).then(res => {
-          this.EDIT_CART({productId})
-        })
+        // cartDel({userId: this.userId, productId}).then(res => {
+        //   this.EDIT_CART({productId})
+        // })
+        this.EDIT_CART({productId})
       },
       checkout () {
         this.checkoutNow = '结算中...'
