@@ -17,6 +17,7 @@
     "geetest3": "^1.0.0",
     "gitment": "0.0.3",
     "vue": "^2.5.16",
+    "vue-axios": "^2.1.4",
     "vue-baidu-map": "^0.21.18",
     "vue-content-placeholders": "^0.2.1",
     "vue-cookie": "^1.1.4",
