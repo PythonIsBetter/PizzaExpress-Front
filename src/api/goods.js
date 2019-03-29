@@ -33,7 +33,7 @@ export const cartDel = (params) => {
 }
 // 获取用户地址
 export const addressList = (params) => {
-  return http.fetchPost('/member/addressList', params)
+  return http.fetchPost('/user/addressList', params)
 }
 // 通过id获取地址
 export const getAddress = (params) => {
@@ -41,19 +41,19 @@ export const getAddress = (params) => {
 }
 // 修改收货地址
 export const addressUpdate = (params) => {
-  return http.fetchPost('/member/updateAddress', params)
+  return http.fetchPost('/user/addressChange', params)
 }
 // 添加收货地址
 export const addressAdd = (params) => {
-  return http.fetchPost('/member/addAddress', params)
+  return http.fetchPost('/user/addressListCommit', params)
 }
 // 删除收货地址
 export const addressDel = (params) => {
-  return http.fetchPost('/member/delAddress', params)
+  return http.fetchPost('/user/addressDelete', params)
 }
 // 生成订单
 export const submitOrder = (params) => {
-  return http.fetchPost('/member/addOrder', params)
+  return http.fetchPost('/Home/orderCommit', params)
 }
 // 支付
 export const payMent = (params) => {

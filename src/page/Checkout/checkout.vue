@@ -11,9 +11,9 @@
             <li v-for="(item,i) in addList"
                 :key="i"
                 class="address pr"
-                :class="{checked:addressId === item.addressId}"
-                @click="chooseAddress(item.addressId, item.userName, item.tel, item.streetName)">
-           <span v-if="addressId === item.addressId" class="pa">
+                :class="{checked:addressId === item.id}"
+                @click="chooseAddress(item.id, item.receiverName, item.receiverPhoneNum, item.address)">
+           <span v-if="addressId === item.id" class="pa">
              <svg viewBox="0 0 1473 1024" width="17.34375" height="12">
              <path
                d="M1388.020 57.589c-15.543-15.787-37.146-25.569-61.033-25.569s-45.491 9.782-61.023 25.558l-716.054 723.618-370.578-374.571c-15.551-15.769-37.151-25.537-61.033-25.537s-45.482 9.768-61.024 25.527c-15.661 15.865-25.327 37.661-25.327 61.715 0 24.053 9.667 45.849 25.327 61.715l431.659 436.343c15.523 15.814 37.124 25.615 61.014 25.615s45.491-9.802 61.001-25.602l777.069-785.403c15.624-15.868 25.271-37.66 25.271-61.705s-9.647-45.837-25.282-61.717M1388.020 57.589z"
@@ -21,12 +21,12 @@
                </path>
              </svg>
              </span>
-              <p>收货人: {{item.userName}} {{item.isDefault ? '(默认地址)' : ''}}</p>
-              <p class="street-name ellipsis">收货地址: {{item.streetName}}</p>
-              <p>手机号码: {{item.tel}}</p>
+              <p>收货人: {{item.receiverName}}</p>
+              <p class="street-name ellipsis">收货地址: {{item.address}}</p>
+              <p>手机号码: {{item.receiverPhoneNum}}</p>
               <div class="operation-section">
                 <span class="update-btn" style="font-size:12px" @click="update(item)">修改</span>
-                <span class="delete-btn" style="font-size:12px" :data-id="item.addressId" @click="del(item.addressId)">删除</span>
+                <span class="delete-btn" style="font-size:12px" :data-id="item.id" @click="del(item.id)">删除</span>
               </div>
             </li>
 
@@ -120,13 +120,10 @@
           <div>
             <input type="text" placeholder="收货地址" v-model="msg.streetName">
           </div>
-          <div>
-            <el-checkbox class="auto-login" v-model="msg.isDefault">设为默认</el-checkbox>
-          </div>
           <y-button text='保存'
                     class="btn"
                     :classStyle="btnHighlight?'main-btn':'disabled-btn'"
-                    @btnClick="save({userId:userId,addressId:msg.addressId,userName:msg.userName,tel:msg.tel,streetName:msg.streetName,isDefault:msg.isDefault})">
+                    @btnClick="save({id:userId,addressId:msg.addressId,userName:msg.userName,tel:msg.tel,streetName:msg.streetName})">
           </y-button>
         </div>
       </y-popup>
@@ -135,7 +132,8 @@
   </div>
 </template>
 <script>
-  import {getCartList, addressList, addressUpdate, addressAdd, addressDel, productDet, submitOrder} from '/api/goods'
+  import {addressList, addressUpdate, addressAdd, addressDel, productDet, submitOrder} from '/api/goods'
+  import { mapState } from 'vuex'
   import YShelf from '/components/shelf'
   import YButton from '/components/YButton'
   import YPopup from '/components/popup'
@@ -146,7 +144,6 @@
   export default {
     data () {
       return {
-        cartList: [],
         addList: [],
         addressId: '0',
         popupOpen: false,
@@ -170,6 +167,9 @@
       }
     },
     computed: {
+      ...mapState(
+        ['cartList']
+      ),
       btnHighlight () {
         let msg = this.msg
         return msg.userName && msg.tel && msg.streetName
@@ -195,20 +195,20 @@
       goodsDetails (id) {
         window.open(window.location.origin + '#/goodsDetails?productId=' + id)
       },
-      _getCartList () {
-        getCartList({userId: this.userId}).then(res => {
-          this.cartList = res.result
-        })
-      },
+      // _getCartList () {
+      //   getCartList({userId: this.userId}).then(res => {
+      //     this.cartList = res.result
+      //   })
+      // },
       _addressList () {
-        addressList({userId: this.userId}).then(res => {
-          let data = res.result
+        addressList({phoneNum: this.userId}).then(res => {
+          let data = res
           if (data.length) {
             this.addList = data
-            this.addressId = data[0].addressId || '1'
-            this.userName = data[0].userName
-            this.tel = data[0].tel
-            this.streetName = data[0].streetName
+            this.addressId = data[0].id || '1'
+            this.userName = data[0].receiverName
+            this.tel = data[0].receiverPhoneNum
+            this.streetName = data[0].address
           } else {
             this.addList = []
           }
@@ -216,12 +216,14 @@
       },
       _addressUpdate (params) {
         addressUpdate(params).then(res => {
-          this._addressList()
+          if (res.success === 'true') {
+            this._addressList()
+          }
         })
       },
       _addressAdd (params) {
         addressAdd(params).then(res => {
-          if (res.success === true) {
+          if (res.success === 'true') {
             this._addressList()
           } else {
             this.message(res.message)
@@ -230,7 +232,9 @@
       },
       _addressDel (params) {
         addressDel(params).then(res => {
-          this._addressList()
+          if (res.success === 'true') {
+            this._addressList()
+          }
         })
       },
       // 提交订单后跳转付款页面
@@ -252,19 +256,17 @@
         }
         for (var i = 0; i < this.cartList.length; i++) {
           if (this.cartList[i].checked === '1') {
+            console.log(this.cartList[i])
             array.push(this.cartList[i])
           }
         }
         let params = {
-          userId: this.userId,
-          tel: this.tel,
-          userName: this.userName,
-          streetName: this.streetName,
-          goodsList: array,
-          orderTotal: this.orderTotal
+          addressId: this.addressId,
+          goodsList: array
         }
         submitOrder(params).then(res => {
-          if (res.success === true) {
+          console.log(res.success)
+          if (res.success === 'true') {
             this.payment(res.result)
           } else {
             this.message(res.message)
@@ -295,11 +297,10 @@
         this.popupOpen = true
         if (item) {
           this.popupTitle = '管理收货地址'
-          this.msg.userName = item.userName
-          this.msg.tel = item.tel
-          this.msg.streetName = item.streetName
-          this.msg.isDefault = item.isDefault
-          this.msg.addressId = item.addressId
+          this.msg.addressId = item.id
+          this.msg.userName = item.receiverName
+          this.msg.tel = item.receiverPhoneNum
+          this.msg.streetName = item.address
         } else {
           this.popupTitle = '新增收货地址'
           this.msg.userName = ''
@@ -336,14 +337,15 @@
     },
     created () {
       this.userId = getStore('userId')
-      let query = this.$route.query
-      if (query.productId && query.num) {
-        this.productId = query.productId
-        this.num = query.num
-        this._productDet(this.productId)
-      } else {
-        this._getCartList()
-      }
+      console.log(this.userId)
+      // let query = this.$route.query
+      // if (query.productId && query.num) {
+      //   this.productId = query.productId
+      //   this.num = query.num
+      //   this._productDet(this.productId)
+      // } else {
+      //   this._getCartList()
+      // }
       this._addressList()
     },
     components: {

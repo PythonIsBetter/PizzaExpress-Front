@@ -275,6 +275,7 @@ export default {
       }).then(res => {
         console.log(res[0])
         if (res.status === 'success') {
+          setStore('userId', this.ruleForm.userName)
           this.$router.push({
             path: '/'
           })
