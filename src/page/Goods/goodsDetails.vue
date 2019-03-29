@@ -41,12 +41,9 @@
                     @btnClick="checkout(product.id)"
                     style="width: 145px;height: 50px;line-height: 48px;margin-left: 10px"></y-button>
         </div>
-      </div>
-    </div>
-    <!--产品信息-->
-    <div class="item-info">
-      <y-shelf title="产品信息">
-        <div slot="content">
+
+        <div class="detail">
+          <span class="params-name">产品信息</span>
           <div class="img-item" v-if="productMsg">
             <div v-html="productMsg">{{ productMsg }}</div>
           </div>
@@ -56,8 +53,23 @@
             该商品暂无内容数据
           </div>
         </div>
-      </y-shelf>
+      </div>
     </div>
+    <!--产品信息-->
+    <!--<div class="item-info">-->
+      <!--<y-shelf title="产品信息">-->
+        <!--<div slot="content">-->
+          <!--<div class="img-item" v-if="productMsg">-->
+            <!--<div v-html="productMsg">{{ productMsg }}</div>-->
+          <!--</div>-->
+          <!--<div class="no-info" v-else>-->
+            <!--<img src="/static/images/no-data.png">-->
+            <!--<br>-->
+            <!--该商品暂无内容数据-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</y-shelf>-->
+    <!--</div>-->
   </div>
 </template>
 <script>
@@ -235,9 +247,13 @@
         align-items: center;
       }
       .buy {
-        position: relative;
         border-top: 1px solid #ebebeb;
-        padding: 30px 0 0 10px;
+        padding: 20px 0 20px 10px;
+        align-items: center;
+      }
+      .detail {
+        border-top: 1px solid #ebebeb;
+        padding: 10px 0 0 10px;
       }
     }
   }

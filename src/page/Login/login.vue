@@ -64,7 +64,7 @@
               style="marginTop: 10px;marginBottom: 15px;width: 100%;height: 48px;font-size: 18px;line-height: 48px">
             </y-button>
           </div>
-          <div class="border"></div>
+          <!--<div class="border"></div>-->
           <!--<div class="footer">-->
             <!--<div class="other">其它账号登录：</div>-->
             <!--<span id="qqLoginBtn"></span>-->
@@ -86,12 +86,12 @@
 <script>
 import YFooter from '/common/footer'
 import YButton from '/components/YButton'
-import { userLogin, geetest } from '/api/index.js'
-import { addCart } from '/api/goods.js'
+import { userLogin } from '/api/index.js'
+// import { addCart } from '/api/goods.js'
 import { setStore, getStore, removeStore } from '/utils/storage.js'
 
 require('../../../static/geetest/gt.js')
-var captcha
+// var captcha
 export default {
   data () {
     return {
@@ -254,7 +254,6 @@ export default {
       }
     },
     login () {
-      this.open(this.ruleForm.userName, this.ruleForm.userPwd)
       this.logintxt = '登录中...'
       this.rememberPass()
       if (!this.ruleForm.userName || !this.ruleForm.userPwd) {
@@ -274,53 +273,61 @@ export default {
         yanZhengCode: this.ruleForm.YanZhengCode,
         statusKey: '2'
       }).then(res => {
-        if (res.result.state === 1) {
-          setStore('token', res.result.token)
-          setStore('userId', res.result.id)
-          // 登录后添加当前缓存中的购物车
-          if (this.cart.length) {
-            for (var i = 0; i < this.cart.length; i++) {
-              addCart(this.cart[i]).then(res => {
-                if (res.success === true) {
-                }
-              })
-            }
-            removeStore('buyCart')
-            this.$router.push({
-              path: '/'
-            })
-          } else {
-            this.$router.push({
-              path: '/'
-            })
-          }
-        } else {
-          this.logintxt = '登录'
-          this.message(res.result.message)
-          captcha.reset()
-          return false
-        }
-      })
-    },
-    init_geetest () {
-      geetest().then(res => {
-        this.statusKey = res.statusKey
-        window.initGeetest({
-          gt: res.gt,
-          challenge: res.challenge,
-          new_captcha: res.new_captcha,
-          offline: !res.success,
-          product: 'popup',
-          width: '100%'
-        }, function (captchaObj) {
-          captcha = captchaObj
-          captchaObj.appendTo('#captcha')
-          captchaObj.onReady(function () {
-            document.getElementById('wait').style.display = 'none'
+        console.log(res[0])
+        if (res.status === 'success') {
+          this.$router.push({
+            path: '/'
           })
-        })
+        } else {
+          this.open('账号密码输入错误')
+        }
+        // if (res.result.state === 1) {
+        //   setStore('token', res.result.token)
+        //   setStore('userId', res.result.id)
+        //   // 登录后添加当前缓存中的购物车
+        //   if (this.cart.length) {
+        //     for (var i = 0; i < this.cart.length; i++) {
+        //       addCart(this.cart[i]).then(res => {
+        //         if (res.success === true) {
+        //         }
+        //       })
+        //     }
+        //     removeStore('buyCart')
+        //     this.$router.push({
+        //       path: '/'
+        //     })
+        //   } else {
+        //     this.$router.push({
+        //       path: '/'
+        //     })
+        //   }
+        // } else {
+        //   this.logintxt = '登录'
+        //   this.message(res.result.message)
+        //   captcha.reset()
+        //   return false
+        // }
       })
     }
+    // init_geetest () {
+    //   geetest().then(res => {
+    //     this.statusKey = res.statusKey
+    //     window.initGeetest({
+    //       gt: res.gt,
+    //       challenge: res.challenge,
+    //       new_captcha: res.new_captcha,
+    //       offline: !res.success,
+    //       product: 'popup',
+    //       width: '100%'
+    //     }, function (captchaObj) {
+    //       captcha = captchaObj
+    //       captchaObj.appendTo('#captcha')
+    //       captchaObj.onReady(function () {
+    //         document.getElementById('wait').style.display = 'none'
+    //       })
+    //     })
+    //   })
+    // }
   },
   mounted () {
     this.getRemembered()
@@ -388,21 +395,7 @@ export default {
       border-radius: 6px;
     }
   }
-  .el-button--primary{
-    color: #fff;
-    background-color: #FF69B4;
-    border-color: #FF69B4;
-    height: 40px;
-    width: 100px;
-  }
-  .el-button--primary:hover{
-    background-color: #FF69B4;
-    border-color: #FF69B4;
-  }
-  .el-button--primary:focus{
-    background-color: #FF69B4;
-    border-color: #FF69B4;
-  }
+
   .wrapper {
     background: url(/static/images/bg_9b9dcb65ff.png) repeat;
     background-size: 100px;
