@@ -29,17 +29,18 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/register/*': {
-        // target: 'http://127.0.0.1:7777'  // 请求本地 需要xmall后台项目 默认127.0.0.1:7777
         target: 'http://192.168.0.8:8080',  // 请求本地 需要xmall后台项目 默认127.0.0.1:7777
         changeOrigin: true,
       },
       '/login/*': {
-        // target: 'http://127.0.0.1:7777'  // 请求本地 需要xmall后台项目 默认127.0.0.1:7777
         target: 'http://192.168.0.8:8080',  // 请求本地 需要xmall后台项目 默认127.0.0.1:7777
         changeOrigin: true,
       },
       '/Home/*': {
-        // target: 'http://127.0.0.1:7777'  // 请求本地 需要xmall后台项目 默认127.0.0.1:7777
+        target: 'http://192.168.0.8:8080',  // 请求本地 需要xmall后台项目 默认127.0.0.1:7777
+        changeOrigin: true
+      },
+      '/user/*': {
         target: 'http://192.168.0.8:8080',  // 请求本地 需要xmall后台项目 默认127.0.0.1:7777
         changeOrigin: true
       }

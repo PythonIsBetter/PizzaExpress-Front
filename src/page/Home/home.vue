@@ -47,7 +47,7 @@
     props: {
       initialSpeed: {
         type: Number,
-        default: 30
+        default: 5
       },
       initialInterval: {
         type: Number,
