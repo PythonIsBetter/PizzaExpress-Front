@@ -13,7 +13,7 @@
       :play="play"
       :rotation="true"
       :autoView="true"
-      :speed="2000">
+      :speed="500">
     </bml-lushu>
   </baidu-map>
 </template>
