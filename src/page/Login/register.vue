@@ -155,6 +155,7 @@
             })
           } else {
             this.open('注册失败')
+            this.registxt = '注册'
           }
           if (res.success === true) {
             this.messageSuccess()
