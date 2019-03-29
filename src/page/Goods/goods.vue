@@ -73,28 +73,7 @@
   export default {
     data () {
       return {
-        goods: [
-          {
-            productId: 1,
-            productName: '披萨A',
-            subTitle: '榴莲披萨',
-            salePrice: 18
-          },
-
-          {
-            productId: 2,
-            productName: '披萨B',
-            subTitle: '芒果披萨',
-            salePrice: 28
-          },
-
-          {
-            productId: 3,
-            productName: '披萨C',
-            subTitle: '培根披萨',
-            salePrice: 38
-          }
-        ],
+        goods: [],
         noResult: false,
         error: false,
         min: '',
@@ -141,29 +120,9 @@
           }
         }
         getAllGoods(params).then(res => {
-          this.total = res.result.total
-          this.goods = [
-            {
-              productId: 1,
-              productName: '披萨A',
-              subTitle: '榴莲披萨',
-              salePrice: 18
-            },
-
-            {
-              productId: 2,
-              productName: '披萨B',
-              subTitle: '芒果披萨',
-              salePrice: 28
-            },
-
-            {
-              productId: 2,
-              productName: '披萨C',
-              subTitle: '培根披萨',
-              salePrice: 38
-            }
-          ]
+          // this.total = res.result.total
+          // console.log(res[0].introduce)
+          this.goods = res
         })
       },
       // 默认排序

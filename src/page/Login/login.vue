@@ -55,7 +55,7 @@
             <y-button :text="logintxt"
                       :classStyle="(ruleForm.YanZhengCode&& ruleForm.userName&& logintxt === '登录') ||
                                    (ruleForm.userName&& ruleForm.userPwd && logintxt === '登录') ?'main-btn':'disabled-btn'"
-                      @btnClick="login2"
+                      @btnClick="login"
                       style="margin: 0;width: 100%;height: 48px;font-size: 18px;line-height: 48px"></y-button>
           </div>
           <!--返回-->
@@ -203,6 +203,7 @@ export default {
       this.loginPart2Show = false
       this.ruleForm.userName = ''
       this.ruleForm.YanZhengCode = ''
+      this.statusKey = 2
     },
     logintype2 () {
       // const LoginType2 = Vue.extend(loginPart2)
@@ -212,6 +213,7 @@ export default {
       this.loginPart2Show = true
       this.ruleForm.userName = ''
       this.ruleForm.userPwd = ''
+      this.statusKey = 1
     },
     sendMessage () {
       this.open('ok')
@@ -260,21 +262,18 @@ export default {
         this.message('账号或者密码不能为空!')
         return false
       }
-      var result = captcha.getValidate()
-      if (!result) {
-        this.message('请完成验证')
-        this.logintxt = '登录'
-        return false
-      }
-      var params = {
+      // var result = captcha.getValidate()
+      // if (!result) {
+      //   this.message('请完成验证')
+      //   this.logintxt = '登录'
+      //   return false
+      // }
+      userLogin({
         userName: this.ruleForm.userName,
         userPwd: this.ruleForm.userPwd,
-        challenge: result.geetest_challenge,
-        validate: result.geetest_validate,
-        seccode: result.geetest_seccode,
-        statusKey: this.statusKey
-      }
-      userLogin(params).then(res => {
+        yanZhengCode: this.ruleForm.YanZhengCode,
+        statusKey: '2'
+      }).then(res => {
         if (res.result.state === 1) {
           setStore('token', res.result.token)
           setStore('userId', res.result.id)

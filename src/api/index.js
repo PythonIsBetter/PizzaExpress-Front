@@ -1,7 +1,8 @@
 import http from './public'
 // 登陆
 export const userLogin = (params) => {
-  return http.fetchPost('/member/login', params)
+  // return http.fetchPost('/member/login', params)
+  return http.fetchPost('/login/login', params)
 }
 // 退出登陆
 export const loginOut = (params) => {
@@ -13,7 +14,7 @@ export const userInfo = (params) => {
 }
 // 注册账号
 export const register = (params) => {
-  return http.fetchPost('/member/register', params)
+  return http.fetchPost('/register/register', params)
 }
 // 上传图片
 export const upload = (params) => {
