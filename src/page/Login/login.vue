@@ -281,6 +281,7 @@ export default {
           })
         } else {
           this.open('账号密码输入错误')
+          this.logintxt = '登录'
         }
         // if (res.result.state === 1) {
         //   setStore('token', res.result.token)
