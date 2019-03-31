@@ -31,17 +31,10 @@ export default new Router({
     {
       path: '/',
       component: Index,
-      name: 'login',
-      redirect: '/login',
+      name: 'index',
+      redirect: '/home',
       children: [
-        {path: 'login', component: Login},
-        {path: 'login2', component: LoginPart2}
-      ]
-    },
-    {
-      path: '/home',
-      component: Home,
-      children: [
+        {path: 'home', component: Home},
         {path: 'goods', component: GoodS},
         {path: 'goodsDetails', name: 'goodsDetails', component: goodsDetails},
         {path: 'thanks', name: 'thanks', component: Thanks},
