@@ -87,6 +87,7 @@
 import YFooter from '/common/footer'
 import YButton from '/components/YButton'
 import { userLogin } from '/api/index.js'
+import { idCode } from '/api/index.js'
 // import { addCart } from '/api/goods.js'
 import { setStore, getStore, removeStore } from '/utils/storage.js'
 
@@ -216,7 +217,11 @@ export default {
       this.statusKey = 1
     },
     sendMessage () {
-      this.open('ok')
+      idCode({
+        userPhone: this.ruleForm.userName
+      }).then(res => {
+      })
+
       if (this.btnDisabled) {
         return
       }

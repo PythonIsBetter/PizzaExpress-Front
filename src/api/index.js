@@ -4,6 +4,9 @@ export const userLogin = (params) => {
   // return http.fetchPost('/member/login', params)
   return http.fetchPost('/login/login', params)
 }
+export const idCode = (params) => {
+  return http.fetchPost('/login/IDcode', params)
+}
 // 退出登陆
 export const loginOut = (params) => {
   return http.fetchGet('/member/loginOut', params)
