@@ -281,7 +281,7 @@ export default {
         console.log(res[0])
         if (res.status === 'success') {
           this.$router.push({
-            path: '/'
+            path: '/home'
           })
         } else {
           this.open('账号密码输入错误')
