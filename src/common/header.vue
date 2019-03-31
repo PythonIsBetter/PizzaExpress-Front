@@ -22,7 +22,7 @@
                 @keydown.enter.native="handleIconClick">
               </el-autocomplete>
               <router-link to="/home"><a @click="changePage(2)">首页</a></router-link>
-               <router-link to="/goods"><a @click="changePage(2)">菜单</a></router-link>
+              <router-link to="/goods"><a @click="changePage(2)">菜单</a></router-link>
 
             </div>
             <div class="nav-aside" ref="aside" :class="{fixed:st}">

@@ -47,7 +47,7 @@
     props: {
       initialSpeed: {
         type: Number,
-        default: 5
+        default: 30
       },
       initialInterval: {
         type: Number,
@@ -158,29 +158,23 @@
     margin: 0;
     padding: 0;
   }
-
   ol, ul {
     list-style: none;
   }
-
   #slider {
     text-align: center;
   }
-
   .window {
     position: relative;
-    width: 900px;
-    height: 480px;
-    /*margin: 0px 1px 2px 3px;*/
+    width: 1400px;
+    height: 788px;
     margin: 0 auto;
     overflow: hidden;
   }
-
   .container {
     display: flex;
     position: absolute;
   }
-
   .left, .right {
     position: absolute;
     top: 50%;
@@ -191,30 +185,25 @@
     border-radius: 50%;
     cursor: pointer;
   }
-
   .left {
     left: 3%;
     padding-left: 12px;
     padding-top: 10px;
   }
-
   .right {
     right: 3%;
     padding-right: 12px;
     padding-top: 10px;
   }
-
   img {
     user-select: none;
   }
-
   .dots {
     position: absolute;
     bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
   }
-
   .dots li {
     display: inline-block;
     width: 15px;
@@ -225,7 +214,6 @@
     background-color: #333;
     cursor: pointer;
   }
-
   .dots .dotted {
     background-color: orange;
   }
