@@ -88,3 +88,8 @@ export const getSearch = (params) => {
 export const getQuickSearch = (params) => {
   return http.fetchGet('/goods/quickSearch', params)
 }
+
+// 主页图片
+export const getHomePic = (params) => {
+  return http.fetchGet('/goods/quickSearch', params)
+}

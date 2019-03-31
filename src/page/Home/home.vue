@@ -56,21 +56,22 @@
     },
     data () {
       return {
+        // 修改为服务器路径
         sliders: [
           {
-            img: '../../static/images/1.jpg'
+            img: 'http://192.168.0.8:8080/images/1.jpg'
           },
           {
-            img: '../../static/images/2.jpg'
+            img: 'http://192.168.0.8:8080/images/2.jpg'
           },
           {
-            img: '../../static/images/3.jpg'
+            img: 'http://192.168.0.8:8080/images/3.jpg'
           },
           {
-            img: '../../static/images/4.jpg'
+            img: 'http://192.168.0.8:8080/images/4.jpg'
           },
           {
-            img: '../../static/images/5.jpg'
+            img: 'http://192.168.0.8:8080/images/5.jpg'
           }
         ],
         currentIndex: 1,
