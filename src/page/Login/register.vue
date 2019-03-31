@@ -151,7 +151,7 @@
           console.log(res[0])
           if (res.status === 'success') {
             this.$router.push({
-              path: '/'
+              path: '/home'
             })
           } else {
             this.open('注册失败')
