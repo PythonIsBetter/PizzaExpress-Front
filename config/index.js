@@ -44,6 +44,7 @@ module.exports = {
         target: 'http://192.168.0.8:8080',  // 请求本地 需要xmall后台项目 默认127.0.0.1:7777
         changeOrigin: true
       }
+
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"
     // with this option, according to the CSS-Loader README

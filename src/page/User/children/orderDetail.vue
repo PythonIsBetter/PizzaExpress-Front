@@ -210,11 +210,12 @@
       },
       _getOrderDet () {
         let params = {
-          params: {
-            orderId: this.orderId
-          }
+          // params: {
+          orderId: this.orderId
+          // }
         }
         getOrderDet(params).then(res => {
+          console.log(res)
           if (res.result.orderStatus === '0') {
             this.orderStatus = 1
           } else if (res.result.orderStatus === '1') {
@@ -226,11 +227,11 @@
           } else if (res.result.orderStatus === '6') {
             this.orderStatus = 6
           }
-          this.orderList = res.result.goodsList
+          this.orderList = res.goodsList
           this.orderTotal = res.result.orderTotal
-          this.userName = res.result.addressInfo.userName
-          this.tel = res.result.addressInfo.tel
-          this.streetName = res.result.addressInfo.streetName
+          this.userName = res.receiverAddress.receiverName
+          this.tel = res.receiverAddress.tel
+          this.streetName = res.receiverAddress.address
           this.createTime = res.result.createDate
           this.closeTime = res.result.closeDate
           this.payTime = res.result.payDate
@@ -257,6 +258,8 @@
       this.orderId = this.$route.query.orderId
       this.orderTitle = '订单号：' + this.orderId
       this._getOrderDet()
+      console.log(this.userId)
+      console.log(this.orderId)
     },
     components: {
       YShelf,

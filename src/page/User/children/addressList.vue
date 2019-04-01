@@ -75,7 +75,7 @@
           streetName: '',
           isDefault: false
         },
-        userId: ''
+        phoneNum: ''
       }
     },
     computed: {
@@ -91,8 +91,9 @@
         })
       },
       _addressList () {
-        addressList({userId: this.userId}).then(res => {
-          let data = res.result
+        addressList({phoneNum: this.phoneNum}).then(res => {
+          console.log(res)
+          let data = res
           if (data.length) {
             this.addList = res.result
             this.addressId = res.result[0].addressId || '1'
@@ -163,7 +164,8 @@
       }
     },
     created () {
-      this.userId = getStore('userId')
+      this.phoneNum = getStore('userId')
+      console.log(this.phoneNum)
       this._addressList()
     },
     components: {

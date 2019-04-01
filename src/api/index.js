@@ -53,4 +53,8 @@ export const thank = (params) => {
 export const geetest = (params) => {
   return http.fetchGet('/member/geetestInit?t=' + (new Date()).getTime(), params)
 }
+// 用戶請求訂單
+export const orderList = (params) => {
+  return http.fetchGet('/user/orderList' + (new Date()).getTime(), params)
+}
 

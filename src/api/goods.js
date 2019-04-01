@@ -61,24 +61,25 @@ export const payMent = (params) => {
 }
 // 获取用户订单
 export const orderList = (params) => {
-  return http.fetchGet('/member/orderList', params)
+  return http.fetchPost('/user/orderList', params)
 }
 // 获取单个订单详情
 export const getOrderDet = (params) => {
-  return http.fetchGet('/member/orderDetail', params)
+  // return http.fetchGet('/user/orderDetail', params)
+  return http.fetchPost('/user/goodsDetails', params)
 }
 // 取消订单
 export const cancelOrder = (params) => {
   return http.fetchPost('/member/cancelOrder', params)
 }
-// 商品详情
+// 商品详情|
 export const productDet = (params) => {
   // return http.fetchGet('/Home/itemInfo', params)
   return http.fetchPost('/Home/itemInfo', params)
 }
 // 删除订单
 export const delOrder = (params) => {
-  return http.fetchGet('/member/delOrder', params)
+  return http.fetchGet('/user/delOrder', params)
 }
 // 商品列表
 export const getSearch = (params) => {

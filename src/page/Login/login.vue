@@ -10,7 +10,7 @@
           <ul class="common-form">
             <li>
               <div class="tab-tit" v-model="tabView">
-                <`a href="javascript:;" @click="logintype2" class="register">手机验证码登录</a>
+                <a href="javascript:;" @click="logintype2" class="register">手机验证码登录</a>
                 <a href="javascript:;" @click="logintype1" class="register">手机密码登录</a>
               </div>
             </li>
@@ -19,15 +19,12 @@
                 <div class="input">
                   <input type="text" v-model="ruleForm.userName" placeholder="手机号">
                 </div>
-hnmj m
-
               </li>
               <li>
                 <div class="input">
                   <input type="password" v-model="ruleForm.userPwd" @keyup.enter="login" placeholder="密码">
                   <div id="container"></div>
                 </div>
-
               </li>
             </div>
 
@@ -120,7 +117,7 @@ hnmj m
         },
         autoLogin: false,
         logintxt: '登录',
-        statusKey: ''
+        statusKey: '2'
       }
     },
     computed: {
@@ -278,8 +275,9 @@ hnmj m
           trueYanZhengCode: this.ruleForm.trueYanZhengCode,
           statusKey: this.statusKey
         }).then(res => {
-          console.log(res[0])
+          console.log(res)
           if (res.status === 'success') {
+            setStore('userId', this.ruleForm.userName)
             this.$router.push({
               path: '/home'
             })

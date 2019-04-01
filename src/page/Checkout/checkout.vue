@@ -279,7 +279,8 @@
       payment (orderId) {
         // 需要拿到地址id
         this.$router.push({
-          path: '/order/payment',
+          // path: '/order/payment',
+          path: '/user/orderList',
           query: {
             'orderId': orderId
           }
