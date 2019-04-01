@@ -1,144 +1,56 @@
 <template>
   <div class="w" style="padding-bottom: 100px;">
-    <y-shelf title="XPay收银台 收款方: Exrick">
+    <y-shelf title="微信付款">
       <div slot="content">
         <div class="box-inner order-info">
-          <img class="wechat" src="static/images/weixinpay@2x.png" alt="扫一扫标识">
-          <p class="payment-detail">扫一扫付款（元）</p>
-          <p class="payment-money">{{orderTotal}}</p>
-          <div class="img-box">
-            <img class="pic" v-bind:src="imgPath" alt="加载失败" width="168px" height="168px"/>
-            <div class="timeout" v-if="timeout">二维码已过期</div>
+          <div class="explain">
+            <img class="fn-left" src="/static/images/wechatPay.jpg" alt="扫一扫">
           </div>
         </div>
-        <img class="explain" src="static/images/wechat-explain.png" alt="扫一扫标识">
-        <div class="count">{{timecount}}</div>
-
         <div>
           <div class="box-btn">
             <div>
               <span>
-              
               </span>
-              <em><span>¥</span>{{orderTotal}}</em>
-              <y-button :text="payNow"
-                        :classStyle="submit?'main-btn':'disabled-btn'"
-                        style="width: 120px;height: 40px;font-size: 16px;line-height: 38px"
-                        @btnClick="paySuc()"
-              ></y-button>
             </div>
+            <y-button :text="backToOrder"
+                      :classStyle="submit?'main-btn':'disabled-btn'"
+                      style="width: 120px;height: 40px;font-size: 16px;line-height: 38px;display:block;margin:0 auto"
+                      @btnClick="tiaoZhuan()"
+            ></y-button>
           </div>
         </div>
-
       </div>
     </y-shelf>
-
   </div>
 </template>
 <script>
+  import {tiaoZhuan} from '/api/goods'
   import YShelf from '/components/shelf'
   import YButton from '/components/YButton'
-  import { getStore, setStore } from '/utils/storage'
+  // import { getStore, setStore } from '/utils/storage'
   export default {
     data () {
       return {
         show: true,
-        num: '',
         userId: '',
-        orderTotal: '',
-        userName: '',
-        count: 30,
-        streetName: '',
-        checkPrice: '',
-        payNow: '等待支付...',
-        submit: false,
-        nickName: '',
-        money: '',
-        info: '',
-        email: '',
-        isCustom: 0,
-        imgPath: 'static/qr/wechat/custom.png',
-        picName: '',
-        timeout: false,
-        timecount: ''
+        backToOrder: '返回我的订单',
+        submit: true,
+        orderId: 0
       }
     },
     computed: {
     },
     methods: {
-      toMoney (num) {
-        num = parseFloat(num)
-        num = num.toFixed(2)
-        num = num.toLocaleString()
-        return num
+      created () {
+        this.orderId = this.$route.query.orderId
       },
-      countDown () {
-        let me = this
-        if (this.count === 0) {
-          this.payNow = '确认已支付'
-          this.submit = true
-          return
-        } else {
-          this.count--
-        }
-        setTimeout(function () {
-          me.countDown()
-        }, 1000)
-      },
-      countTime () {
-        let me = this
-        let time = getStore('setTime')
-        if (time <= 0) {
-          this.timeout = true
-          this.timecount = ''
-          this.count = 10000
-          return
-        } else {
-          time--
-          this.showTime(time)
-          setStore('setTime', time)
-        }
-        setTimeout(function () {
-          me.countTime()
-        }, 1000)
-      },
-      showTime (v) {
-        let m = 0
-        let s = 0
-        if (v === null || v === '') {
-          return ''
-        }
-        if (v >= 60) {
-          m = Math.floor(v / 60)
-          s = v % 60
-        } else {
-          s = v
-        }
-        if (m >= 0 && m <= 9) {
-          m = '0' + m
-        }
-        if (s >= 0 && s <= 9) {
-          s = '0' + s
-        }
-        this.timecount = '请于 ' + m + ' 分 ' + s + ' 秒 内支付'
-      },
-      paySuc () {
-        this.$router.push({path: '/order/paysuccess', query: {price: this.orderTotal}})
+      tiaoZhuan () {
+        tiaoZhuan({orderId: this.orderId}).then(res => {})
+        this.$router.push({
+          path: '/user/orderList'
+        })
       }
-    },
-    mounted () {
-      let price = getStore('price')
-      let isCustom = getStore('isCustom')
-      this.orderTotal = this.toMoney(price)
-      if (this.orderTotal === 'NaN') {
-        this.$router.push({path: '/'})
-      }
-      if (isCustom !== 'true') {
-        this.picName = this.orderTotal
-        this.imgPath = 'static/qr/wechat/' + this.picName + '.png'
-      }
-      this.countDown()
-      this.countTime()
     },
     components: {
       YShelf,
@@ -239,22 +151,71 @@
   }
 
   .explain {
-    margin: 0 auto;
-    display: flex;
-    width: 180px;
-    margin-top: -42px;
-    margin-bottom: 70px;
+    margin: 5px 0 12px 0;
   }
 
   .pic{
     margin-top: 3px;
   }
 
-  .wechat{
-    margin: 0 auto;
+  .fn-left{
+    margin-left: -5px;
+  }
+
+  .fn-right{
+    font-size: 13px;
+    color: #4D4D4D;
+    line-height: 18px;
+    margin: -57px 0 0 33px;
+  }
+
+  .download-alipay {
     display: flex;
-    margin-top: -40px;
-    width: 220px;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: -5px;
+    font-size: 12px;
+    color: #a6a6a6;
+    text-decoration: underline;
+    width: 25%;
+    margin: 0 auto;
+  }
+
+  .qrguide-area {
+    position: absolute;
+    top: 113px;
+    left: 713px;
+    width: 204px;
+    height: 183px;
+    cursor: pointer;
+  }
+
+  .show-img{
+    display: block;
+  }
+
+  .close-img{
+    display: none;
+  }
+
+  .red {
+    position: absolute;
+    top: 482px;
+    left: 1151px;
+    width: 47px;
+    height: 50px;
+    cursor: pointer;
+  }
+
+  .el-dialog--small {
+    width: 30%;
+  }
+
+  .qr-red {
+    display: block;
+    margin: 0 auto;
+    width: 70%;
   }
 
   .count {
@@ -267,9 +228,9 @@
     margin-left: calc(50% - 115px);
     margin-top: 0px;
     color: #222;
-    margin-top: -45px;
+    margin-top: -18px;
   }
-  
+
   .timeout{
     position: absolute;
     top: 0;

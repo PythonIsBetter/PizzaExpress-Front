@@ -200,24 +200,6 @@
       },
       // 修改购物车
       _cartEdit (userId, productId, productNum, checked) {
-        // cartEdit(
-        //   {
-        //     userId,
-        //     productId,
-        //     productNum,
-        //     checked
-        //   }
-        // ).then(res => {
-        //   if (res.success === true) {
-        //     this.EDIT_CART(
-        //       {
-        //         productId,
-        //         checked,
-        //         productNum
-        //       }
-        //     )
-        //   }
-        // })
         this.EDIT_CART(
           {
             productId,
