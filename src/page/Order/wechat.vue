@@ -36,21 +36,21 @@
         userId: '',
         backToOrder: '返回我的订单',
         submit: true,
-        orderId: 0
+        orderId: ''
       }
     },
     computed: {
     },
     methods: {
-      created () {
-        this.orderId = this.$route.query.orderId
-      },
       tiaoZhuan () {
         tiaoZhuan({orderId: this.orderId}).then(res => {})
         this.$router.push({
           path: '/user/orderList'
         })
       }
+    },
+    created () {
+      this.orderId = this.$route.query.orderId
     },
     components: {
       YShelf,

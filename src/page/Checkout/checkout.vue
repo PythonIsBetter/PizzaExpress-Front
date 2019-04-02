@@ -290,8 +290,7 @@
       // 付款
       payment () {
         this.$router.push({
-          // path: '/order/payment',
-          path: '/user/orderList',
+          path: '/order/payment',
           query: {
             'orderId': this.orderId,
             'orderTotal': this.orderTotal
