@@ -56,6 +56,7 @@ export default new Router({
       path: '/order',
       name: 'order',
       component: order,
+      redirect: '/order/payment',
       children: [
         {path: 'paysuccess', name: 'paysuccess', component: paysuccess},
         {path: 'payment', name: 'payment', component: payment},

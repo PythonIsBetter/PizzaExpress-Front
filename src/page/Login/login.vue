@@ -19,15 +19,12 @@
                 <div class="input">
                   <input type="text" v-model="ruleForm.userName" placeholder="手机号">
                 </div>
-
-
               </li>
               <li>
                 <div class="input">
                   <input type="password" v-model="ruleForm.userPwd" @keyup.enter="login" placeholder="密码">
                   <div id="container"></div>
                 </div>
-
               </li>
             </div>
 
@@ -86,7 +83,8 @@
 <script>
   import YFooter from '/common/footer'
   import YButton from '/components/YButton'
-  import { userLogin } from '/api/index.js'
+  import { userLogin, idCode } from '/api/index.js'
+  // import { idCode } from '/api/index.js'
   // import { addCart } from '/api/goods.js'
   import { setStore, getStore, removeStore } from '/utils/storage.js'
 
@@ -108,7 +106,8 @@
           userPwd: '',
           errMsg: '',
           userCode: '',
-          YanZhengCode: ''
+          YanZhengCode: '',
+          trueYanZhengCode: ''
         },
         registered: {
           userName: '',
@@ -118,7 +117,7 @@
         },
         autoLogin: false,
         logintxt: '登录',
-        statusKey: ''
+        statusKey: '2'
       }
     },
     computed: {
@@ -216,7 +215,14 @@
         this.statusKey = 1
       },
       sendMessage () {
-        this.open('ok')
+        idCode({
+          userPhone: this.ruleForm.userName
+        }).then(res => {
+          let a = res.IDcode
+          this.ruleForm.trueYanZhengCode = a
+          console.log(this.ruleForm.trueYanZhengCode)
+        })
+
         if (this.btnDisabled) {
           return
         }
@@ -234,11 +240,12 @@
           this.btnText = '验证码(' + wait + 's)'
           wait--
           setTimeout(function () {
-              _this.getSecond(wait)
-            },
+            _this.getSecond(wait)
+          },
             1000)
         }
       },
+
       login2 () {
         if (!this.ruleForm.userName || !this.ruleForm.userPwd) {
           // this.ruleForm.errMsg = '账号或者密码不能为空!'
@@ -256,31 +263,27 @@
       login () {
         this.logintxt = '登录中...'
         this.rememberPass()
-        if (!this.ruleForm.userName || !this.ruleForm.userPwd) {
-          // this.ruleForm.errMsg = '账号或者密码不能为空!'
-          this.message('账号或者密码不能为空!')
-          return false
-        }
-        // var result = captcha.getValidate()
-        // if (!result) {
-        //   this.message('请完成验证')
-        //   this.logintxt = '登录'
+        // if (!this.ruleForm.userName || !this.ruleForm.userPwd) {
+        //   // this.ruleForm.errMsg = '账号或者密码不能为空!'
+        //   this.message('账号或者密码不能为空!')
         //   return false
         // }
         userLogin({
           userName: this.ruleForm.userName,
           userPwd: this.ruleForm.userPwd,
           yanZhengCode: this.ruleForm.YanZhengCode,
-          statusKey: '2'
+          trueYanZhengCode: this.ruleForm.trueYanZhengCode,
+          statusKey: this.statusKey
         }).then(res => {
-          console.log(res[0])
+          console.log(res)
           if (res.status === 'success') {
             setStore('userId', this.ruleForm.userName)
             this.$router.push({
-              path: '/'
+              path: '/home'
             })
           } else {
             this.open('账号密码输入错误')
+            this.logintxt = '登录'
           }
           // if (res.result.state === 1) {
           //   setStore('token', res.result.token)

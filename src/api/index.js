@@ -4,6 +4,11 @@ export const userLogin = (params) => {
   // return http.fetchPost('/member/login', params)
   return http.fetchPost('/login/login', params)
 }
+// idCode
+export const idCode = (params) => {
+  // return http.fetchPost('/member/login', params)
+  return http.fetchPost('/login/IDcode', params)
+}
 // 退出登陆
 export const loginOut = (params) => {
   return http.fetchGet('/member/loginOut', params)
@@ -47,5 +52,9 @@ export const thank = (params) => {
 // 极验验证码
 export const geetest = (params) => {
   return http.fetchGet('/member/geetestInit?t=' + (new Date()).getTime(), params)
+}
+// 用戶請求訂單
+export const orderList = (params) => {
+  return http.fetchGet('/user/orderList' + (new Date()).getTime(), params)
 }
 

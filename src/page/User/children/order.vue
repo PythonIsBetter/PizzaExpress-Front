@@ -7,7 +7,7 @@
             <div class="gray-sub-title cart-title">
               <div class="first">
                 <div>
-                  <span class="date" v-text="item.createDate"></span>
+                  <span class="date" v-text="item.orderTime"></span>
                   <span class="order-id"> 订单号： <a @click="orderDetail(item.orderId)">{{item.orderId}}</a> </span>
                 </div>
                 <div class="f-bc">
@@ -29,8 +29,9 @@
                     <div class="ellipsis"><a style="color: #626262;" @click="goodsDetails(good.productId)">{{good.productName}}</a></div>
                   </div>
                   <div class="cart-l-r">
-                    <div>¥ {{Number(good.salePrice).toFixed(2)}}</div>
-                    <div class="num">{{good.productNum}}</div>
+                    <!--<div>¥ {{Number(good.actualUnitPrice).toFixed(2)}}</div>-->
+                    <div class="num">¥{{(good.actualUnitPrize)}}</div>
+                    <div class="num">{{good.num}}</div>
                     <div class="type">
                       <el-button style="margin-left:20px" @click="_delOrder(item.orderId,i)" type="danger" size="small" v-if="j<1" class="del-order">删除此订单</el-button>
                       <!-- <a @click="_delOrder(item.orderId,i)" href="javascript:;" v-if="j<1" class="del-order">删除此订单</a> -->
@@ -147,15 +148,16 @@
       },
       _orderList () {
         let params = {
-          params: {
-            userId: this.userId,
-            size: this.pageSize,
-            page: this.currentPage
-          }
+          // params: {
+          userId: this.userId
+            // size: this.pageSize,
+            // page: this.currentPage
+          // }
         }
         orderList(params).then(res => {
-          this.orderList = res.result.data
-          this.total = res.result.total
+          console.log(res)
+          this.orderList = res
+          this.total = res.orderTotal
           this.loading = false
         })
       },
