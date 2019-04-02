@@ -73,7 +73,7 @@
   </div>
 </template>
 <script>
-  import {productDet, addCart} from '/api/goods'
+  import {productDet} from '/api/goods'
   import {mapMutations, mapState} from 'vuex'
   import YShelf from '/components/shelf'
   import BuyNum from '/components/buynum'
@@ -109,18 +109,11 @@
       },
       addCart (id, price, name, img) {
         if (!this.showMoveImg) {     // 动画是否在运动
-          if (this.login) { // 登录了 直接存在用户名下
-            addCart({userId: this.userId, productId: id, productNum: this.productNum}).then(res => {
-              // 并不重新请求数据
-              this.ADD_CART({
-                productId: id,
-                salePrice: price,
-                productName: name,
-                productImg: img,
-                productNum: this.productNum
-              })
-            })
-          } else { // 未登录 vuex
+          let userId = getStore('userId') // 获取用户id
+          console.log('userID:' + userId)
+          if (!userId) { // 没登陆直接跳转到登陆页面
+            this.$router.push({path: '/login'})
+          } else { // 已登录则允许添加到购物车
             this.ADD_CART({
               productId: id,
               salePrice: price,

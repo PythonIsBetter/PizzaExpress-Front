@@ -89,8 +89,11 @@ export const getSearch = (params) => {
 export const getQuickSearch = (params) => {
   return http.fetchGet('/goods/quickSearch', params)
 }
-
 // 主页图片
 export const getHomePic = (params) => {
   return http.fetchGet('/goods/quickSearch', params)
+}
+// 支付页面跳转订单页面
+export const tiaoZhuan = (params) => {
+  return http.fetchPost('/Home/payment', params)
 }

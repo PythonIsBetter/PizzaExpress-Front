@@ -133,7 +133,7 @@
 </template>
 <script>
   import {addressList, addressUpdate, addressAdd, addressDel, productDet, submitOrder} from '/api/goods'
-  import { mapState } from 'vuex'
+  import { mapMutations, mapState } from 'vuex'
   import YShelf from '/components/shelf'
   import YButton from '/components/YButton'
   import YPopup from '/components/popup'
@@ -163,7 +163,8 @@
         userId: '',
         orderTotal: 0,
         submit: false,
-        submitOrder: '提交订单'
+        submitOrder: '提交订单',
+        orderId: 0
       }
     },
     computed: {
@@ -187,6 +188,9 @@
       }
     },
     methods: {
+      ...mapMutations([
+        'EDIT_CART'
+      ]),
       message (m) {
         this.$message.error({
           message: m
@@ -256,8 +260,14 @@
         }
         for (var i = 0; i < this.cartList.length; i++) {
           if (this.cartList[i].checked === '1') {
+            // let _productId = this.cartList[i].productId
+            // let _checked = this.cartList[i].checked
+            // let _productNum = this.cartList[i].productNu
             console.log(this.cartList[i])
             array.push(this.cartList[i])
+            // this.EDIT_CART({
+            //   _productId
+            // })
           }
         }
         let params = {
@@ -266,23 +276,24 @@
         }
         submitOrder(params).then(res => {
           console.log(res.success)
-          if (res.success === 'true') {
-            this.payment(res.result)
-          } else {
+          if (res.success === 'false') {
             this.message(res.message)
             this.submitOrder = '提交订单'
             this.submit = false
+            this.payment()
+          } else {
+            this.orderId = res.success
+            this.payment()
           }
         })
       },
       // 付款
-      payment (orderId) {
-        // 需要拿到地址id
+      payment () {
         this.$router.push({
-          // path: '/order/payment',
-          path: '/user/orderList',
+          path: '/order/payment',
           query: {
-            'orderId': orderId
+            'orderId': this.orderId,
+            'orderTotal': this.orderTotal
           }
         })
       },
