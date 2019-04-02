@@ -8,8 +8,8 @@
             <el-steps :space="200" :active="orderStatus">
               <el-step title="下单" v-bind:description="createTime"></el-step>
               <el-step title="付款" v-bind:description="payTime"></el-step>
-              <el-step title="配货" description=""></el-step>
-              <el-step title="出库" description=""></el-step>
+              <el-step title="制作" description=""></el-step>
+              <el-step title="配送" description=""></el-step>
               <el-step title="交易成功" v-bind:description="finishTime"></el-step>
             </el-steps>
           </div>
@@ -19,17 +19,6 @@
               <el-step title="交易关闭" v-bind:description="closeTime"></el-step>
             </el-steps>
           </div>
-
-
-          <!--<div class="orderStatus-close" v-if="orderStatus === 6">-->
-          <!--<el-steps :space="780" :active="2">-->
-          <!--<el-step title="下单" v-bind:description="createTime"></el-step>-->
-          <!--<el-step title="交易关闭" v-bind:description="closeTime"></el-step>-->
-          <!--</el-steps>-->
-          <!--</div>-->
-
-
-          <!--未支付的订单-->
           <div class="status-now" v-if="orderStatus === 1">
             <ul>
               <li class="status-title"><h3>订单状态：待付款</h3></li>
@@ -137,8 +126,11 @@
               </div>
             </div>
           </div>
-          <div>
-            <b-map-component></b-map-component>
+          <!--<div v-if="orderStatus ===2">-->
+        <div>
+            <!--地图-->
+            <b-map-component :start="factoryName" :end="streetName">
+            </b-map-component>
             <!--<baidu-map class="map" :center="{lng: 121.47 , lat: 32.23}" :zoom="14">-->
               <!--&lt;!&ndash;https://dafrok.github.io/vue-baidu-map/#/zh/bmaplib/lushu&ndash;&gt;-->
               <!--&lt;!&ndash;起点：start&ndash;&gt;-->
@@ -185,7 +177,8 @@
         orderId: '',
         userName: '',
         tel: '',
-        streetName: '',
+        streetName: '华东师范大学',
+        factoryName: '人民广场',
         orderTitle: '',
         createTime: '',
         payTime: '',
@@ -195,6 +188,8 @@
         loading: true,
         countTime: 0
       }
+    },
+    props: {
     },
     methods: {
       message (m) {
@@ -228,13 +223,13 @@
             this.orderStatus = 6
           }
           this.orderList = res.goodsList
-          this.orderTotal = res.result.orderTotal
+          this.orderTotal = res.orderTotal
           this.userName = res.receiverAddress.receiverName
           this.tel = res.receiverAddress.tel
           this.streetName = res.receiverAddress.address
-          this.createTime = res.result.createDate
-          this.closeTime = res.result.closeDate
-          this.payTime = res.result.payDate
+          this.createTime = res.createDate
+          this.closeTime = res.closeDate
+          this.payTime = res.payDate
           if (this.orderStatus === 5) {
             this.finishTime = res.result.finishDate
           } else {

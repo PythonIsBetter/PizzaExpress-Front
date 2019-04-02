@@ -4,8 +4,8 @@
 <!--起点：start-->
 <!--终点：end-->
 <template>
-  <baidu-map class="map" :center="{lng: 121.29, lat: 31.10}" :zoom="11">
-    <bm-driving start="华东师范大学" end="上海虹桥机场" @searchcomplete="handleSearchComplete" :panel="false" :autoViewport="true"></bm-driving>
+  <baidu-map class="map" :center="{lng: 121.29, lat: 31.10}" :zoom="13">
+    <bm-driving :start="start" :end="end" @searchcomplete="handleSearchComplete" :panel="false" :autoViewport="true"></bm-driving>
     <bml-lushu
       @stop="reset"
       :path="path"
@@ -13,7 +13,7 @@
       :play="play"
       :rotation="true"
       :autoView="true"
-      :speed="2000">
+      :speed="50">
     </bml-lushu>
   </baidu-map>
 </template>
@@ -24,10 +24,18 @@
     components: {
       BmlLushu
     },
+    //   start: '',
+    //   end: ''
+    // },
     data () {
       return {
+        start: '上海交通大学',
+        end: ' 人民广场 ',
+        // start: '',
+        // end: '',
         play: true,
         path: [],
+        speed: 50,
         icon: {
           url: 'http://api.map.baidu.com/library/LuShu/1.2/examples/car.png',
           size: {width: 52, height: 26},
@@ -35,6 +43,8 @@
         }
       }
     },
+    // 数据接口
+    props: ['start', 'end', 'speed'],
     methods: {
       reset () {
         this.play = false

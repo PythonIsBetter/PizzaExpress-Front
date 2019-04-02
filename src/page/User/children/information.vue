@@ -1,192 +1,277 @@
 <template>
   <div>
     <y-shelf title="账户资料">
+      <span slot="right"><y-button text="修改密码" style="margin: 0" @btnClick="updateCode()"></y-button><y-button text="修改账户资料" style="margin: 0" @btnClick="update()"></y-button></span>
       <div slot="content">
-        <div class="avatar-box">
-          <!--<div class=img-box><img :src="userInfo.info.file" alt=""></div>-->
-          <!--<div class="r-box">-->
-            <!--<h3 style="margin-left: 13px;">修改头像</h3>-->
-            <!--<y-button text="上传头像" classStyle="main-btn" style="margin: 0;" @btnClick="editAvatar()"></y-button>-->
-          <!--</div>-->
-          <div>
-            <p>姓名</p>
-            <p>性别</p>M
-            <p>出生日期</p>
-            <p>所在城市</p>
+          <div v-if="name">
+            <div style="padding: 20px 0;text-align: left">
+              <p style="margin-left: 40px; font-size: 20px">姓名 {{name}}</p>
+              <!--<div class="operation">-->
+              <!--<el-button type="primary" icon="edit" size="small"  @click="update(item)"></el-button>-->
+              <!--<el-button type="danger" icon="delete" size="small" :data-id="item.addressId" @click="del(item.addressId,i)"></el-button>-->
+            <!--</div>-->
+              <p style="margin-left: 40px; font-size: 20px">性别   {{gender}}</p>
+              <p style="margin-left: 40px; font-size: 20px">生日    {{birthday}}</p>
+              <p style="margin-left: 40px; font-size: 20px">所在城市 {{city}}</p>
           </div>
         </div>
-        <!--<div class="edit-avatar" v-if="editAvatarShow">-->
-          <!--<y-shelf title="设置头像">-->
-        <!--<span slot="right">-->
-                              <!--<span class="close" @click="editAvatarShow=false">-->
-                        <!--<svg t="1501234940517" class="icon" style="" viewBox="0 0 1024 1024" version="1.1"-->
-                             <!--xmlns="http://www.w3.org/2000/svg" p-id="3014" xmlns:xlink="http://www.w3.org/1999/xlink"-->
-                             <!--width="20" height="20"><path-->
-                          <!--d="M941.576 184.248l-101.824-101.824L512 410.176 184.248 82.424 82.424 184.248 410.168 512l-327.744 327.752 101.824 101.824L512 613.824l327.752 327.752 101.824-101.824L613.832 512z"-->
-                          <!--fill="#cdcdcd" p-id="3015"></path></svg>-->
-                    <!--</span>-->
-        <!--</span>-->
-            <!--<div slot="content" class="content">-->
-              <!--<div class="edit-l">-->
-                <!--<div style="width: 100px;height: 100px;border: 1px solid #ccc;margin-bottom: 20px;overflow: hidden;">-->
-                  <!--<div class="show-preview"-->
-                       <!--:style="{'width': previews.w + 'px','height': previews.h + 'px','overflow': 'hidden','zoom':option.zoom}">-->
-                    <!--<div :style="previews.div">-->
-                      <!--<img :src="option.img"-->
-                           <!--:style="previews.img"-->
-                      <!--&gt;-->
-                    <!--</div>-->
-                  <!--</div>-->
-                <!--</div>-->
-                <!--<div style="padding: 10px 0 ">头像预览</div>-->
-                <!--<div class="btn">-->
-                  <!--<a href="javascript:;">重新选择</a>-->
-                  <!--<input type="file" value="上传头像" @change="upimg($event)"></div>-->
-              <!--</div>-->
-              <!--<div class="edit-r">-->
-                <!--<div>-->
-                  <!--<div class="big" id="cropper-target" v-if="option.img">-->
-                    <!--<vueCropper-->
-                      <!--:img="option.img"-->
-                      <!--@realTime="realTime"-->
-                      <!--ref="cropper"-->
-                      <!--:outputSize="example2.size"-->
-                      <!--:info="example2.info"-->
-                      <!--:canScale="example2.canScale"-->
-                      <!--:autoCrop="example2.autoCrop"-->
-                      <!--:autoCropWidth="example2.width"-->
-                      <!--:autoCropHeight="example2.height"-->
-                      <!--:fixed="example2.fixed"-->
-                    <!--&gt;</vueCropper>-->
-                  <!--</div>-->
-                <!--</div>-->
-              <!--</div>-->
-              <!--<div class="bootom-btn pa">-->
-                <!--<y-button style="width: 140px;height: 40px;line-height: 40px"-->
-                          <!--text="取消"-->
-                          <!--@btnClick="editAvatarShow=false">-->
-                <!--</y-button>-->
-                <!--<y-button style="width: 140px;height: 40px;line-height: 40px"-->
-                          <!--text="确定"-->
-                          <!--classStyle="main-btn"-->
-                          <!--@btnClick="cropper">-->
-                <!--</y-button>-->
-              <!--</div>-->
+          <div v-else>
+          <div style="padding: 80px 0;text-align: center">
+            <div style="font-size: 20px">你还未添加个人信息</div>
+            <div style="margin: 20px ">
+              <y-button text="添加个人信息" @btnClick="update()"></y-button>
             <!--</div>-->
-          <!--</y-shelf>-->
-        <!--</div>-->
+          </div>
+        </div>
+    </div>
       </div>
     </y-shelf>
+    <y-popup :open="popupOpen" @close='popupOpen=false' :title="popupTitle">
+      <div slot="content" class="md" :data-id="msg.addressId">
+        <div>
+          <input type="text" placeholder="用户姓名" v-model="msg.Name">
+        </div>
+        <div>
+          <input type="number" placeholder="性别" v-model="msg.gender">
+        </div>
+        <div>
+          <input type="text" placeholder="生日" v-model="msg.birthday">
+        </div>
+        <div>
+          <input type="text" placeholder="所在城市" v-model="msg.city">
+        </div>
+          <y-button text='保存'
+                    class="btn"
+                    :classStyle="btnHighlight1?'main-btn':'disabled-btn'"
+                    @btnClick="save({userId:userId,Name:msg.Name,gender:msg.gender,birthday:msg.birthday,city:msg.city})">
+          </y-button>
+      </div>
+    </y-popup>
+    <y-popup :open="popupOpen2" @close='popupOpen=false' :title="popupTitle">
+      <div slot="content" class="md" :data-id="msg.addressId">
+        <div>
+          <input type="text" placeholder="旧密码(可为空)" v-model="registered.oldPwd">
+        </div>
+        <div>
+          <input type="number" placeholder="新密码" v-model="registered.userPwd">
+        </div>
+        <div>
+          <input type="text" placeholder="再次输入新密码" v-model="registered.userPwd2">
+        </div>
+          <y-button text='保存'
+                    class="btn"
+                    :classStyle="btnHighlight2?'main-btn':'disabled-btn'"
+                    @btnClick="save({userId:userId,oldPwd:registered.oldPwd,userPwd:registered.userPwd,userPwd2:registered.userPwd2})">
+          </y-button>
+      </div>
+    </y-popup>
   </div>
 </template>
 <script>
   import YButton from '/components/YButton'
-  import { upload } from '/api/index'
+  // import { upload } from '/api/index'
+  import YPopup from '/components/popup'
   import YShelf from '/components/shelf'
   import vueCropper from 'vue-cropper'
-  import { mapState, mapMutations } from 'vuex'
+  import { mapState } from 'vuex'
   import { getStore } from '/utils/storage'
+  import { getUserInfo, register } from '/api/index'
   export default {
     data () {
       return {
+        msg: {
+          Name: '',
+          gender: '',
+          city: '',
+          birthday: ''
+        },
+        registered: {
+          userName: '',
+          oldPwd: '',
+          userPwd: '',
+          userPwd2: '',
+          errMsg: ''
+        },
+        popupTitle: '修改用户信息',
+        popupOpen: false,
+        popupOpen2: false,
+        name: '',
+        gender: 'M',
+        city: 'Shanghai',
+        birthday: '1111',
         imgSrc: '',
         editAvatarShow: false,
         cropContext: '',
         cropperImg: '',
         previews: {},
-        option: {
-          img: '',
-          zoom: 0
-        },
-        fixedNumber: [1, 1],
-        example2: {
-          info: true,
-          size: 1,
-          canScale: false,
-          autoCrop: true,
-          // 只有自动截图开启 宽度高度才生效
-          autoCropWidth: 300,
-          autoCropHeight: 250,
-          // 开启宽度和高度比例
-          fixed: true
-        },
         userId: '',
         token: ''
       }
     },
     computed: {
-      ...mapState(['userInfo'])
+      ...mapState(['userInfo']),
+      btnHighlight1 () {
+        let msg = this.msg
+        return msg.Name && msg.birthday && msg.city && msg.gender
+      },
+      btnHighlight2 () {
+        let registered = this.registered
+        return registered.userPwd && registered.userPwd2
+      }
     },
     methods: {
-      ...mapMutations([
-        'RECORD_USERINFO'
-      ]),
       message (m) {
-        this.$message(m)
-      },
-      messageSuccess (m) {
-        this.$message({
-          message: m,
-          type: 'success'
-        })
-      },
-      messageFail (m) {
         this.$message.error({
           message: m
         })
       },
-      upimg (e) {
-        var file = e.target.files[0]
-        if (file.size > 1048576) {
-          this.messageFail('图片大小不得超过1Mb')
+      regist () {
+        this.registxt = '注册中...'
+        let userPwd = this.registered.userPwd
+        let userPwd2 = this.registered.userPwd2
+        if (!userPwd || !userPwd2) {
+          this.message('账号密码不能为空!')
+          this.registxt = '注册'
           return false
         }
-        if (!/\.(gif|jpg|jpeg|png|bmp|GIF|JPG|PNG)$/.test(e.target.value)) {
-          this.messageFail('图片类型仅支持.gif,jpeg,jpg,png,bmp')
+        if (userPwd2 !== userPwd) {
+          this.message('两次输入的密码不相同!')
+          this.registxt = '注册'
           return false
         }
-        var reader = new FileReader()
-        reader.readAsDataURL(file)
-        reader.onload = (e) => {
-          this.option.img = e.target.result
-        }
-      },
-      cropper () {
-        this.message('上传中...')
-        if (this.option.img) {
-          this.$refs.cropper.getCropData((data) => {
-            this.imgSrc = data
-            upload({userId: this.userId, token: this.token, imgData: data}).then(res => {
-              if (res.success === true) {
-                let path = res.result
-                let info = this.userInfo
-                info.file = path
-                this.RECORD_USERINFO({info: info})
-                this.editAvatarShow = false
-                this.messageSuccess('上传成功')
-              } else {
-                this.messageFail(res.message)
-              }
+        // if (!this.agreement) {
+        //   this.message('您未勾选同意我们的相关注册协议!')
+        //   this.registxt = '注册'
+        //   return false
+        // }
+
+        // var result = captcha.getValidate()
+        // if (!result) {
+        //   this.message('请完成验证')
+        //   this.registxt = '注册'
+        //   return false
+        // }
+        // console.log('账号：' + userName + '密码：' + userPwd)
+        register({
+          userPwd: userPwd
+        }).then(res => {
+          console.log(res[0])
+          if (res.status === 'success') {
+            this.$router.push({
+              path: '/'
             })
-          })
+          } else {
+            this.open('注册失败')
+          }
+          if (res.success === true) {
+            this.messageSuccess()
+            this.toLogin()
+          } else {
+            this.message(res.message)
+            this.regist = '注册'
+            return false
+          }
+        })
+      },
+      _userInfo () {
+        getUserInfo({phoneNum: this.phoneNum}).then(res => {
+          console.log(res)
+          this.name = res.name
+          this.gender = res.gender
+          this.birthday = res.birthday
+          this.city = res.city
+        // let data = res
+        // if (data.length) {
+        //   this.addList = res.result
+        //   this.addressId = res.result[0].addressId || '1'
+        // } else {
+        //   this.addList = []
+        // }
+        })
+      },
+      // _userUpdate (params) {
+      //   addressUpdate(params).then(res => {
+      //     this._addressList()
+      //   })
+      // },
+      // _addressAdd (params) {
+      //   addressAdd(params).then(res => {
+      //     if (res.success === true) {
+      //       this._addressList()
+      //     } else {
+      //       this.message(res.message)
+      //     }
+      //   })
+      // },
+      // changeDef (item) {
+      //   if (!item.isDefault) {
+      //     item.isDefault = true
+      //     this._addressUpdate(item)
+      //   }
+      //   return false
+      // },
+      // // 保存
+      save (p) {
+        this.popupOpen = false
+        this.popupOpen2 = false
+        if (p.addressId) {
+          this._addressUpdate(p)
         } else {
-          this.messageFail('别玩我啊 先选照骗')
+          // delete p.addressId
+          this.regist(p)
         }
       },
-      editAvatar () {
-        this.editAvatarShow = true
+      // // 删除
+      // del (addressId, i) {
+      //   addressDel({addressId: addressId}).then(res => {
+      //     if (res.success === true) {
+      //       this.addList.splice(i, 1)
+      //     } else {
+      //       this.message('删除失败')
+      //     }
+      //   })
+      // },
+      // 修改
+      update (item) {
+        this.popupOpen = true
+        if (item) {
+          this.popupTitle = '修改用户信息'
+          this.msg.userName = item.userName
+          this.msg.tel = item.tel
+          this.msg.streetName = item.streetName
+          this.msg.isDefault = item.isDefault
+          this.msg.addressId = item.addressId
+        } else {
+          this.popupTitle = '新增用户信息'
+          this.msg.userName = ''
+          this.msg.tel = ''
+          this.msg.streetName = ''
+          this.msg.isDefault = false
+          this.msg.addressId = ''
+        }
       },
-      realTime (data) {
-        this.previews = data
-        let w = 100 / data.w
-        this.option.zoom = w
+      updateCode (item) {
+        this.popupOpen2 = true
+        if (item) {
+          this.popupTitle = '修改用户信息'
+          this.msg.userName = item.userName
+          this.msg.tel = item.tel
+          this.msg.streetName = item.streetName
+          this.msg.isDefault = item.isDefault
+          this.msg.addressId = item.addressId
+        }
       }
+
     },
     created () {
+      this.phoneNum = getStore('userId')
+      console.log(this.phoneNum)
+      this._addressList()
       this.userId = getStore('userId')
       this.token = getStore('token')
     },
     components: {
+      YPopup,
       YButton,
       YShelf,
       vueCropper
@@ -330,5 +415,21 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+  .md {
+    > div {
+      text-align: left;
+      margin-bottom: 15px;
+      > input {
+        width: 100%;
+        height: 50px;
+        font-size: 18px;
+        padding: 10px 20px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        box-shadow: 0 3px 5px -4px rgba(0, 0, 0, .4) inset, -1px 0 3px -2px rgba(0, 0, 0, .1) inset;
+        line-height: 46px;
+      }
+    }
   }
 </style>

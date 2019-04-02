@@ -13,9 +13,13 @@ export const idCode = (params) => {
 export const loginOut = (params) => {
   return http.fetchGet('/member/loginOut', params)
 }
-// 用户信息
-export const userInfo = (params) => {
-  return http.fetchGet('/member/checkLogin', params)
+// 获取用户信息！
+export const getUserInfo = (params) => {
+  return http.fetchGet('/user/getUserInfo', params)
+}
+// 获取用户信息！
+export const setUserInfo = (params) => {
+  return http.fetchGet('/user/setUserInfo', params)
 }
 // 注册账号
 export const register = (params) => {
@@ -57,4 +61,3 @@ export const geetest = (params) => {
 export const orderList = (params) => {
   return http.fetchGet('/user/orderList' + (new Date()).getTime(), params)
 }
-
