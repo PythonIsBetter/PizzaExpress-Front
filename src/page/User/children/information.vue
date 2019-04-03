@@ -96,14 +96,9 @@
         popupOpen: false,
         popupOpen2: false,
         name: '',
-        gender: 'M',
-        city: 'Shanghai',
-        birthday: '1111',
-        imgSrc: '',
-        editAvatarShow: false,
-        cropContext: '',
-        cropperImg: '',
-        previews: {},
+        gender: '',
+        city: '',
+        birthday: '',
         userId: '',
         token: ''
       }
@@ -139,38 +134,26 @@
           this.registxt = '注册'
           return false
         }
-        // if (!this.agreement) {
-        //   this.message('您未勾选同意我们的相关注册协议!')
-        //   this.registxt = '注册'
-        //   return false
-        // }
-
-        // var result = captcha.getValidate()
-        // if (!result) {
-        //   this.message('请完成验证')
-        //   this.registxt = '注册'
-        //   return false
-        // }
-        // console.log('账号：' + userName + '密码：' + userPwd)
         register({
           userPwd: userPwd
         }).then(res => {
           console.log(res[0])
           if (res.status === 'success') {
-            this.$router.push({
-              path: '/'
-            })
+            // this.$router.push({
+            this.open('密码修改成功')
+            //   path: '/'
+            // })
           } else {
-            this.open('注册失败')
+            this.open('密码修改失败')
           }
-          if (res.success === true) {
-            this.messageSuccess()
-            this.toLogin()
-          } else {
-            this.message(res.message)
-            this.regist = '注册'
-            return false
-          }
+          // if (res.success === true) {
+          //   this.messageSuccess()
+          //   this.toLogin()
+          // } else {
+          //   this.message(res.message)
+          //   this.regist = '注册'
+          //   return false
+          // }
         })
       },
       _userInfo () {
@@ -180,13 +163,6 @@
           this.gender = res.gender
           this.birthday = res.birthday
           this.city = res.city
-        // let data = res
-        // if (data.length) {
-        //   this.addList = res.result
-        //   this.addressId = res.result[0].addressId || '1'
-        // } else {
-        //   this.addList = []
-        // }
         })
       },
       // _userUpdate (params) {
@@ -215,50 +191,31 @@
         this.popupOpen = false
         this.popupOpen2 = false
         if (p.addressId) {
-          this._addressUpdate(p)
+          this.update(p)
         } else {
           // delete p.addressId
           this.regist(p)
         }
       },
-      // // 删除
-      // del (addressId, i) {
-      //   addressDel({addressId: addressId}).then(res => {
-      //     if (res.success === true) {
-      //       this.addList.splice(i, 1)
-      //     } else {
-      //       this.message('删除失败')
-      //     }
-      //   })
-      // },
       // 修改
       update (item) {
         this.popupOpen = true
         if (item) {
           this.popupTitle = '修改用户信息'
-          this.msg.userName = item.userName
-          this.msg.tel = item.tel
-          this.msg.streetName = item.streetName
-          this.msg.isDefault = item.isDefault
-          this.msg.addressId = item.addressId
-        } else {
-          this.popupTitle = '新增用户信息'
-          this.msg.userName = ''
-          this.msg.tel = ''
-          this.msg.streetName = ''
-          this.msg.isDefault = false
-          this.msg.addressId = ''
+          this.msg.Name = item.Name
+          this.msg.city = item.city
+          this.msg.gender = item.gender
+          this.msg.birthday = item.birthday
         }
       },
       updateCode (item) {
         this.popupOpen2 = true
         if (item) {
-          this.popupTitle = '修改用户信息'
-          this.msg.userName = item.userName
-          this.msg.tel = item.tel
-          this.msg.streetName = item.streetName
-          this.msg.isDefault = item.isDefault
-          this.msg.addressId = item.addressId
+          this.popupTitle = '修改用户密码'
+          this.msg.Name = item.Name
+          this.msg.city = item.city
+          this.msg.gender = item.gender
+          this.msg.birthday = item.birthday
         }
       }
 
@@ -266,7 +223,7 @@
     created () {
       this.phoneNum = getStore('userId')
       console.log(this.phoneNum)
-      this._addressList()
+      this._userInfo()
       this.userId = getStore('userId')
       this.token = getStore('token')
     },

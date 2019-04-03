@@ -34,7 +34,7 @@
         </div>
         <div class="buy">
           <y-button text="加入购物车"
-                    @btnClick="addCart(product.id,product.prize,product.name,product.productImageBig)"
+                    @btnClick="addCart(product.id,product.prize,product.name,product.imgPath)"
                     classStyle="main-btn"
                     style="width: 145px;height: 50px;line-height: 48px"></y-button>
           <y-button text="现在购买"

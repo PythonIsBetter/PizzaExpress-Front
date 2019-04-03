@@ -3,7 +3,8 @@
     <div style="">
       <div class="good-img">
         <a @click="openProduct(msg.id)">
-          <img v-lazy="msg.productImageBig" :alt="msg.name" :key="msg.productImageBig">
+          <!--<img v-lazy="msg.productImageBig" :alt="msg.name" :key="msg.productImageBig">-->
+          <img v-lazy="msg.imgPath" :alt="msg.name" :key="msg.imgPath">
         </a>
       </div>
       <h6 class="good-title" v-html="msg.name">{{msg.name}}</h6>
@@ -15,7 +16,7 @@
           </a>
           <y-button text="加入购物车"
                     style="margin: 0 5px"
-                    @btnClick="addCart(msg.id,msg.prize,msg.name,msg.productImageBig)"
+                    @btnClick="addCart(msg.id,msg.prize,msg.name,msg.imgPath)"
                     classStyle="main-btn"
           ></y-button>
         </div>

@@ -90,9 +90,9 @@
                 <a @click="goodsDetails(item.productId)" title="" target="_blank">{{item.productName}}</a>
               </div>
               <div class="n-b">
-                <div class="price">¥ {{Number(item.salePrice).toFixed(2)}}</div>
-                <div class="goods-num">{{item.productNum}}</div>
-                <div class="subtotal"> ¥ {{Number(item.salePrice * item.productNum).toFixed(2)}}</div>
+                <div class="price">¥ {{Number(item.actualUnitPrize).toFixed(2)}}</div>
+                <div class="goods-num">{{item.num}}</div>
+                <div class="subtotal"> ¥ {{Number(item.actualUnitPrize * item.num).toFixed(2)}}</div>
               </div>
             </div>
           </div>
@@ -177,8 +177,8 @@
         orderId: '',
         userName: '',
         tel: '',
-        streetName: '华东师范大学',
-        factoryName: '人民广场',
+        streetName: '',
+        factoryName: '',
         orderTitle: '',
         createTime: '',
         payTime: '',
@@ -211,29 +211,34 @@
         }
         getOrderDet(params).then(res => {
           console.log(res)
-          if (res.result.orderStatus === '0') {
+          if (res.orderStatus === '0') {
             this.orderStatus = 1
-          } else if (res.result.orderStatus === '1') {
+          } else if (res.orderStatus === '1') {
             this.orderStatus = 2
-          } else if (res.result.orderStatus === '4') {
+          } else if (res.orderStatus === '2') {
+            this.orderStatus = 3
+          } else if (res.orderStatus === '3') {
+            this.orderStatus = 4
+          } else if (res.orderStatus === '4') {
             this.orderStatus = 5
-          } else if (res.result.orderStatus === '5') {
+          } else if (res.orderStatus === '5') {
             this.orderStatus = -1
-          } else if (res.result.orderStatus === '6') {
+          } else if (res.orderStatus === '6') {
             this.orderStatus = 6
           }
           this.orderList = res.goodsList
           this.orderTotal = res.orderTotal
           this.userName = res.receiverAddress.receiverName
-          this.tel = res.receiverAddress.tel
+          this.tel = res.receiverAddress.receiverPhoneNum
           this.streetName = res.receiverAddress.address
           this.createTime = res.createDate
           this.closeTime = res.closeDate
           this.payTime = res.payDate
+          this.factoryName = res.factoryLocation
           if (this.orderStatus === 5) {
-            this.finishTime = res.result.finishDate
+            this.finishTime = res.finishDate
           } else {
-            this.countTime = res.result.finishDate
+            this.countTime = res.finishDate
           }
           this.loading = false
         })
