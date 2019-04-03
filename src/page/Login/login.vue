@@ -10,8 +10,8 @@
           <ul class="common-form">
             <li>
               <div class="tab-tit" v-model="tabView">
-                <a href="javascript:;" @click="logintype2" class="register">手机验证码登录</a>
-                <a href="javascript:;" @click="logintype1" class="register">手机密码登录</a>
+                <a href="javascript:;" @click="logintype2" :class="loginPart2Show? 'active' : 'non_active'">手机验证码登录</a>
+                <a href="javascript:;" @click="logintype1" :class="loginPart1Show? 'active' : 'non_active'">手机密码登录</a>
               </div>
             </li>
             <div v-show="loginPart1Show">
@@ -86,8 +86,7 @@
 <script>
 import YFooter from '/common/footer'
 import YButton from '/components/YButton'
-import { userLogin } from '/api/index.js'
-import { idCode } from '/api/index.js'
+import { userLogin, idCode } from '/api/index.js'
 // import { addCart } from '/api/goods.js'
 import { setStore, getStore, removeStore } from '/utils/storage.js'
 
@@ -197,9 +196,6 @@ export default {
       this.cart = cartArr
     },
     logintype1 () {
-      // const Component = Vue.component('loginType1')
-      // const instance = new Component()
-      // instance.$mount('#container')
       this.loginPart1Show = true
       this.loginPart2Show = false
       this.ruleForm.userName = ''
@@ -207,9 +203,6 @@ export default {
       this.statusKey = 2
     },
     logintype2 () {
-      // const LoginType2 = Vue.extend(loginPart2)
-      // const logintype2 = new LoginType2()
-      // logintype2.$mount('#container')
       this.loginPart1Show = false
       this.loginPart2Show = true
       this.ruleForm.userName = ''
@@ -261,17 +254,11 @@ export default {
     login () {
       this.logintxt = '登录中...'
       this.rememberPass()
-      if (!this.ruleForm.userName || !this.ruleForm.userPwd) {
+      if ((!this.ruleForm.userName || !this.ruleForm.userPwd) && (!this.ruleForm.userName || !this.ruleForm.YanZhengCode)) {
         // this.ruleForm.errMsg = '账号或者密码不能为空!'
         this.message('账号或者密码不能为空!')
         return false
       }
-      // var result = captcha.getValidate()
-      // if (!result) {
-      //   this.message('请完成验证')
-      //   this.logintxt = '登录'
-      //   return false
-      // }
       userLogin({
         userName: this.ruleForm.userName,
         userPwd: this.ruleForm.userPwd,
@@ -287,53 +274,8 @@ export default {
           this.open('账号密码输入错误')
           this.logintxt = '登录'
         }
-        // if (res.result.state === 1) {
-        //   setStore('token', res.result.token)
-        //   setStore('userId', res.result.id)
-        //   // 登录后添加当前缓存中的购物车
-        //   if (this.cart.length) {
-        //     for (var i = 0; i < this.cart.length; i++) {
-        //       addCart(this.cart[i]).then(res => {
-        //         if (res.success === true) {
-        //         }
-        //       })
-        //     }
-        //     removeStore('buyCart')
-        //     this.$router.push({
-        //       path: '/'
-        //     })
-        //   } else {
-        //     this.$router.push({
-        //       path: '/'
-        //     })
-        //   }
-        // } else {
-        //   this.logintxt = '登录'
-        //   this.message(res.result.message)
-        //   captcha.reset()
-        //   return false
-        // }
       })
     }
-    // init_geetest () {
-    //   geetest().then(res => {
-    //     this.statusKey = res.statusKey
-    //     window.initGeetest({
-    //       gt: res.gt,
-    //       challenge: res.challenge,
-    //       new_captcha: res.new_captcha,
-    //       offline: !res.success,
-    //       product: 'popup',
-    //       width: '100%'
-    //     }, function (captchaObj) {
-    //       captcha = captchaObj
-    //       captchaObj.appendTo('#captcha')
-    //       captchaObj.onReady(function () {
-    //         document.getElementById('wait').style.display = 'none'
-    //       })
-    //     })
-    //   })
-    // }
   },
   mounted () {
     this.getRemembered()
@@ -372,9 +314,27 @@ export default {
   color: #333;
   text-decoration:none;
 }
-.tab-tit .cur{
-  background: #09f;
+.tab-tit .active{
+  display: contents;
+  height: 50px;
+  line-height: 50px;
+  width: 185px;
+  font-size: 18px;
+  text-align: center;
+  background: #f38120;
   color: #fff;
+  text-decoration:none;
+}
+.tab-tit .non_active{
+  display: contents;
+  height: 50px;
+  line-height: 50px;
+  width: 185px;
+  font-size: 18px;
+  text-align: center;
+  background: #ccc;
+  color: #333;
+  text-decoration:none;
 }
 .tab-con div{
   border: 1px solid #ccc;
@@ -622,4 +582,6 @@ export default {
   color: #999;
   margin: 0;
 }
+
+
 </style>
