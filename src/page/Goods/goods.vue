@@ -65,8 +65,10 @@
   </div>
 </template>
 <script>
+  /* eslint-disable standard/object-curly-even-spacing */
+
   import { getAllGoods } from '/api/goods.js'
-  import { recommend } from '/api/index.js'
+  import { recommend, lowHighPrize} from '/api/index.js'
   import mallGoods from '/components/mallGoods'
   import YButton from '/components/YButton'
   import YShelf from '/components/shelf'
@@ -132,7 +134,17 @@
         this.currentPage = 1
         this.loading = true
         this._getAllGoods()
+        lowHighPrize({
+          orderType: this.sortType,
+          minPrice: this.min,
+          maxPrice: this.max
+        }).then(res => {
+          console.log(res)
+          let data = res.result
+          this.recommendPanel = data[0]
+        })
       },
+
       // 价格排序
       sortByPrice (v) {
         v === 1 ? this.sortType = 2 : this.sortType = 3

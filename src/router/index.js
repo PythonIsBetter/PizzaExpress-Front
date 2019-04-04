@@ -16,7 +16,7 @@ const logout = () => import('/page/User/children/logout.vue')
 const checkout = () => import('/page/Checkout/checkout.vue')
 const payment = () => import('/page/Order/payment.vue')
 const paysuccess = () => import('/page/Order/paysuccess.vue')
-const Thanks = () => import('/page/Thanks/thanks.vue')
+// const Thanks = () => import('/page/Thanks/thanks.vue')
 const Search = () => import('/page/Search/search.vue')
 const RefreshSearch = () => import('/page/Refresh/refreshsearch.vue')
 const RefreshGoods = () => import('/page/Refresh/refreshgoods.vue')
@@ -37,7 +37,7 @@ export default new Router({
         {path: 'home', component: Home},
         {path: 'goods', component: GoodS},
         {path: 'goodsDetails', name: 'goodsDetails', component: goodsDetails},
-        {path: 'thanks', name: 'thanks', component: Thanks},
+        // {path: 'thanks', name: 'thanks', component: Thanks},
         {path: '/refreshgoods', name: 'refreshgoods', component: RefreshGoods}
       ]
     },

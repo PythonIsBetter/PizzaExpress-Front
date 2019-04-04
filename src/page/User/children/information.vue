@@ -3,14 +3,14 @@
     <y-shelf title="账户资料">
       <span slot="right"><y-button text="修改密码" style="margin: 0" @btnClick="updateCode()"></y-button><y-button text="修改账户资料" style="margin: 0" @btnClick="update()"></y-button></span>
       <div slot="content">
-          <div v-if="name">
+          <div v-if="nickname">
             <div style="padding: 20px 0;text-align: left">
-              <p style="margin-left: 40px; font-size: 20px">姓名 {{name}}</p>
+              <p style="margin-left: 40px; font-size: 20px">姓名 {{nickname}}</p>
               <!--<div class="operation">-->
               <!--<el-button type="primary" icon="edit" size="small"  @click="update(item)"></el-button>-->
               <!--<el-button type="danger" icon="delete" size="small" :data-id="item.addressId" @click="del(item.addressId,i)"></el-button>-->
             <!--</div>-->
-              <p style="margin-left: 40px; font-size: 20px">性别   {{gender}}</p>
+              <!--<p style="margin-left: 40px; font-size: 20px">性别   {{gender}}</p>-->
               <p style="margin-left: 40px; font-size: 20px">生日    {{birthday}}</p>
               <p style="margin-left: 40px; font-size: 20px">所在城市 {{city}}</p>
           </div>
@@ -29,22 +29,22 @@
     <y-popup :open="popupOpen" @close='popupOpen=false' :title="popupTitle">
       <div slot="content" class="md" :data-id="msg.addressId">
         <div>
-          <input type="text" placeholder="用户姓名" v-model="msg.Name">
+          <input type="text" placeholder="用户姓名" v-model="msg.nickname">
         </div>
-        <div>
-          <input type="number" placeholder="性别" v-model="msg.gender">
-        </div>
+        <!--<div>-->
+          <!--<input type="number" placeholder="性别" v-model="msg.gender">-->
+        <!--</div>-->
         <div>
           <input type="text" placeholder="生日" v-model="msg.birthday">
         </div>
         <div>
           <input type="text" placeholder="所在城市" v-model="msg.city">
         </div>
-          <y-button text='保存'
-                    class="btn"
-                    :classStyle="btnHighlight1?'main-btn':'disabled-btn'"
-                    @btnClick="save({userId:userId,Name:msg.Name,gender:msg.gender,birthday:msg.birthday,city:msg.city})">
-          </y-button>
+        <y-button text='保存'
+                  class="btn"
+                  :classStyle="btnHighlight1?'main-btn':'disabled-btn'"
+                  @btnClick="save({userId:userId,nickname:msg.nickname,birthday:msg.birthday,city:msg.city})">
+        </y-button>
       </div>
     </y-popup>
     <y-popup :open="popupOpen2" @close='popupOpen=false' :title="popupTitle">
@@ -75,13 +75,13 @@
   import vueCropper from 'vue-cropper'
   import { mapState } from 'vuex'
   import { getStore } from '/utils/storage'
-  import { getUserInfo, register } from '/api/index'
+  import { getUserInfo, changePassword, setUserInfo } from '/api/index'
   export default {
     data () {
       return {
         msg: {
-          Name: '',
-          gender: '',
+          nickname: '',
+          // gender: '',
           city: '',
           birthday: ''
         },
@@ -95,8 +95,8 @@
         popupTitle: '修改用户信息',
         popupOpen: false,
         popupOpen2: false,
-        name: '',
-        gender: '',
+        // name: '',
+        // gender: '',
         city: '',
         birthday: '',
         userId: '',
@@ -107,7 +107,7 @@
       ...mapState(['userInfo']),
       btnHighlight1 () {
         let msg = this.msg
-        return msg.Name && msg.birthday && msg.city && msg.gender
+        return msg.nickname && msg.birthday && msg.city
       },
       btnHighlight2 () {
         let registered = this.registered
@@ -134,8 +134,9 @@
           this.registxt = '注册'
           return false
         }
-        register({
-          userPwd: userPwd
+        changePassword({
+          userPwd: userPwd,
+          phoneNum: this.phoneNum
         }).then(res => {
           console.log(res[0])
           if (res.status === 'success') {
@@ -156,42 +157,45 @@
           // }
         })
       },
-      _userInfo () {
+      _getUserInfo () {
         getUserInfo({phoneNum: this.phoneNum}).then(res => {
           console.log(res)
-          this.name = res.name
-          this.gender = res.gender
+          this.nickname = res.nickname
+          // this.gender = res.gender
           this.birthday = res.birthday
           this.city = res.city
         })
       },
-      // _userUpdate (params) {
-      //   addressUpdate(params).then(res => {
-      //     this._addressList()
-      //   })
-      // },
-      // _addressAdd (params) {
-      //   addressAdd(params).then(res => {
-      //     if (res.success === true) {
-      //       this._addressList()
-      //     } else {
-      //       this.message(res.message)
-      //     }
-      //   })
-      // },
-      // changeDef (item) {
-      //   if (!item.isDefault) {
-      //     item.isDefault = true
-      //     this._addressUpdate(item)
-      //   }
-      //   return false
-      // },
+      _setUserInfo (item) {
+        // let params = {
+        //   phoneNum: this.phoneNum,
+        //   nickname: item.nickname,
+        //   // gender: item.gender,
+        //   birthday: item.birthday,
+        //   city: item.city
+        // }
+        setUserInfo({
+          phoneNum: this.phoneNum,
+          nickname: item.nickname,
+          // gender: item.gender,
+          birthday: item.birthday,
+          city: item.city}).then(res => {
+            if (res.status === 'success') {
+            // this.$router.push({
+              this.open('密码修改成功')
+            //   path: '/'
+            // })
+            } else {
+              this.open('密码修改失败')
+            }
+          })
+      },
       // // 保存
       save (p) {
         this.popupOpen = false
         this.popupOpen2 = false
-        if (p.addressId) {
-          this.update(p)
+        if (p.nickname) {
+          this._setUserInfo(p)
         } else {
           // delete p.addressId
           this.regist(p)
@@ -200,30 +204,32 @@
       // 修改
       update (item) {
         this.popupOpen = true
-        if (item) {
-          this.popupTitle = '修改用户信息'
-          this.msg.Name = item.Name
-          this.msg.city = item.city
-          this.msg.gender = item.gender
-          this.msg.birthday = item.birthday
-        }
+        // if (item) {
+        //   this.popupTitle = '修改用户信息'
+        //   this.msg.Name = item.Name
+        //   this.msg.city = item.city
+        //   // this.msg.gender = item.gender
+        //   this.msg.birthday = item.birthday
+        // }
+        // this._setUserInfo(item)
       },
       updateCode (item) {
         this.popupOpen2 = true
-        if (item) {
-          this.popupTitle = '修改用户密码'
-          this.msg.Name = item.Name
-          this.msg.city = item.city
-          this.msg.gender = item.gender
-          this.msg.birthday = item.birthday
-        }
+        // if (item) {
+        //   this.popupTitle = '修改用户密码'
+        //   // this.msg.Name = item.Name
+        //   this.msg.city = item.city
+        //   // this.msg.gender = item.gender
+        //   this.msg.birthday = item.birthday
+        // }
+        // this.regist(item)
       }
 
     },
     created () {
       this.phoneNum = getStore('userId')
       console.log(this.phoneNum)
-      this._userInfo()
+      this._getUserInfo()
       this.userId = getStore('userId')
       this.token = getStore('token')
     },

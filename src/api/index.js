@@ -15,11 +15,11 @@ export const loginOut = (params) => {
 }
 // 获取用户信息！
 export const getUserInfo = (params) => {
-  return http.fetchGet('/user/getUserInfo', params)
+  return http.fetchPost('/user/getUserInfo', params)
 }
-// 获取用户信息！
+// 设置用户信息！
 export const setUserInfo = (params) => {
-  return http.fetchGet('/user/setUserInfo', params)
+  return http.fetchPost('/user/setUserInfo', params)
 }
 // 注册账号
 export const register = (params) => {
@@ -60,4 +60,16 @@ export const geetest = (params) => {
 // 用戶請求訂單
 export const orderList = (params) => {
   return http.fetchGet('/user/orderList' + (new Date()).getTime(), params)
+}
+// 用户确认收货
+export const orderComplete = (params) => {
+  return http.fetchPost('/user/accept', params)
+}
+// 从低到高查询
+export const lowHighPrize = (params) => {
+  return http.fetchPost('/Home/orderedMenu', params)
+}
+// 注册账号
+export const changePassword = (params) => {
+  return http.fetchPost('/user/changePwd', params)
 }

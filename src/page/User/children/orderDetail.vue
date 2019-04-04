@@ -85,14 +85,14 @@
           <!--商品-->
           <div class="goods-table">
             <div class="cart-items" v-for="(item,i) in orderList" :key="i">
-              <a @click="goodsDetails(item.productId)" class="img-box"><img :src="item.productImg" alt=""></a>
+              <a @click="goodsDetails(item.menuItem.id)" class="img-box"><img :src="item.menuItem.imgPath" alt=""></a>
               <div class="name-cell ellipsis">
-                <a @click="goodsDetails(item.productId)" title="" target="_blank">{{item.productName}}</a>
+                <a @click="goodsDetails(item.menuItem.id)" title="" target="_blank">{{item.menuItem.name}}</a>
               </div>
               <div class="n-b">
-                <div class="price">¥ {{Number(item.actualUnitPrize).toFixed(2)}}</div>
-                <div class="goods-num">{{item.num}}</div>
-                <div class="subtotal"> ¥ {{Number(item.actualUnitPrize * item.num).toFixed(2)}}</div>
+                <div class="price">¥ {{Number(item.orderItem.actualUnitPrize).toFixed(2)}}</div>
+                <div class="goods-num">{{item.orderItem.num}}</div>
+                <div class="subtotal"> ¥ {{Number(item.orderItem.actualUnitPrize * item.orderItem.num).toFixed(2)}}</div>
               </div>
             </div>
           </div>
@@ -116,9 +116,12 @@
             <p class="address">姓名：{{ userName }}</p>
             <p class="address">联系电话：{{ tel }}</p>
             <p class="address">详细地址：{{ streetName }}</p>
+            <!--<y-button text='确认收货'-->
+                      <!--class="btn"-->
+                      <!--@btnClick="_updateOrder"-->
+                      <!--style="align-content: center; margin-bottom: 10px">-->
+            <!--</y-button>-->
           </div>
-
-
           <div class="gray-sub-title cart-title" v-if="orderStatus === 2">
             <div class="first">
               <div>
@@ -127,46 +130,28 @@
             </div>
           </div>
           <!--<div v-if="orderStatus ===2">-->
-        <div>
+        <div v-if="orderStatus === 3">
             <!--地图-->
-            <b-map-component :start="factoryName" :end="streetName">
+            <b-map-component :start="factoryName" :end="streetName" style="margin-top: 20px" >
             </b-map-component>
-            <!--<baidu-map class="map" :center="{lng: 121.47 , lat: 32.23}" :zoom="14">-->
-              <!--&lt;!&ndash;https://dafrok.github.io/vue-baidu-map/#/zh/bmaplib/lushu&ndash;&gt;-->
-              <!--&lt;!&ndash;起点：start&ndash;&gt;-->
-              <!--&lt;!&ndash;重点：end&ndash;&gt;-->
-              <!--<bm-driving start="华东师范大学" end="上海虹桥机场" @searchcomplete="handleSearchComplete" :panel="false" :autoViewport="true"></bm-driving>-->
-              <!--<bml-lushu-->
-                <!--@stop="reset"-->
-                <!--:path="path"-->
-                <!--:icon="icon"-->
-                <!--:play="play"-->
-                <!--:rotation="true"-->
-                <!--:autoView="true"-->
-                <!--:speed="2000">-->
-              <!--</bml-lushu>-->
-            <!--</baidu-map>-->
+            <y-button text='确认收货'
+                      class="btn"
+                      @btnClick="_updateOrder"
+                      style="align-content: center; margin-bottom: 10px;margin: 10px;height: 50px;">
+            </y-button>
           </div>
-
-
         </div>
-        <!--<div v-loading="loading" element-loading-text="加载中..." v-else>-->
-          <!--<div style="padding: 100px 0;text-align: center">-->
-            <!--获取该订单信息失败-->
-          <!--</div>-->
-      <!--暂时去除-->
-        <!--</div>-->
-      <!--</div>-->
     </y-shelf>
-
   </div>
 </template>
 <script>
   import {getOrderDet, cancelOrder} from '/api/goods'
+  import {orderComplete} from '/api/index.js'
   import YShelf from '/components/shelf'
   import {getStore} from '/utils/storage'
   import countDown from '/components/countDown'
   import BMapComponent from '/components/BMapComponent.vue'
+  import YButton from '/components/YButton.vue'
   // 引入地图组件
   export default {
     data () {
@@ -251,6 +236,17 @@
             this.message('取消失败')
           }
         })
+      },
+      _updateOrder () {
+        orderComplete({orderId: this.orderId}).then(res => {
+          console.log(res)
+          if (res.success === 'true') {
+            this.orderStatus = 5
+            this.closeTime = res.closeTime
+          } else {
+            this.message('提交失败')
+          }
+        })
       }
     },
     created () {
@@ -264,7 +260,8 @@
     components: {
       YShelf,
       countDown,
-      BMapComponent
+      BMapComponent,
+      YButton
     }
   }
 </script>

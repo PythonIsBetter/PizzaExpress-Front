@@ -41,18 +41,17 @@
                     @btnClick="checkout(product.id)"
                     style="width: 145px;height: 50px;line-height: 48px;margin-left: 10px"></y-button>
         </div>
-
-        <div class="detail">
-          <span class="params-name">产品信息</span>
-          <div class="img-item" v-if="productMsg">
-            <div v-html="productMsg">{{ productMsg }}</div>
-          </div>
-          <div class="no-info" v-else>
-            <img src="/static/images/no-data.png">
-            <br>
-            该商品暂无内容数据
-          </div>
-        </div>
+        <!--<div class="detail">-->
+          <!--<span class="params-name">产品信息</span>-->
+          <!--<div class="img-item" v-if="productMsg">-->
+            <!--<div v-html="productMsg">{{ productMsg }}</div>-->
+          <!--</div>-->
+          <!--<div class="no-info" v-else>-->
+            <!--<img src="/static/images/no-data.png">-->
+            <!--<br>-->
+            <!--该商品暂无内容数据-->
+          <!--</div>-->
+        <!--</div>-->
       </div>
     </div>
     <!--产品信息-->
@@ -103,7 +102,7 @@
           let result = res
           this.product = result
           this.productMsg = result.detail || ''
-          this.small = result.productImageSmall
+          this.small = result.imgPath
           this.big = this.small[0]
         })
       },

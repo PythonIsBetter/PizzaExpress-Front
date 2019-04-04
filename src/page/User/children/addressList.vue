@@ -8,13 +8,13 @@
         </div>
         <div v-if="addList.length">
           <div class="address-item" v-for="(item,i) in addList" :key="i">
-            <div class="name">{{item.userName}}</div>
-            <div class="address-msg">{{item.streetName}}</div>
-            <div class="telephone">{{item.tel}}</div>
+            <div class="name">{{item.receiverName}}</div>
+            <div class="address-msg">{{item.address}}</div>
+            <div class="telephone">{{item.receiverPhoneNum}}</div>
             <div class="defalut">
               <a @click="changeDef(item)"
                  href="javascript:;"
-                 v-text="item.isDefault?'( 默认地址 )':'设为默认'"
+                 v-text="item.isDefault?'(     )':'    '"
                  :class="{'defalut-address':item.isDefault}"></a>
             </div>
             <div class="operation">
@@ -44,9 +44,9 @@
         <div>
           <input type="text" placeholder="收货地址" v-model="msg.streetName">
         </div>
-        <div>
-          <el-checkbox class="auto-login" v-model="msg.isDefault">设为默认</el-checkbox>
-        </div>
+        <!--<div>-->
+          <!--<el-checkbox class="auto-login" v-model="msg.isDefault">设为默认</el-checkbox>-->
+        <!--</div>-->
         <y-button text='保存'
                   class="btn"
                   :classStyle="btnHighlight?'main-btn':'disabled-btn'"
@@ -95,8 +95,8 @@
           console.log(res)
           let data = res
           if (data.length) {
-            this.addList = res.result
-            this.addressId = res.result[0].addressId || '1'
+            this.addList = res
+            this.addressId = res[0].addressId || '1'
           } else {
             this.addList = []
           }
