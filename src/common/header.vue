@@ -22,7 +22,7 @@
                 @keydown.enter.native="handleIconClick">
               </el-autocomplete>
               <router-link to="/home"><a @click="changePage(2)">首页</a></router-link>
-               <router-link to="/goods"><a @click="changePage(2)">菜单</a></router-link>
+              <router-link to="/goods"><a @click="changePage(2)">菜单</a></router-link>
 
             </div>
             <div class="nav-aside" ref="aside" :class="{fixed:st}">
@@ -147,7 +147,7 @@
   import YButton from '/components/YButton'
   import { mapMutations, mapState } from 'vuex'
   import { getCartList, cartDel, getQuickSearch } from '/api/goods'
-  import { loginOut, navList } from '/api/index'
+  import { loginOut, navList, searchItem } from '/api/index'
   import { setStore, getStore, removeStore } from '/utils/storage'
   // import store from '../store/'
   import 'element-ui/lib/theme-default/index.css'
@@ -167,7 +167,8 @@
         searchResults: [],
         timeout: null,
         token: '',
-        navList: []
+        navList: [],
+        searchResult: []
       }
     },
     computed: {
@@ -194,21 +195,26 @@
     methods: {
       ...mapMutations(['ADD_CART', 'INIT_BUYCART', 'ADD_ANIMATION', 'SHOW_CART', 'REDUCE_CART', 'RECORD_USERINFO', 'EDIT_CART']),
       handleIconClick (ev) {
-        if (this.$route.path === '/search') {
-          this.$router.push({
-            path: '/refreshsearch',
-            query: {
-              key: this.input
-            }
-          })
-        } else {
-          this.$router.push({
-            path: '/search',
-            query: {
-              key: this.input
-            }
-          })
-        }
+        searchItem({
+          searchContent: this.input
+        }).then(res => {
+          if (this.$route.path !== '/goods') {
+            this.$router.push({
+              path: '/goods',
+              query: {
+                key: res
+              }
+            })
+          } else {
+            console.log('re')
+            this.$router.push({
+              path: '/refreshgoods',
+              query: {
+                key: res
+              }
+            })
+          }
+        })
       },
       showError (m) {
         this.$message.error({
@@ -937,7 +943,7 @@
   .nav-sub {
     position: relative;
     z-index: 20;
-    height: 40px;
+    height: 90px;
     background: #f7f7f7;
     box-shadow: 0 2px 4px rgba(0, 0, 0, .04);
     &.fixed {
@@ -982,7 +988,7 @@
     }
     .nav-list2 {
       height: 28px;
-      line-height: 0px;
+      line-height: 28px;
       display: flex;
       align-items: center;
       height: 100%;
@@ -998,7 +1004,7 @@
         padding-left: 2px;
         a {
           display: block;
-          padding: 0px 10px;
+          padding: 0 10px;
           color: #666;
           &.active {
             font-weight: bold;

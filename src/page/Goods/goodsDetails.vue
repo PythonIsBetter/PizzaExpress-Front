@@ -5,11 +5,11 @@
       <div class="gallery-wrapper">
         <div class="gallery">
           <div class="thumbnail">
-            <ul>
-              <li v-for="(item,i) in small" :key="i" :class="{on:big===item}" @click="big=item">
-                <img v-lazy="item" :alt="product.name">
-              </li>
-            </ul>
+            <!--<ul>-->
+            <!--<li v-for="(item,i) in small" :key="i" :class="{on:big===item}" @click="big=item">-->
+            <!--<img v-lazy="item" :alt="product.name">-->
+            <!--</li>-->
+            <!--</ul>-->
           </div>
           <div class="thumb">
             <div class="big">
@@ -41,34 +41,35 @@
                     @btnClick="checkout(product.id)"
                     style="width: 145px;height: 50px;line-height: 48px;margin-left: 10px"></y-button>
         </div>
+
         <!--<div class="detail">-->
-          <!--<span class="params-name">产品信息</span>-->
-          <!--<div class="img-item" v-if="productMsg">-->
-            <!--<div v-html="productMsg">{{ productMsg }}</div>-->
-          <!--</div>-->
-          <!--<div class="no-info" v-else>-->
-            <!--<img src="/static/images/no-data.png">-->
-            <!--<br>-->
-            <!--该商品暂无内容数据-->
-          <!--</div>-->
+        <!--<span class="params-name">产品信息</span>-->
+        <!--<div class="img-item" v-if="productMsg">-->
+        <!--<div v-html="productMsg">{{ productMsg }}</div>-->
+        <!--</div>-->
+        <!--<div class="no-info" v-else>-->
+        <!--<img src="/static/images/no-data.png">-->
+        <!--<br>-->
+        <!--该商品暂无内容数据-->
         <!--</div>-->
       </div>
     </div>
-    <!--产品信息-->
-    <!--<div class="item-info">-->
-      <!--<y-shelf title="产品信息">-->
-        <!--<div slot="content">-->
-          <!--<div class="img-item" v-if="productMsg">-->
-            <!--<div v-html="productMsg">{{ productMsg }}</div>-->
-          <!--</div>-->
-          <!--<div class="no-info" v-else>-->
-            <!--<img src="/static/images/no-data.png">-->
-            <!--<br>-->
-            <!--该商品暂无内容数据-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</y-shelf>-->
-    <!--</div>-->
+  </div>
+  <!--产品信息-->
+  <!--<div class="item-info">-->
+  <!--<y-shelf title="产品信息">-->
+  <!--<div slot="content">-->
+  <!--<div class="img-item" v-if="productMsg">-->
+  <!--<div v-html="productMsg">{{ productMsg }}</div>-->
+  <!--</div>-->
+  <!--<div class="no-info" v-else>-->
+  <!--<img src="/static/images/no-data.png">-->
+  <!--<br>-->
+  <!--该商品暂无内容数据-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--</y-shelf>-->
+  <!--</div>-->
   </div>
 </template>
 <script>
@@ -99,11 +100,14 @@
       ...mapMutations(['ADD_CART', 'ADD_ANIMATION', 'SHOW_CART']),
       _productDet (productId) {
         productDet({id: productId}).then(res => {
+          console.log(res)
           let result = res
           this.product = result
           this.productMsg = result.detail || ''
           this.small = result.imgPath
-          this.big = this.small[0]
+          console.log('small', this.small)
+          this.big = this.small
+          console.log('big', this.big)
         })
       },
       addCart (id, price, name, img) {

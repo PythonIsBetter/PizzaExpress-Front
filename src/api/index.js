@@ -73,3 +73,7 @@ export const lowHighPrize = (params) => {
 export const changePassword = (params) => {
   return http.fetchPost('/user/changePwd', params)
 }
+//  请输入商品信息
+export const searchItem = (params) => {
+  return http.fetchPost('/Home/searchItem', params)
+}

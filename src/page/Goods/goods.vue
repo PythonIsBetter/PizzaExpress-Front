@@ -2,9 +2,9 @@
   <div class="goods">
     <div class="nav">
       <div class="w">
-        <a href="javascript:;" :class="{active:sortType===1}" @click="reset()">综合排序</a>
-        <a href="javascript:;" @click="sortByPrice(1)" :class="{active:sortType===2}">价格从低到高</a>
-        <a href="javascript:;" @click="sortByPrice(-1)" :class="{active:sortType===3}">价格从高到低</a>
+        <a href="javascript:;" @click="sortByPrice(1)" :class="{active:sortType===1}" >综合排序</a>
+        <a href="javascript:;" @click="sortByPrice(2)" :class="{active:sortType===2}">价格从低到高</a>
+        <a href="javascript:;" @click="sortByPrice(3)" :class="{active:sortType===3}">价格从高到低</a>
         <div class="price-interval">
           <input type="number" class="input" placeholder="价格" v-model="min">
           <span style="margin: 0 5px"> - </span>
@@ -89,7 +89,8 @@
         sort: '',
         currentPage: 1,
         total: 0,
-        pageSize: 20
+        pageSize: 20,
+        key: []
       }
     },
     methods: {
@@ -123,35 +124,32 @@
         }
         getAllGoods(params).then(res => {
           // this.total = res.result.total
-          // console.log(res[0].introduce)
           this.goods = res
+          if (this.key !== undefined) {
+            this.goods = this.key
+            this.key = []
+            console.log('enter 1', this.goods)
+          }
         })
       },
       // 默认排序
       reset () {
-        this.sortType = 1
-        this.sort = ''
-        this.currentPage = 1
-        this.loading = true
-        this._getAllGoods()
+        // this.sortType = 1
+        // this.sort = ''
+        // this.currentPage = 1
+        // this.loading = true
+        // this._getAllGoods()
         lowHighPrize({
           orderType: this.sortType,
           minPrice: this.min,
           maxPrice: this.max
         }).then(res => {
-          console.log(res)
-          let data = res.result
-          this.recommendPanel = data[0]
+          this.goods = res
         })
       },
-
       // 价格排序
       sortByPrice (v) {
-        v === 1 ? this.sortType = 2 : this.sortType = 3
-        this.sort = v
-        this.currentPage = 1
-        this.loading = true
-        this._getAllGoods()
+        this.sortType = v
       }
     },
     watch: {
@@ -165,8 +163,18 @@
     created () {
     },
     mounted () {
+      this.key = this.$route.query.key
+      console.log('goods get router key', this.$route.query.key)
+      console.log('goods get key', this.key)
       this.windowHeight = window.innerHeight
       this.windowWidth = window.innerWidth
+      // if (this.key.length <= 0) {
+      //   console.log('enter 1')
+      //   this._getAllGoods()
+      // } else {
+      //   console.log('enter 2')
+      //   this.goods = this.key
+      // }
       this._getAllGoods()
       recommend().then(res => {
         let data = res.result

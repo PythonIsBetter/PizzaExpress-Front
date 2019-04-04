@@ -10,8 +10,8 @@
           <ul class="common-form">
             <li>
               <div class="tab-tit" v-model="tabView">
-                <a href="javascript:;" @click="logintype2" class="register">手机验证码登录</a>
-                <a href="javascript:;" @click="logintype1" class="register">手机密码登录</a>
+                <a href="javascript:;" @click="logintype2" :class="loginPart2Show? 'active' : 'non_active'">手机验证码登录</a>
+                <a href="javascript:;" @click="logintype1" :class="loginPart1Show? 'active' : 'non_active'">手机密码登录</a>
               </div>
             </li>
             <div v-show="loginPart1Show">
@@ -370,16 +370,34 @@
     color: #333;
     text-decoration:none;
   }
-  .tab-tit .cur{
-    background: #09f;
-    color: #fff;
-  }
   .tab-con div{
     border: 1px solid #ccc;
     height: 400px;
     width: 598px;
     margin: 0 auto;
     padding-top: 20px;
+  }
+  .tab-tit .active{
+    display: contents;
+    height: 50px;
+    line-height: 50px;
+    width: 185px;
+    font-size: 18px;
+    text-align: center;
+    background: #f38120;
+    color: #fff;
+    text-decoration:none;
+  }
+  .tab-tit .non_active{
+    display: contents;
+    height: 50px;
+    line-height: 50px;
+    width: 185px;
+    font-size: 18px;
+    text-align: center;
+    background: #ccc;
+    color: #333;
+    text-decoration:none;
   }
 
   .login {
