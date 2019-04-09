@@ -1,6 +1,6 @@
 <template>
     <div class="popup" v-if="open">
-        <div class="mask">
+        <div class="sk">
             <div class="content">
                 <div class="topbar">
                     <div class="dialog-tit">
@@ -13,7 +13,7 @@
                 <div class="s-content">
                     <slot name="content"></slot>
                 </div>
-                
+
             </div>
         </div>
     </div>
@@ -58,7 +58,7 @@ export default {
         background: rgba(0, 0, 0, .5);
     }
     .content {
-        width: 30%;
+        width: 75%;
         background: #fff;
         border-radius: 10px;
     }
@@ -100,7 +100,7 @@ export default {
             transition: all 1s;
             transform: rotate(360deg);
             transform-origin:50% 50%;
-            }   
+            }
             path{
                 fill: #8a8a8a;
             }

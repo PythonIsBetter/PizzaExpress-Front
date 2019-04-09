@@ -210,13 +210,13 @@
     height: 115px;
     text-align: center;
     .name {
-      width: 106px;
+      width: 66px;
     }
     .address-msg {
       flex: 1;
     }
     .telephone {
-      width: 160px;
+      width: 80px;
     }
     .defalut {
       width: 80px;
@@ -226,7 +226,7 @@
       }
     }
     .operation {
-      width: 135px;
+      width: 90px;
       a {
         padding: 10px 5px;
       }
@@ -268,7 +268,7 @@
 
   .btn {
     margin: 0;
-    width: 100%;
+    width: 50%;
     height: 50px;
     font-size: 14px;
     line-height: 48px
