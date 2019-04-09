@@ -3,7 +3,6 @@
     <div style="">
       <div class="good-img">
         <a @click="openProduct(msg.id)">
-          <!--<img v-lazy="msg.productImageBig" :alt="msg.name" :key="msg.productImageBig">-->
           <img v-lazy="msg.imgPath" :alt="msg.name" :key="msg.imgPath">
         </a>
       </div>
@@ -42,10 +41,11 @@
     methods: {
       ...mapMutations(['ADD_CART', 'ADD_ANIMATION', 'SHOW_CART']),
       goodsDetails (id) {
-        this.$router.push({path: 'goodsDetails/productId=' + id})
+        this.$router.push({path: '/goodsDetails', query: {productId: id}})
       },
       openProduct (id) {
-        window.open('//' + window.location.host + '/#/goodsDetails?productId=' + id)
+        // window.open('//' + window.location.host + '/#/goodsDetails?productId=' + id)
+        this.$router.push({path: '/goodsDetails', query: {productId: id}})
       },
       addCart (id, price, name, img) {
         if (!this.showMoveImg) {     // 动画是否在运动
@@ -85,9 +85,12 @@
 
   .good-item {
     background: #fff;
-    width: 25%;
+    width: 100%;
     transition: all .5s;
-    height: 430px;
+    clear: both;
+    height: 70%;
+    padding: 0 0 25px;
+    margin: 10px auto;
     &:hover {
       transform: translateY(-3px);
       box-shadow: 1px 1px 20px #999;
@@ -106,23 +109,23 @@
 
     .good-img {
       img {
-        margin: 50px auto 10px;
-        @include wh(206px);
+        margin: 20px auto 10px;
+        @include wh(140px);
         display: block;
       }
     }
     .good-price {
-      margin: 15px 0;
-      height: 30px;
+      margin: 5px 0;
+      height: 15px;
       text-align: center;
-      line-height: 30px;
+      line-height: 15px;
       color: #d44d44;
       font-family: Arial;
       font-size: 18px;
       font-weight: 700;
     }
     .good-title {
-      line-height: 1.2;
+      line-height: 1.0;
       font-size: 16px;
       color: #424242;
       margin: 0 auto;
@@ -132,11 +135,10 @@
     }
     h3 {
       text-align: center;
-      line-height: 1.2;
+      line-height: 1.0;
       font-size: 12px;
       color: #d0d0d0;
       padding: 10px;
     }
-
   }
 </style>

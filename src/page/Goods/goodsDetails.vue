@@ -5,11 +5,6 @@
       <div class="gallery-wrapper">
         <div class="gallery">
           <div class="thumbnail">
-            <!--<ul>-->
-            <!--<li v-for="(item,i) in small" :key="i" :class="{on:big===item}" @click="big=item">-->
-            <!--<img v-lazy="item" :alt="product.name">-->
-            <!--</li>-->
-            <!--</ul>-->
           </div>
           <div class="thumb">
             <div class="big">
@@ -36,41 +31,14 @@
           <y-button text="加入购物车"
                     @btnClick="addCart(product.id,product.prize,product.name,product.imgPath)"
                     classStyle="main-btn"
-                    style="width: 145px;height: 50px;line-height: 48px"></y-button>
+                    style="width: 145px;height: 50px;line-height: 48px;margin-left: 10px"></y-button>
           <y-button text="现在购买"
                     @btnClick="checkout(product.id)"
-                    style="width: 145px;height: 50px;line-height: 48px;margin-left: 10px"></y-button>
+                    style="width: 145px;height: 50px;line-height: 48px;margin-left: 10px;margin-top: 10px"></y-button>
         </div>
-
-        <!--<div class="detail">-->
-        <!--<span class="params-name">产品信息</span>-->
-        <!--<div class="img-item" v-if="productMsg">-->
-        <!--<div v-html="productMsg">{{ productMsg }}</div>-->
-        <!--</div>-->
-        <!--<div class="no-info" v-else>-->
-        <!--<img src="/static/images/no-data.png">-->
-        <!--<br>-->
-        <!--该商品暂无内容数据-->
-        <!--</div>-->
       </div>
     </div>
   </div>
-  <!--产品信息-->
-  <!--<div class="item-info">-->
-  <!--<y-shelf title="产品信息">-->
-  <!--<div slot="content">-->
-  <!--<div class="img-item" v-if="productMsg">-->
-  <!--<div v-html="productMsg">{{ productMsg }}</div>-->
-  <!--</div>-->
-  <!--<div class="no-info" v-else>-->
-  <!--<img src="/static/images/no-data.png">-->
-  <!--<br>-->
-  <!--该商品暂无内容数据-->
-  <!--</div>-->
-  <!--</div>-->
-  <!--</y-shelf>-->
-  <!--</div>-->
-  <!--</div>-->
 </template>
 <script>
   import {productDet} from '/api/goods'
@@ -79,7 +47,6 @@
   import BuyNum from '/components/buynum'
   import YButton from '/components/YButton'
   import {getStore} from '/utils/storage'
-
   export default {
     data () {
       return {
@@ -159,20 +126,20 @@
 
   .store-content {
     clear: both;
-    width: 1220px;
-    min-height: 600px;
+    width: 90%;
+    height: 80%;
     padding: 0 0 25px;
     margin: 0 auto;
   }
 
   .gray-box {
     display: flex;
-    padding: 60px;
+    padding: 10px;
     margin: 20px 0;
     .gallery-wrapper {
       .gallery {
         display: flex;
-        width: 540px;
+        width: 140px;
         .thumbnail {
           li:first-child {
             margin-top: 0px;
@@ -202,23 +169,23 @@
           }
           img {
             display: block;
-            @include wh(440px)
+            @include wh(100%)
           }
         }
       }
     }
     // 右边
     .banner {
-      width: 450px;
+      width: 50%;
       margin-left: 10px;
       h4 {
-        font-size: 24px;
+        font-size: 12px;
         line-height: 1.25;
         color: #000;
         margin-bottom: 13px;
       }
       h6 {
-        font-size: 14px;
+        font-size: 5px;
         line-height: 1.5;
         color: #bdbdbd;
         display: flex;
@@ -232,7 +199,7 @@
       }
       .params-name {
         padding-right: 20px;
-        font-size: 14px;
+        font-size: 5px;
         color: #8d8d8d;
         line-height: 36px;
       }
@@ -282,12 +249,13 @@
     display: block;
     color: #d44d44;
     font-weight: 700;
-    font-size: 16px;
+    font-size: 12px;
     line-height: 20px;
     text-align: right;
+    margin-left: 20px;
     i {
       padding-left: 2px;
-      font-size: 24px;
+      font-size: 12px;
     }
   }
 </style>
