@@ -61,7 +61,6 @@
 </template>
 <script src="../../../static/geetest/gt.js"></script>
 <script>
-  import YFooter from '/common/footer'
   import YButton from '/components/YButton'
   import {register, geetest} from '/api/index.js'
 
@@ -191,7 +190,6 @@
       this.init_geetest()
     },
     components: {
-      YFooter,
       YButton
     }
   }

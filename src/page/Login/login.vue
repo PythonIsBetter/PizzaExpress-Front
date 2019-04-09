@@ -81,7 +81,6 @@
 
 
 <script>
-  import YFooter from '/common/footer'
   import YButton from '/components/YButton'
   import { userLogin, idCode } from '/api/index.js'
   // import { idCode } from '/api/index.js'
@@ -340,7 +339,6 @@
       this.open('登录提示', '没有什么登陆提示')
     },
     components: {
-      YFooter,
       YButton
     }
   }

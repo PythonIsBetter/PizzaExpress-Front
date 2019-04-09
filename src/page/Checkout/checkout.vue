@@ -138,7 +138,6 @@
   import YButton from '/components/YButton'
   import YPopup from '/components/popup'
   import YHeader from '/common/header'
-  import YFooter from '/common/footer'
   import {getStore} from '/utils/storage'
 
   export default {
@@ -364,8 +363,7 @@
       YShelf,
       YButton,
       YPopup,
-      YHeader,
-      YFooter
+      YHeader
     }
   }
 </script>

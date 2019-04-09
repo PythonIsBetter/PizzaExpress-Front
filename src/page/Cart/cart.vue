@@ -122,7 +122,6 @@
   import { mapMutations, mapState } from 'vuex'
   import YButton from '/components/YButton'
   import YHeader from '/common/header'
-  import YFooter from '/common/footer'
   import BuyNum from '/components/buynum'
   import { getStore } from '/utils/storage'
   export default {
@@ -263,7 +262,6 @@
     components: {
       YButton,
       YHeader,
-      YFooter,
       BuyNum
     }
   }

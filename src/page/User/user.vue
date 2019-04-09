@@ -25,7 +25,6 @@
   </div>
 </template>
 <script>
-  import YFooter from '/common/footer'
   import YHeader from '/common/header'
   import { mapState } from 'vuex'
   export default {
@@ -58,7 +57,6 @@
       })
     },
     components: {
-      YFooter,
       YHeader
     },
     watch: {

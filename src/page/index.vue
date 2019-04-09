@@ -15,7 +15,6 @@
 </template>
 <script>
   import YHeader from '/common/header'
-  import YFooter from '/common/footer'
   import { mapState, mapMutations } from 'vuex'
   export default {
     data () {
@@ -55,8 +54,7 @@
       }
     },
     components: {
-      YHeader,
-      YFooter
+      YHeader
     }
   }
 </script>
@@ -64,7 +62,7 @@
   @import "../assets/style/mixin";
 
   .main {
-    min-height: calc(100vh - 454px);
+    min-height: calc(100vh - 30px);
     background: #ededed;
     overflow: hidden;
     width: 100%;

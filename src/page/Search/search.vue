@@ -36,7 +36,7 @@
         </div>
       </div>
     </div>
-    
+
     <div v-loading="loading" element-loading-text="加载中..." style="min-height: 35vw;">
       <div  class="img-item" v-if="!noResult" >
         <!--商品-->
@@ -91,7 +91,6 @@
   import YButton from '/components/YButton'
   import YShelf from '/components/shelf'
   import YHeader from '/common/header'
-  import YFooter from '/common/footer'
   export default {
     data () {
       return {
@@ -185,8 +184,7 @@
       mallGoods,
       YButton,
       YShelf,
-      YHeader,
-      YFooter
+      YHeader
     }
   }
 </script>

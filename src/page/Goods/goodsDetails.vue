@@ -70,7 +70,7 @@
   <!--</div>-->
   <!--</y-shelf>-->
   <!--</div>-->
-  </div>
+  <!--</div>-->
 </template>
 <script>
   import {productDet} from '/api/goods'
