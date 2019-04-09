@@ -93,12 +93,18 @@
       }
     },
     created () {
-      let path = this.$route.path.split('/')[2]
-      this.nav.forEach(item => {
-        if (item.path === path) {
-          this.title = item.name
-        }
-      })
+      let userId = getStore('userId')
+      console.log('userID:' + userId)
+      if (!userId) { // 登录了 直接存在用户名下
+        this.$router.push({path: '/login'})
+      } else { // 未登录 vuex
+        let path = this.$route.path.split('/')[2]
+        this.nav.forEach(item => {
+          if (item.path === path) {
+            this.title = item.name
+          }
+        })
+      }
     },
     components: {
       YHeader
