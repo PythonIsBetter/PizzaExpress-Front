@@ -10,23 +10,22 @@
           </div>
           <div class="right-box">
             <div class="nav-list">
-              <el-autocomplete
-                placeholder="请输入商品信息"
-                icon="search"
-                v-model="input"
-                minlength=1
-                maxlength=100
-                :fetch-suggestions="querySearchAsync"
-                @select="handleSelect"
-                :on-icon-click="handleIconClick"
-                @keydown.enter.native="handleIconClick">
-              </el-autocomplete>
+              <!--<el-autocomplete-->
+                <!--placeholder="请输入商品信息"-->
+                <!--icon="search"-->
+                <!--v-model="input"-->
+                <!--minlength=1-->
+                <!--maxlength=100-->
+                <!--:fetch-suggestions="querySearchAsync"-->
+                <!--@select="handleSelect"-->
+                <!--:on-icon-click="handleIconClick"-->
+                <!--@keydown.enter.native="handleIconClick">-->
+              <!--</el-autocomplete>-->
               <router-link to="/home"><a @click="changePage(2)">首页</a></router-link>
               <router-link to="/goods"><a @click="changePage(2)">菜单</a></router-link>
 
             </div>
             <div class="nav-aside" ref="aside" :class="{fixed:st}">
-
               <div class="user pr">
                 <router-link to="/user">个人中心</router-link>
                 <div class="nav-user-wrapper pa" v-if="login">
@@ -47,12 +46,6 @@
                       </li>
                       <li>
                         <router-link to="/user/addressList">收货地址</router-link>
-                      </li>
-                      <li>
-                        <router-link to="/user/support">售后服务</router-link>
-                      </li>
-                      <li>
-                        <router-link to="/user/coupon">我的优惠</router-link>
                       </li>
                       <li>
                         <a href="javascript:;" @click="_loginOut">退出</a>
@@ -109,12 +102,11 @@
                       </div>
                     </div>
                     <div v-show="!totalNum" style="height: 313px;text-align: center" class="cart-con">
-                      <p>您的购物车竟然是空的!</p>
+                      <p>您的购物车是空的!</p>
                     </div>
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
@@ -391,6 +383,7 @@
   }
 </script>
 <style lang="scss" rel="stylesheet/scss" scoped>
+
   @import "../assets/style/theme";
   @import "../assets/style/mixin";
   .move_in_cart {
@@ -498,7 +491,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-right: 22px;
+      margin-right: 8px;
       .el-autocomplete{
         width: 305px;
       }
@@ -572,7 +565,7 @@
     }
     // 用户
     .user {
-      margin-left: 41px;
+      margin-left: 21px;
       width: 36px;
       &:hover {
         a:before {

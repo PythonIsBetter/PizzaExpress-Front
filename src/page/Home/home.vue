@@ -68,10 +68,10 @@
             img: 'http://192.168.0.8:8080/images/3.jpg'
           },
           {
-            img: 'http://192.168.0.8:8080/images/4.jpg'
+            img: 'http://172.29.174.1:8080/images/4.jpg'
           },
           {
-            img: 'http://192.168.0.8:8080/images/5.jpg'
+            img: 'http://172.29.174.1:8080/images/5.jpg'
           }
         ],
         currentIndex: 1,

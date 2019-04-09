@@ -1,27 +1,17 @@
 <template>
-  <div class="layout-container">
+  <div>
     <y-header>
       <div slot="nav"></div>
     </y-header>
+    <sidebar-menu :menu="menu" />
     <div class="w">
       <div class="content">
-        <div class="account-sidebar">
-          <div class="avatar gray-box ">
-            <div class="box-inner">
-              <ul class="account-nav">
-                <li v-for="(item,i) in nav" :key='i' :class="{current:item.name===title}"
-                    @click="tab(item)">
-                  <a href="javascript:;">{{item.name}}</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
         <div class="account-content">
           <router-view></router-view>
         </div>
       </div>
     </div>
-    <y-footer></y-footer>
+    <!--<y-footer></y-footer>-->
   </div>
 </template>
 <script>
@@ -31,15 +21,69 @@
   export default {
     data () {
       return {
-        title: '我的订单',
-        nav: [
-          {name: '我的订单', path: 'orderList'},
-          {name: '账户资料', path: 'information'},
-          {name: '收货地址', path: 'addressList'},
-          {name: '退出登录', path: 'Logout'}
-        ],
-        editAvatar: true
+        menu: [
+          {
+            header: false,
+            title: 'PizzaEXP',
+            collapsed: true,
+            // component: componentName
+            visibleOnCollapse: true,
+            widthCollapsed: '50px',
+            width: '150px'
+          },
+          //
+          // { // item
+          //   href: '/home',
+          //   title: '首页',
+          //   icon: '<v-icon name="beer"/>'
+          // },
+          // { // item
+          //   href: '/goods',
+          //   title: '菜单',
+          //   icon: 'fa fa-user'
+          //
+          // },
+          // { // item
+          //   href: '/cart',
+          //   title: '购物车',
+          //   icon: 'fa fa-user'
+          // },
+          { // item with child
+            href: '/user',
+            title: '个人中心',
+            icon: 'fa fa-chart-area',
+            collapsed: true,
+            child: [
+              {
+                href: '/user/orderList',
+                title: '我的订单'
+              },
+              {
+                href: '/user/information',
+                title: '账户资料'
+              },
+              {
+                href: '/user/addressList',
+                title: '收货地址'
+              },
+              {
+                href: '/user/logout',
+                title: '退出登录'
+              }
+            ]
+          }
+        ]
       }
+      // return {
+      //   title: '我的订单',
+      //   nav: [
+      //     {name: '我的订单', path: 'orderList'},
+      //     {name: '账户资料', path: 'information'},
+      //     {name: '收货地址', path: 'addressList'},
+      //     {name: '退出登录', path: 'Logout'}
+      //   ],
+      //   editAvatar: true
+      // }
     },
     computed: {
       ...mapState(['userInfo'])
@@ -77,12 +121,16 @@
   @import "../../assets/style/mixin";
 
   .w {
-    padding-top: 40px;
+    width: 100%;
+    height: 100%;
+    padding-top: 20px;
   }
 
   .content {
     display: flex;
-    height: 100%;
+    margin-left: 5%;
+    height: 60%;
+    width: 80%;
   }
 
   .account-sidebar {

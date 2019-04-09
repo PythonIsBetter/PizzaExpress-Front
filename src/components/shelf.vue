@@ -21,6 +21,7 @@
 </script>
 <style lang="scss" rel="stylesheet/scss" scoped>
   .gray-box {
+    width: 100%;
     position: relative;
     margin-bottom: 30px;
     overflow: hidden;

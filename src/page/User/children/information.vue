@@ -167,13 +167,6 @@
         })
       },
       _setUserInfo (item) {
-        // let params = {
-        //   phoneNum: this.phoneNum,
-        //   nickname: item.nickname,
-        //   // gender: item.gender,
-        //   birthday: item.birthday,
-        //   city: item.city
-        // }
         setUserInfo({
           phoneNum: this.phoneNum,
           nickname: item.nickname,
@@ -204,27 +197,10 @@
       // 修改
       update (item) {
         this.popupOpen = true
-        // if (item) {
-        //   this.popupTitle = '修改用户信息'
-        //   this.msg.Name = item.Name
-        //   this.msg.city = item.city
-        //   // this.msg.gender = item.gender
-        //   this.msg.birthday = item.birthday
-        // }
-        // this._setUserInfo(item)
       },
       updateCode (item) {
         this.popupOpen2 = true
-        // if (item) {
-        //   this.popupTitle = '修改用户密码'
-        //   // this.msg.Name = item.Name
-        //   this.msg.city = item.city
-        //   // this.msg.gender = item.gender
-        //   this.msg.birthday = item.birthday
-        // }
-        // this.regist(item)
       }
-
     },
     created () {
       this.phoneNum = getStore('userId')

@@ -59,7 +59,8 @@
     </div>
   </div>
 </template>
-<script src="../../../static/geetest/gt.js"></script>
+<!--<script src="../../../static/geetest/gt.js"></script>-->
+<script src="http://g.tbcdn.cn/mtb/lib-flexible/{{0.3.4}}/??flexible_css.js,flexible.js"></script>
 <script>
   import YFooter from '/common/footer'
   import YButton from '/components/YButton'
@@ -188,7 +189,7 @@
       }
     },
     mounted () {
-      this.init_geetest()
+      // this.init_geetest()
     },
     components: {
       YFooter,

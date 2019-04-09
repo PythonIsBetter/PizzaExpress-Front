@@ -16,7 +16,10 @@
     "element-ui": "^1.4.13",
     "geetest3": "^1.0.0",
     "gitment": "0.0.3",
+    "lib-flexible": "^0.3.2",
+    "px2rem-loader": "^0.1.9",
     "vue": "^2.5.16",
+    "vue-awesome": "^3.5.1",
     "vue-axios": "^2.1.4",
     "vue-baidu-map": "^0.21.18",
     "vue-content-placeholders": "^0.2.1",
@@ -24,7 +27,9 @@
     "vue-cropper": "^0.1.7",
     "vue-infinite-scroll": "^2.0.2",
     "vue-lazyload": "^1.2.2",
+    "vue-navigation-bar": "^1.2.1",
     "vue-router": "^2.8.1",
+    "vue-sidebar-menu": "^3.6.3",
     "vuex": "^2.5.0"
   },
   "devDependencies": {

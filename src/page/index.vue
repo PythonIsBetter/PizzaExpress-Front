@@ -2,7 +2,7 @@
   <div>
     <y-header></y-header>
     <router-view class="main"></router-view>
-    <y-footer></y-footer>
+    <!--<y-footer></y-footer>-->
     <!--抛物图片-->
     <transition @after-enter='afterEnter' @before-enter="beforeEnter">
       <!--整张图片-->
@@ -67,7 +67,7 @@
     min-height: calc(100vh - 454px);
     background: #ededed;
     overflow: hidden;
-    width: 100%;
+    /*width: 100%;*/
   }
 
   .bn {

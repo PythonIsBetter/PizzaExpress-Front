@@ -12,7 +12,7 @@
   @import "assets/style/index.scss";
 
   #app {
-    height: 100%;
+    height: 50%;
   }
 
   .main {
