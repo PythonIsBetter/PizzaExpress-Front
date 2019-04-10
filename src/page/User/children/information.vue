@@ -3,7 +3,7 @@
     <y-shelf title="账户资料">
       <span slot="right"><y-button text="修改密码" style="margin: 0" @btnClick="updateCode()"></y-button><y-button text="修改账户资料" style="margin: 0" @btnClick="update()"></y-button></span>
       <div slot="content">
-          <div v-if="nickname">
+          <div v-if="_getUserInfo ()">
             <div style="padding: 20px 0;text-align: left">
               <p style="margin-left: 40px; font-size: 20px">姓名 {{nickname}}</p>
               <!--<div class="operation">-->

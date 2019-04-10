@@ -40,14 +40,20 @@ export default {
 
 <style lang="scss" scoped>
 .popup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
+    /*position: fixed;*/
+    /*top: 0;*/
+    /*left: 0;*/
+    /*bottom: 0;*/
+    /*right: 0;*/
+    position:absolute;  /*position:fixed;*/
+    top:50%;
+    left:60%;
+    width: 80%;
+    transform:translateX(-50%) translateY(-50%);
     z-index: 1000;
     text-align: center;
     transition: opacity .2s ease-in;
+    font-size: 50%;
     .mask {
         display: flex;
         justify-content: center;
@@ -61,6 +67,7 @@ export default {
         width: 75%;
         background: #fff;
         border-radius: 10px;
+        font-size: 75%;
     }
     .topbar {
         position: relative;
@@ -73,6 +80,7 @@ export default {
         border-bottom: 1px solid #DCDCDC;
         border-radius: 10px 10px 0 0;
         box-shadow: 2px 0 5px rgba(0,0,0,.1);
+      font-size: 50%;
     }
     .dialog-tit {
         height: 60px;
@@ -87,6 +95,7 @@ export default {
     }
     .s-content{
         padding: 30px 15px;
+        font-size: 0.5rem;
     }
     .close{
         position: absolute;

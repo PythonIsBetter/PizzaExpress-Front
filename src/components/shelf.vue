@@ -1,7 +1,7 @@
 <template>
   <div class="gray-box">
     <div class="title">
-      <h2>{{title}}</h2>
+      <h4>{{title}}</h4>
       <div>
         <slot name="right"></slot>
       </div>
@@ -34,7 +34,7 @@
       padding-left: 30px;
       position: relative;
       z-index: 10;
-      height: 60px;
+      height: 1.5rem;
       padding: 0 10px 0 24px;
       border-bottom: 1px solid #d4d4d4;
       border-radius: 8px 8px 0 0;
@@ -43,7 +43,7 @@
       background: -webkit-linear-gradient(#fbfbfb, #ececec);
       background: linear-gradient(#fbfbfb, #ececec);
       line-height: 60px;
-      font-size: 18px;
+      font-size: .3rem;
       color: #333;
       display: flex;
       justify-content: space-between;

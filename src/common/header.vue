@@ -493,10 +493,10 @@
       align-items: center;
       margin-right: 8px;
       .el-autocomplete{
-        width: 305px;
+        width: 205px;
       }
       a {
-        width: 110px;
+        width: 80px;
         color: #c8c8c8;
         display: block;
         font-size: 14px;
