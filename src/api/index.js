@@ -79,5 +79,5 @@ export const searchItem = (params) => {
 }
 //  请输入商品信息
 export const orderCancel = (params) => {
-  return http.fetchPost('/user/orderCancel', params)
+  return http.fetchPost('/foreground/user/orderCancel', params)
 }
