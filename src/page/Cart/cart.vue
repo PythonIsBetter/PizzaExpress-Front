@@ -36,9 +36,6 @@
                         <div class="name-table">
                           <a @click="goodsDetails(item.productId)" :title="item.productName" target="_blank"
                              v-text="item.productName"></a>
-                          <!-- <ul class="attribute">
-                            <li>白色</li>
-                          </ul> -->
                         </div>
                       </div>
                       <!--删除按钮-->
@@ -53,16 +50,25 @@
                         <buy-num :num="item.productNum"
                                  :id="item.productId"
                                  :checked="item.checked"
-                                 style="height: 140px;
-                                   display: flex;
-                                   align-items: center;
-                                   justify-content: center;"
+                                 style="
+                                 position: relative;
+                                 width: 10%;
+                                 margin-top: -35%;
+                                 margin-right: 40%;
+                                "
                                  :limit="item.limitNum"
                                  @edit-num="EditNum"
                         >
                         </buy-num>
                         <!--价格-->
-                        <div class="price1">¥ {{item.salePrice}}</div>
+                        <div class="price1"
+                             style="
+                                 position: relative;
+                                 width: 12%;
+                                 margin-top: -30%;
+                                 margin-right: 58%;
+                                "
+                        >¥ {{item.salePrice}}</div>
                       </div>
                     </div>
                   </div>
@@ -83,12 +89,12 @@
               </div>
               <div class="shipping">
                 <div class="shipping-box">
-                  <div class="shipping-total shipping-num"><h4
-                    class="highlight">已选择 <i v-text="checkNum"></i> 件商品</h4>
+                  <div class="shipping-total shipping-num">
+                    <h4 class="highlight">已选择 <i v-text="checkNum"></i> 件商品</h4>
                     <h5>共计 <i v-text="totalNum"></i> 件商品</h5></div>
-                  <div class="shipping-total shipping-price"><h4
-                    class="highlight">应付总额：<span>￥</span><i v-text="checkPrice"></i>
-                  </h4>
+                  <div class="shipping-total shipping-price">
+                    <h4 class="highlight">应付总额：<span>￥</span><i v-text="checkPrice"></i>
+                    </h4>
                     <h5 class="shipping-tips ng-scope">应付总额不含运费</h5>
                   </div>
                 </div>
@@ -117,7 +123,6 @@
   </div>
 </template>
 <script>
-  // import { getCartList, cartEdit, editCheckAll, cartDel, delCartChecked } from '/api/goods'
   import { getCartList, editCheckAll, delCartChecked } from '/api/goods'
   import { mapMutations, mapState } from 'vuex'
   import YButton from '/components/YButton'
@@ -269,7 +274,7 @@
 <style lang="scss" rel="stylesheet/scss" scoped>
   .store-content {
     clear: both;
-    width: 1220px;
+    width: 100%;
     min-height: 600px;
     padding: 0 0 25px;
     margin: 0 auto;
@@ -299,24 +304,23 @@
         color: #333;
       }
     }
+
     .ui-cart {
-      padding-bottom: 91px;
       .cart-table-title {
         position: relative;
         z-index: 1;
         line-height: 38px;
         height: 38px;
-        padding: 0 0 0 30px;
+        padding: 0 0 0 10px;
         font-size: 12px;
         background: #eee;
         border-bottom: 1px solid #dbdbdb;
         border-bottom-color: rgba(0, 0, 0, .08);
         .name {
           float: left;
-          text-align: left;
         }
         span {
-          width: 137px;
+          width: 55px;
           float: right;
           text-align: center;
           color: #838383;
@@ -333,9 +337,11 @@
         margin-left: 74px;
         /*删除*/
         .operation {
-          padding: 58px 0 0;
+          padding: 0;
           font-size: 12px;
-          line-height: 24px;
+          line-height: 12px;
+          margin-right: -40px;
+          margin-top: -60px;
           .items-delete-btn {
             background-image: url(../../../static/images/delete-btn-icon_a35bf2437e@2x.jpg);
             &:hover {
@@ -344,8 +350,8 @@
           }
           .items-delete-btn {
             display: block;
-            width: 24px;
-            height: 24px;
+            width: 18px;
+            height: 18px;
             margin: 0 auto;
             color: #C2C2C2;
             background: url(../../../static/images/delete-btn-icon_a35bf2437e@2x.jpg);
@@ -358,6 +364,8 @@
           }
         }
         .subtotal {
+          margin-right: 10px;
+          margin-top: -60px;
           font-weight: 700;
         }
         .item-cols-num,
@@ -369,7 +377,6 @@
           width: 137px;
           text-align: center;
           color: #666;
-          line-height: 140px;
         }
       }
       .cart-group.divide .cart-top-items:first-child .cart-items {
@@ -379,22 +386,24 @@
         position: absolute;
         left: -74px;
         top: 0;
-        width: 74px;
-        height: 20px;
-        padding: 60px 0 0 31px;
+        width: 37px;
+        height: 10px;
+        padding: 50px 0 0 5px;
         font-size: 12px;
         color: #999;
       }
       .items-thumb {
         position: relative;
         margin-top: 30px;
+        margin-left: -40px;
+        margin-bottom: 10px;
         overflow: hidden;
-        width: 80px;
-        height: 80px;
+        width: 60px;
+        height: 60px;
       }
       img {
-        width: 80px;
-        height: 80px;
+        width: 60px;
+        height: 60px;
       }
       .cart-items .items-thumb > a, .ui-cart .cart-items .items-thumb > i {
         position: absolute;
@@ -414,13 +423,14 @@
         display: table;
         a {
           color: #333;
-          font-size: 16px;
+          font-size: 14px;
+          margin-left: -60px;
         }
       }
       .name-table {
         display: table-cell;
         vertical-align: middle;
-        height: 140px;
+
       }
       .attribute, .name p {
         color: #999;
@@ -428,7 +438,6 @@
         padding-top: 4px;
         line-height: 17px;
       }
-
     }
 
   }
@@ -436,11 +445,9 @@
   .page-cart {
     padding-top: 40px;
     .fix-bottom {
-      height: 90px;
+      height: 150px;
       width: 100%;
-      position: absolute;
-      bottom: 0;
-      z-index: 1;
+      position: relative;
       background-position: center;
       background: #fdfdfd;
       background: -webkit-linear-gradient(#fdfdfd, #f9f9f9);
@@ -448,8 +455,7 @@
       border-top: 1px solid #e9e9e9;
       box-shadow: 0 -3px 8px rgba(0, 0, 0, .04);
       .cart-bottom-bg {
-        height: 80px;
-        /*background: url(../img/store/library/cart-wrapper-bg_4c8003c76e.jpg) repeat-x;*/
+        height: 140px;
         border-top: 1px solid #D9D9D9;
         border-radius: 0 0 8px 8px;
       }
@@ -462,13 +468,15 @@
     .blue-checkbox-new {
       float: left;
       margin-right: 9px;
+      margin-top: -10px;
     }
     .choose-all, .delete-choose-goods, .selected-count {
       float: left;
       height: 20px;
-      line-height: 20px;
+      line-height: 5px;
       cursor: pointer;
       position: relative;
+      margin-left:-10px;
     }
     .blue-checkbox-new, .blue-checkbox-new.checkbox-disable, .blue-checkbox-new.checkbox-on {
       display: inline-block;
@@ -493,13 +501,13 @@
       color: #bbb;
     }
     .shipping {
-      float: right;
-      padding: 20px 30px;
+      float: left;
+      position: relative;
+      margin-top: -10%;
     }
     .shipping-box {
-      display: inline-block;
       padding-top: 1px;
-      margin-right: 10px;
+      margin-right: 0px;
     }
     .shipping-total {
       display: inline-block;
@@ -532,7 +540,6 @@
           font-weight: 700;
         }
       }
-
     }
 
     .shipping-total.shipping-num {
