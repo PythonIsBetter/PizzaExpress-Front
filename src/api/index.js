@@ -6,8 +6,8 @@ export const userLogin = (params) => {
 }
 // idCode
 export const idCode = (params) => {
-  // return http.fetchPost('/foreground/foreground/member/login', params)
-  return http.fetchPost('/foreground/foreground/login/IDcode', params)
+  // return http.fetchPost('/foreground/member/login', params)
+  return http.fetchPost('/foreground/login/IDcode', params)
 }
 // 退出登陆
 export const loginOut = (params) => {
