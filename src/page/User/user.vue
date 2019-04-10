@@ -17,6 +17,7 @@
 <script>
   import YHeader from '/common/header'
   import { mapState } from 'vuex'
+  import {getStore} from '/utils/storage.js'
   export default {
     data () {
       return {
@@ -30,23 +31,6 @@
             widthCollapsed: '50px',
             width: '150px'
           },
-          //
-          // { // item
-          //   href: '/home',
-          //   title: '首页',
-          //   icon: '<v-icon name="beer"/>'
-          // },
-          // { // item
-          //   href: '/goods',
-          //   title: '菜单',
-          //   icon: 'fa fa-user'
-          //
-          // },
-          // { // item
-          //   href: '/cart',
-          //   title: '购物车',
-          //   icon: 'fa fa-user'
-          // },
           { // item with child
             href: '/user',
             title: '个人中心',
@@ -73,16 +57,6 @@
           }
         ]
       }
-      // return {
-      //   title: '我的订单',
-      //   nav: [
-      //     {name: '我的订单', path: 'orderList'},
-      //     {name: '账户资料', path: 'information'},
-      //     {name: '收货地址', path: 'addressList'},
-      //     {name: '退出登录', path: 'Logout'}
-      //   ],
-      //   editAvatar: true
-      // }
     },
     computed: {
       ...mapState(['userInfo'])

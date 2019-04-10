@@ -62,7 +62,6 @@
 <!--<script src="../../../static/geetest/gt.js"></script>-->
 <script src="http://g.tbcdn.cn/mtb/lib-flexible/{{0.3.4}}/??flexible_css.js,flexible.js"></script>
 <script>
-  import YFooter from '/common/footer'
   import YButton from '/components/YButton'
   import {register} from '/api/index.js'
   import {setStore} from '/utils/storage.js'
@@ -150,7 +149,6 @@
       }
     },
     components: {
-      YFooter,
       YButton
     }
   }
