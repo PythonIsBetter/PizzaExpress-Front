@@ -1,5 +1,5 @@
 <template>
-  <div class="w" style="padding-bottom: 100px;">
+  <div class="w" style="height: 100%;">
     <y-shelf title="支付订单">
       <div slot="content">
 
@@ -88,8 +88,8 @@
     },
     created () {
       this.userId = getStore('userId')
-      this.orderId = this.$route.query.orderId
-      this.orderTotal = this.$route.query.orderTotal
+      // this.orderId = this.$route.query.orderId
+      // this.orderTotal = this.$route.query.orderTotal
     },
     components: {
       YShelf,

@@ -12,8 +12,11 @@
             <div>
               <!--标题-->
               <div class="cart-table-title">
-                <span class="name">商品信息</span> <span class="operation">操作</span> <span
-                class="subtotal">小计</span> <span class="num">数量</span> <span class="price1">单价</span>
+                <span class="name">商品信息</span>
+                <span class="operation">操作</span>
+                <span class="subtotal">小计</span>
+                <span class="num">数量</span>
+                <span class="price1">单价</span>
               </div>
               <!--列表-->
               <div class="cart-table" v-for="(item,i) in cartList" :key="i">
@@ -119,11 +122,11 @@
         </div>
       </div>
     </div>
-    <y-footer></y-footer>
+
   </div>
 </template>
 <script>
-  import { getCartList, editCheckAll, delCartChecked } from '/api/goods'
+  import { getCartList, delCartChecked } from '/api/goods'
   import { mapMutations, mapState } from 'vuex'
   import YButton from '/components/YButton'
   import YHeader from '/common/header'
@@ -193,14 +196,12 @@
         })
       },
       goodsDetails (id) {
-        window.open(window.location.origin + '#/goodsDetails?productId=' + id)
+        this.$router.push({path: '/goodsDetails', query: {productId: id}})
       },
       // 全选
       editCheckAll () {
         let checkAll = !this.checkAllFlag
-        editCheckAll({userId: this.userId, checked: checkAll}).then(res => {
-          this.EDIT_CART({checked: checkAll})
-        })
+        this.EDIT_CART({checked: checkAll})
       },
       // 修改购物车
       _cartEdit (userId, productId, productNum, checked) {
@@ -232,9 +233,6 @@
       },
       // 删除整条购物车
       cartdel (productId) {
-        // cartDel({userId: this.userId, productId}).then(res => {
-        //   this.EDIT_CART({productId})
-        // })
         this.EDIT_CART({productId})
       },
       checkout () {

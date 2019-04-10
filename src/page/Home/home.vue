@@ -15,14 +15,14 @@
         </ul>
         <ul class="direction">
           <li class="left" @click="move(600, 1, speed)">
-            <svg class="icon" width="30px" height="30.00px" viewBox="0 0 1024 1024" version="1.1"
+            <svg class="icon" width="20px" height="20px" viewBox="0 0 1024 1024" version="1.1"
                  xmlns="http://www.w3.org/2000/svg">
               <path fill="#ffffff"
                     d="M481.233 904c8.189 0 16.379-3.124 22.628-9.372 12.496-12.497 12.496-32.759 0-45.256L166.488 512l337.373-337.373c12.496-12.497 12.496-32.758 0-45.255-12.498-12.497-32.758-12.497-45.256 0l-360 360c-12.496 12.497-12.496 32.758 0 45.255l360 360c6.249 6.249 14.439 9.373 22.628 9.373z"/>
             </svg>
           </li>
           <li class="right" @click="move(600, -1, speed)">
-            <svg class="icon" width="30px" height="30.00px" viewBox="0 0 1024 1024" version="1.1"
+            <svg class="icon" width="20px" height="20px" viewBox="0 0 1024 1024" version="1.1"
                  xmlns="http://www.w3.org/2000/svg">
               <path fill="#ffffff"
                     d="M557.179 904c-8.189 0-16.379-3.124-22.628-9.372-12.496-12.497-12.496-32.759 0-45.256L871.924 512 534.551 174.627c-12.496-12.497-12.496-32.758 0-45.255 12.498-12.497 32.758-12.497 45.256 0l360 360c12.496 12.497 12.496 32.758 0 45.255l-360 360c-6.249 6.249-14.439 9.373-22.628 9.373z"/>
@@ -170,8 +170,8 @@
 
   .window {
     position: relative;
-    width: 900px;
-    height: 480px;
+    width: 100%;
+    height: 240px;
     /*margin: 0px 1px 2px 3px;*/
     margin: 0 auto;
     overflow: hidden;
@@ -186,8 +186,8 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     background-color: rgba(0, 0, 0, .3);
     border-radius: 50%;
     cursor: pointer;
@@ -195,14 +195,14 @@
 
   .left {
     left: 3%;
-    padding-left: 12px;
-    padding-top: 10px;
+    padding-left: 6px;
+    padding-top: 5px;
   }
 
   .right {
     right: 3%;
-    padding-right: 12px;
-    padding-top: 10px;
+    padding-right: 6px;
+    padding-top: 5px;
   }
 
   img {
@@ -218,8 +218,8 @@
 
   .dots li {
     display: inline-block;
-    width: 15px;
-    height: 15px;
+    width: 9px;
+    height: 9px;
     margin: 0 3px;
     border: 1px solid white;
     border-radius: 50%;

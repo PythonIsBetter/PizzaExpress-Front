@@ -72,7 +72,6 @@
           }
         }
         getAllGoods(params).then(res => {
-          // this.total = res.result.total
           this.goods = res
           if (this.key !== undefined) {
             this.goods = this.key
@@ -83,11 +82,6 @@
       },
       // 默认排序
       reset () {
-        // this.sortType = 1
-        // this.sort = ''
-        // this.currentPage = 1
-        // this.loading = true
-        // this._getAllGoods()
         lowHighPrize({
           orderType: this.sortType,
           minPrice: this.min,
@@ -117,13 +111,6 @@
       console.log('goods get key', this.key)
       this.windowHeight = window.innerHeight
       this.windowWidth = window.innerWidth
-      // if (this.key.length <= 0) {
-      //   console.log('enter 1')
-      //   this._getAllGoods()
-      // } else {
-      //   console.log('enter 2')
-      //   this.goods = this.key
-      // }
       this._getAllGoods()
       recommend().then(res => {
         let data = res.result

@@ -1,20 +1,20 @@
 <template>
   <div class="good-item">
     <div style="">
-      <div class="good-img">
+      <div class="good-img" style="float: left">
         <a @click="openProduct(msg.id)">
           <img v-lazy="msg.imgPath" :alt="msg.name" :key="msg.imgPath">
         </a>
       </div>
-      <h6 class="good-title" v-html="msg.name">{{msg.name}}</h6>
-      <h3 class="sub-title ellipsis">{{msg.introduce}}</h3>
+        <h6 class="good-title" v-html="msg.name" style="float: right;margin: 20px">{{msg.name}}</h6>
+        <h3 class="sub-title ellipsis" style="float: right;margin-top: 20px">{{msg.introduce}}</h3>
       <div class="good-price pr">
         <div class="ds pa">
           <a @click="openProduct(msg.id)">
-            <y-button text="查看详情" style="margin: 0 5px"></y-button>
+            <y-button text="查看详情" style="margin-top: 50px"></y-button>
           </a>
           <y-button text="加入购物车"
-                    style="margin: 0 5px"
+                    style="margin-left: 20px"
                     @btnClick="addCart(msg.id,msg.prize,msg.name,msg.imgPath)"
                     classStyle="main-btn"
           ></y-button>
@@ -27,8 +27,9 @@
 <script>
   import YButton from '/components/YButton'
   // import { addCart } from '/api/goods.js'
-  import { mapMutations, mapState } from 'vuex'
-  import { getStore } from '/utils/storage'
+  import {mapMutations, mapState} from 'vuex'
+  import {getStore} from '/utils/storage'
+
   export default {
     props: {
       msg: {
@@ -44,7 +45,6 @@
         this.$router.push({path: '/goodsDetails', query: {productId: id}})
       },
       openProduct (id) {
-        // window.open('//' + window.location.host + '/#/goodsDetails?productId=' + id)
         this.$router.push({path: '/goodsDetails', query: {productId: id}})
       },
       addCart (id, price, name, img) {
@@ -109,13 +109,13 @@
 
     .good-img {
       img {
-        margin: 20px auto 10px;
-        @include wh(140px);
+        margin: 12px;
+        @include wh(100px);
         display: block;
       }
     }
     .good-price {
-      margin: 5px 0;
+      margin: 5px;
       height: 15px;
       text-align: center;
       line-height: 15px;
@@ -130,15 +130,23 @@
       color: #424242;
       margin: 0 auto;
       padding: 0 14px;
-      text-align: center;
+      text-align: right;
       overflow: hidden;
     }
     h3 {
-      text-align: center;
-      line-height: 1.0;
       font-size: 12px;
       color: #d0d0d0;
-      padding: 10px;
+      white-space: normal;
+      word-wrap: break-word;
+      word-break: break-all;
+    }
+    .item-right {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      overflow: hidden;
+      position: relative;
+      padding-left: 60px;
     }
   }
 </style>

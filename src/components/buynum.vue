@@ -178,7 +178,7 @@
       float: left;
       width: 36px;
       height: 18px;
-      margin: 7px 0 0;
+      margin: 7px 0 7px 0;
       border: none;
       border-radius: 3px;
       line-height: 18px;
