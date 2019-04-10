@@ -77,3 +77,7 @@ export const changePassword = (params) => {
 export const searchItem = (params) => {
   return http.fetchPost('/Home/searchItem', params)
 }
+//  请输入商品信息
+export const orderCancel = (params) => {
+  return http.fetchPost('/user/orderCancel', params)
+}

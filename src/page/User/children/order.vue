@@ -30,8 +30,8 @@
                     <div class="cart" v-for="(good,j) in item.goodsList" :key="j">
                       <div class="cart-l" :class="{bt:j>0}">
                         <div class="car-l-l">
-                          <div class="img-box"><a @click="goodsDetails(good.goodsList.id)"><img :src="good.productImg" alt=""></a></div>
-                          <div class="ellipsis"><a style="color: #626262;" @click="goodsDetails(good.productId)">{{good.productName}}</a></div>
+                          <div class="img-box"><a @click="goodsDetails(good.goodsList.id)"><img :src="good.menuItem.imgPath" alt=""></a></div>
+                          <div class="ellipsis"><a style="color: #626262;" @click="goodsDetails(good.menuItem.id)">{{good.menuItem.name}}</a></div>
                         </div>
                         <div class="cart-l-r">
                           <!--<div>¥ {{Number(good.actualUnitPrice).toFixed(2)}}</div>-->
@@ -217,13 +217,13 @@
       flex: 1;
       .f-bc {
         > span {
-          width: 112px;
+          width: 60px;
           text-align: center;
         }
       }
     }
     .last {
-      width: 230px;
+      width: 120px;
       text-align: center;
       display: flex;
       border-left: 1px solid #ccc;

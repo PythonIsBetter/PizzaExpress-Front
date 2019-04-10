@@ -44,7 +44,7 @@
               </li>
             </ul>
             <p class="realtime">
-              <span>请耐心等待骑手将订单送到您手中。</span>
+              <span>请耐心等待订单制作。</span>
             </p>
           </div>
 
@@ -85,7 +85,8 @@
           <!--商品-->
           <div class="goods-table">
             <div class="cart-items" v-for="(item,i) in orderList" :key="i">
-              <a @click="goodsDetails(item.menuItem.id)" class="img-box"><img :src="item.menuItem.imgPath" alt=""></a>
+              <!--<a @click="goodsDetails(item.menuItem.id)" class="img-box"><img :src="item.menuItem.imgPath" alt=""></a>-->
+
               <div class="name-cell ellipsis">
                 <a @click="goodsDetails(item.menuItem.id)" title="" target="_blank">{{item.menuItem.name}}</a>
               </div>
@@ -112,27 +113,28 @@
               </div>
             </div>
           </div>
-          <div style="height: 155px;padding: 20px 30px;">
+          <div style="height: 180px;padding: 20px 30px;">
             <p class="address">姓名：{{ userName }}</p>
             <p class="address">联系电话：{{ tel }}</p>
             <p class="address">详细地址：{{ streetName }}</p>
             <!--<y-button text='确认收货'-->
                       <!--class="btn"-->
+
                       <!--@btnClick="_updateOrder"-->
                       <!--style="align-content: center; margin-bottom: 10px">-->
             <!--</y-button>-->
           </div>
-          <div class="gray-sub-title cart-title" v-if="orderStatus === 2">
-            <div class="first">
-              <div>
-                <span class="order-id">骑手信息</span>
-              </div>
-            </div>
-          </div>
+          <!--<div class="gray-sub-title cart-title" v-if="orderStatus === 2">-->
+            <!--<div class="first">-->
+              <!--<div>-->
+                <!--<span class="order-id">骑手信息</span>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
           <!--<div v-if="orderStatus ===2">-->
         <div v-if="orderStatus === 3">
             <!--地图-->
-            <b-map-component :start="factoryName" :end="streetName" style="margin-top: 20px" >
+            <b-map-component :start="factoryName" :end="streetName" style="margin-top: 220px" >
             </b-map-component>
             <y-button text='确认收货'
                       class="btn"
@@ -145,8 +147,8 @@
   </div>
 </template>
 <script>
-  import {getOrderDet, cancelOrder} from '/api/goods'
-  import {orderComplete} from '/api/index.js'
+  import {getOrderDet} from '/api/goods'
+  import {orderComplete, orderCancel} from '/api/index.js'
   import YShelf from '/components/shelf'
   import {getStore} from '/utils/storage'
   import countDown from '/components/countDown'
@@ -201,11 +203,11 @@
           } else if (res.orderStatus === '1') {
             this.orderStatus = 2
           } else if (res.orderStatus === '2') {
-            this.orderStatus = 3
+            this.orderStatus = 2
           } else if (res.orderStatus === '3') {
-            this.orderStatus = 4
+            this.orderStatus = 3
           } else if (res.orderStatus === '4') {
-            this.orderStatus = 5
+            this.orderStatus = 4
           } else if (res.orderStatus === '5') {
             this.orderStatus = -1
           } else if (res.orderStatus === '6') {
@@ -229,11 +231,11 @@
         })
       },
       _cancelOrder () {
-        cancelOrder({orderId: this.orderId}).then(res => {
-          if (res.success === true) {
+        orderCancel({orderId: this.orderId}).then(res => {
+          if (res.success === 'true') {
             this._getOrderDet()
           } else {
-            this.message('取消失败')
+            this.message('对不起，超过十分钟无法取消订单')
           }
         })
       },
@@ -243,6 +245,7 @@
           if (res.success === 'true') {
             this.orderStatus = 5
             this.closeTime = res.closeTime
+            this.message('订单已取消')
           } else {
             this.message('提交失败')
           }
@@ -272,7 +275,7 @@
     display: flex;
     align-items: center;
     flex-direction: row;
-    margin: 50px -150px 20px 60px;
+    margin: 25px -175px 10px 30px;
   }
 
   .orderStatus-close {
@@ -286,8 +289,8 @@
     background: #F6F6F6;
     border: 1px solid #dadada;
     border-radius: 5px;
-    padding: 22px 30px 20px;
-    margin: 0 30px 30px 30px;
+    padding: 11px 15px 10px;
+    margin: 0 15px 15px 15px;
     line-height: 38px;
   }
 
@@ -297,8 +300,8 @@
   }
 
   .button {
-    float: right;
-    margin: -37px 0 20px 0;
+    /*float: right;*/
+    margin: 20px 0 20px 0;
   }
 
   .realtime {
@@ -321,6 +324,7 @@
 
   .img-box {
     border: 1px solid #EBEBEB;
+    /*wid: 50%;*/
     margin-left: -80px;
   }
 
@@ -337,7 +341,7 @@
       > div {
         color: #626262;
         font-weight: 700;
-        width: 165px;
+        width: 80px;
         text-align: center;
       }
     }
@@ -346,17 +350,17 @@
       align-items: center;
       justify-content: space-between;
       height: 110px;
-      padding: 15px 0 15px 111px;
+      padding: 15px 0 15px 11px;
       border-bottom: 1px solid #EFEFEF;
       a {
         color: #333;
       }
     }
     .price {
-      padding-left: 107px;
+      padding-left: 12px;
     }
     .goods-num {
-      padding-left: 60px;
+      padding-left: 12px;
     }
   }
 
@@ -393,7 +397,7 @@
       flex: 1;
       .f-bc {
         > span {
-          width: 130px;
+          width: 50px;
           text-align: center;
         }
       }
@@ -452,7 +456,7 @@
       }
       .ellipsis {
         margin-left: 20px;
-        width: 220px;
+        width: 100px;
       }
       .img-box {
         border: 1px solid #EBEBEB;

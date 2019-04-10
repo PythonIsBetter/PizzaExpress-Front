@@ -1,7 +1,7 @@
 <template>
   <div>
-    <y-shelf title="收货地址">
-      <span slot="right"><y-button text="添加收货地址" style="margin: 0" @btnClick="update()"></y-button></span>
+    <y-shelf title="收货地址" style="font-size: 60%" >
+      <span slot="right"><y-button text="添加收货地址" style="margin: 0;font-size: 16px;width: 100%" @btnClick="update()"></y-button></span>
       <div slot="content">
         <div class="table-title">
           <span class="name">姓名</span> <span class="address">详细地址</span> <span class="tel">电话</span>
@@ -18,14 +18,14 @@
                  :class="{'defalut-address':item.isDefault}"></a>
             </div>
             <div class="operation">
-              <el-button type="primary" icon="edit" size="small"  @click="update(item)"></el-button>
-              <el-button type="danger" icon="delete" size="small" :data-id="item.addressId" @click="del(item.addressId,i)"></el-button>
+              <el-button type="primary" icon="edit" size="mini"  @click="update(item)"></el-button>
+              <el-button type="danger" icon="delete" size="mini" :data-id="item.addressId" @click="del(item.addressId,i)"></el-button>
             </div>
           </div>
         </div>
         <div v-else>
           <div style="padding: 80px 0;text-align: center">
-            <div style="font-size: 20px">你还未添加收货地址</div>
+            <div style="font-size: 12px">你还未添加收货地址</div>
             <div style="margin: 20px ">
               <y-button text="添加地址" @btnClick="update()"></y-button>
             </div>
@@ -178,11 +178,12 @@
 <style scoped lang="scss">
   .table-title {
     position: relative;
+    font-size: 25%;
     z-index: 1;
     line-height: 38px;
     height: 38px;
     padding: 0 0 0 38px;
-    font-size: 12px;
+    font-size: 8px;
     background: #eee;
     border-bottom: 1px solid #dbdbdb;
     border-bottom-color: rgba(0, 0, 0, .08);
@@ -191,44 +192,51 @@
       text-align: left;
     }
     span {
-      width: 137px;
+      width: 50px;
       float: left;
       text-align: center;
       color: #838383;
     }
     .address {
-      margin-left: 115px;
+      margin-left: 20px;
+      /*font-size: 70%;*/
     }
     .tel {
-      margin-left: 195px;
+      margin-left: 25px;
+      /*font-size: 70%;*/
     }
   }
 
   .address-item {
     display: flex;
     align-items: center;
-    height: 115px;
+    height: 65px;
     text-align: center;
+    font-size: 70%;
     .name {
-      width: 66px;
+      width: 30px;
+      margin-left: 25px;
+
     }
     .address-msg {
-      flex: 1;
+      /*flex: 1;*/
+      width: 80px;
     }
     .telephone {
-      width: 80px;
+      width: 50px;
+      margin-left: 20px;
     }
     .defalut {
-      width: 80px;
+      width: 50px;
       > a {
         text-align: center;
         /*display: none;*/
       }
     }
     .operation {
-      width: 90px;
+      width: 60px;
       a {
-        padding: 10px 5px;
+        padding: 5px 5px;
       }
     }
     &:hover {
