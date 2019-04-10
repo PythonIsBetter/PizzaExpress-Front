@@ -30,22 +30,26 @@ module.exports = {
     proxyTable: {
       '/register/*': {
         // target: 'http://192.168.0.8:8080',  // 宿舍IP
-        target: 'http://172.29.174.1:8080',  // 机房IP
+        target: 'http://3.80.255.90:8081',  // 服务器IP
+        // target: 'http://172.29.174.1:8080',  // 机房IP
         changeOrigin: true
       },
       '/login/*': {
         // target: 'http://192.168.0.8:8080',  // 宿舍IP
-        target: 'http://172.29.174.1:8080',  // 机房IP
+        target: 'http://3.80.255.90:8081',  // 服务器IP
+        // target: 'http://172.29.174.1:8080',  // 机房IP
         changeOrigin: true
       },
       '/Home/*': {
         // target: 'http://192.168.0.8:8080',  // 宿舍IP
-        target: 'http://172.29.174.1:8080',  // 机房IP
+        target: 'http://3.80.255.90:8081',  // 服务器IP
+        // target: 'http://172.29.174.1:8080',  // 机房IP
         changeOrigin: true
       },
       '/user/*': {
         // target: 'http://192.168.0.8:8080',  // 宿舍IP
-        target: 'http://172.29.174.1:8080',  // 机房IP
+        target: 'http://3.80.255.90:8081',  // 服务器IP
+        // target: 'http://172.29.174.1:8080',  // 机房IP
         changeOrigin: true
       }
 
