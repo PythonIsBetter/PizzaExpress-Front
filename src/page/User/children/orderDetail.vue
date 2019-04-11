@@ -39,7 +39,7 @@
             <ul>
               <li class="status-title"><h3>订单状态：进行中，请耐心等待送达</h3></li>
               <li class="button">
-                <el-button @click="orderPayment(orderId)" type="primary" size="small">修改订单</el-button>
+                <!--<el-button @click="orderPayment(orderId)" type="primary" size="small">修改订单</el-button>-->
                 <el-button @click="_cancelOrder()" size="small">取消订单</el-button>
               </li>
             </ul>
@@ -145,8 +145,8 @@
   </div>
 </template>
 <script>
-  import {getOrderDet, cancelOrder} from '/api/goods'
-  import {orderComplete} from '/api/index.js'
+  import {getOrderDet} from '/api/goods'
+  import {orderComplete, orderCancel} from '/api/index.js'
   import YShelf from '/components/shelf'
   import {getStore} from '/utils/storage'
   import countDown from '/components/countDown'
@@ -201,11 +201,11 @@
           } else if (res.orderStatus === '1') {
             this.orderStatus = 2
           } else if (res.orderStatus === '2') {
-            this.orderStatus = 3
+            this.orderStatus = 2
           } else if (res.orderStatus === '3') {
-            this.orderStatus = 4
+            this.orderStatus = 3
           } else if (res.orderStatus === '4') {
-            this.orderStatus = 5
+            this.orderStatus = 4
           } else if (res.orderStatus === '5') {
             this.orderStatus = -1
           } else if (res.orderStatus === '6') {
@@ -229,11 +229,11 @@
         })
       },
       _cancelOrder () {
-        cancelOrder({orderId: this.orderId}).then(res => {
-          if (res.success === true) {
+        orderCancel({orderId: this.orderId}).then(res => {
+          if (res.success === 'true') {
             this._getOrderDet()
           } else {
-            this.message('取消失败')
+            this.message('对不起，超过十分钟无法取消订单')
           }
         })
       },

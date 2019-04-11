@@ -28,6 +28,7 @@
   import YFooter from '/common/footer'
   import YHeader from '/common/header'
   import { mapState } from 'vuex'
+  import {getStore} from '/utils/storage.js'
   export default {
     data () {
       return {
@@ -50,12 +51,18 @@
       }
     },
     created () {
-      let path = this.$route.path.split('/')[2]
-      this.nav.forEach(item => {
-        if (item.path === path) {
-          this.title = item.name
-        }
-      })
+      let userId = getStore('userId')
+      console.log('userID:' + userId)
+      if (!userId) { // 登录了 直接存在用户名下
+        this.$router.push({path: '/login'})
+      } else { // 未登录 vuex
+        let path = this.$route.path.split('/')[2]
+        this.nav.forEach(item => {
+          if (item.path === path) {
+            this.title = item.name
+          }
+        })
+      }
     },
     components: {
       YFooter,

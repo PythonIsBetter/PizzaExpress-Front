@@ -13,7 +13,7 @@
                 <div class="f-bc">
                   <span class="price">单价</span>
                   <span class="num">数量</span>
-                  <span class="operation">商品操作</span>
+                  <!--<span class="operation">商品操作</span>-->
                 </div>
               </div>
               <div class="last">
@@ -25,15 +25,15 @@
               <div class="cart" v-for="(good,j) in item.goodsList" :key="j">
                 <div class="cart-l" :class="{bt:j>0}">
                   <div class="car-l-l">
-                    <div class="img-box"><a @click="goodsDetails(good.goodsList.id)"><img :src="good.productImg" alt=""></a></div>
-                    <div class="ellipsis"><a style="color: #626262;" @click="goodsDetails(good.productId)">{{good.productName}}</a></div>
+                    <div class="img-box"><a @click="goodsDetails(good.goodsList.id)"><img :src="good.menuItem.imgPath" alt=""></a></div>
+                    <div class="ellipsis"><a style="color: #626262;" @click="goodsDetails(good.menuItem.id)">{{good.menuItem.name}}</a></div>
                   </div>
                   <div class="cart-l-r">
                     <!--<div>¥ {{Number(good.actualUnitPrice).toFixed(2)}}</div>-->
-                    <div class="num">¥{{(good.actualUnitPrize)}}</div>
-                    <div class="num">{{good.num}}</div>
+                    <div class="num">¥{{(good.orderItem.actualUnitPrize)}}</div>
+                    <div class="num">{{good.orderItem.num}}</div>
                     <div class="type">
-                      <el-button style="margin-left:20px" @click="_delOrder(item.orderId,i)" type="danger" size="small" v-if="j<1" class="del-order">删除此订单</el-button>
+                      <el-button style="margin-left:20px" @click="_delOrder(item.orderId,i)" type="danger" size="mini" v-if="j<1" class="del-order">删除此订单</el-button>
                       <!-- <a @click="_delOrder(item.orderId,i)" href="javascript:;" v-if="j<1" class="del-order">删除此订单</a> -->
                     </div>
                   </div>
