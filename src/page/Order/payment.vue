@@ -280,7 +280,7 @@
   }
 
   .name-cell {
-    padding-left: 23px;
+    padding-left: 5px;
   }
 
   .input {

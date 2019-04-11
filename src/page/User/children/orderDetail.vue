@@ -5,12 +5,12 @@
         <!--暂时去除-->
         <!--<div v-loading="loading" element-loading-text="加载中..." style="min-height: 10vw;" v-if="orderList.length">-->
           <div class="orderStatus" v-if="orderStatus !== -1 && orderStatus !== 6">
-            <el-steps :space="200" :active="orderStatus">
+            <el-steps :space="125" :active="orderStatus">
               <el-step title="下单" v-bind:description="createTime"></el-step>
               <el-step title="付款" v-bind:description="payTime"></el-step>
               <el-step title="制作" description=""></el-step>
               <el-step title="配送" description=""></el-step>
-              <el-step title="交易成功" v-bind:description="finishTime"></el-step>
+              <el-step title="完成" v-bind:description="finishTime"></el-step>
             </el-steps>
           </div>
           <div class="orderStatus-close" v-if="orderStatus === -1 || orderStatus === 6">
@@ -37,7 +37,7 @@
           <!--进行中的订单-->
           <div class="status-now" v-if="orderStatus === 2">
             <ul>
-              <li class="status-title"><h3>订单状态：进行中，请耐心等待送达</h3></li>
+              <li class="status-title"><h5>订单状态：进行中，请耐心等待订单制作</h5></li>
               <li class="button">
                 <el-button @click="orderPayment(orderId)" type="primary" size="small">修改订单</el-button>
                 <el-button @click="_cancelOrder()" size="small">取消订单</el-button>
@@ -113,7 +113,7 @@
               </div>
             </div>
           </div>
-          <div style="height: 180px;padding: 20px 30px;">
+          <div style="height: 240px;padding: 20px 30px;">
             <p class="address">姓名：{{ userName }}</p>
             <p class="address">联系电话：{{ tel }}</p>
             <p class="address">详细地址：{{ streetName }}</p>
@@ -295,7 +295,7 @@
   }
 
   .status-title {
-    font-size: 18px;
+    font-size: 12px;
     color: #666;
   }
 
@@ -334,6 +334,7 @@
   }
 
   .goods-table {
+    font-size: 10px;
     .n-b {
       display: flex;
       align-items: center;
@@ -346,21 +347,22 @@
       }
     }
     .cart-items {
+      font-size: 80%;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 110px;
-      padding: 15px 0 15px 11px;
+      height: 80px;
+      padding: 5px 0 5px 11px;
       border-bottom: 1px solid #EFEFEF;
       a {
         color: #333;
       }
     }
     .price {
-      padding-left: 12px;
+      padding-left: 0px;
     }
     .goods-num {
-      padding-left: 12px;
+      padding-left: 0px;
     }
   }
 
@@ -442,7 +444,7 @@
       display: flex;
       align-items: center;
       flex: 1;
-      padding: 15px 0;
+      padding: 5px 0;
       justify-content: space-between;
       position: relative;
       &:before {
@@ -455,8 +457,11 @@
         height: 100%;
       }
       .ellipsis {
-        margin-left: 20px;
-        width: 100px;
+        position: relative;
+        flex: 1;
+        margin-left: 10px;
+        display: flex;
+        width: 80px;
       }
       .img-box {
         border: 1px solid #EBEBEB;
@@ -498,7 +503,7 @@
       text-align: center;
     }
     div:last-child {
-      padding-right: 24px;
+      padding-right: 12px;
     }
   }
 
