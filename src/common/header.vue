@@ -3,7 +3,7 @@
     <div>
       <header class="w">
         <div class="w-box">
-          <div class="nav-logo">
+          <div style="height: 60px">
             <h1 @click="changePage(-1)">
               <router-link to="/" title="PIZZAEXPRESS">PIZZAEXPRESS</router-link>
             </h1>
@@ -471,7 +471,7 @@
     width: 100%;
   }
   header {
-    height: 60px;
+    height: 70px;
     z-index: 30;
     position: relative;
   }
@@ -489,7 +489,7 @@
         background: url(/static/images/icon.png) no-repeat 50%;
         background-size: cover;
         display: block;
-        @include wh(50px, 50px);
+        @include wh(60px, 65px);
         text-indent: -9999px;
         background-position: 0 0;
       }
