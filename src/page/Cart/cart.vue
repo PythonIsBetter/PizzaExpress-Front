@@ -118,7 +118,7 @@
 </template>
 <script>
   // import { getCartList, cartEdit, editCheckAll, cartDel, delCartChecked } from '/api/goods'
-  import { getCartList, editCheckAll, delCartChecked } from '/api/goods'
+  import { editCheckAll } from '/api/goods'
   import { mapMutations, mapState } from 'vuex'
   import YButton from '/components/YButton'
   import YHeader from '/common/header'
@@ -239,19 +239,10 @@
         this.$router.push({path: 'checkout'})
       },
       delChecked () {
-        getCartList({userId: getStore('userId')}).then(res => {
-          if (res.success === true) {
-            res.result.forEach(item => {
-              if (item.checked === '1') {
-                let productId = item.productId
-                this.EDIT_CART({productId})
-              }
-            })
-          }
-        })
-        delCartChecked({userId: this.userId}).then(res => {
-          if (res.success !== true) {
-            this.message('删除失败')
+        this.cartList.forEach(item => {
+          if (item.checked === '1') {
+            let productId = item.productId
+            this.EDIT_CART({productId})
           }
         })
       }

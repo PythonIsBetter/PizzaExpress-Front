@@ -61,11 +61,6 @@
                       style="marginTop: 10px;marginBottom: 15px;width: 100%;height: 48px;font-size: 18px;line-height: 48px">
             </y-button>
           </div>
-          <!--<div class="border"></div>-->
-          <!--<div class="footer">-->
-          <!--<div class="other">其它账号登录：</div>-->
-          <!--<span id="qqLoginBtn"></span>-->
-          <!--</div>-->
         </div>
       </div>
     </div>

@@ -24,7 +24,6 @@ const orderDetail = () => import('/page/User/children/orderDetail.vue')
 const Alipay = () => import('/page/Order/alipay.vue')
 const Wechat = () => import('/page/Order/wechat.vue')
 const QQpay = () => import('/page/Order/qqpay.vue')
-const LoginPart2 = () => import('/page/Login/login_part2.vue')
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -44,10 +43,7 @@ export default new Router({
     {
       path: '/login',
       name: 'login',
-      component: Login,
-      children: [
-        {path: 'login2', component: LoginPart2}
-      ]
+      component: Login
     },
     {path: '/register', name: 'register', component: Register},
     {path: '/cart', name: 'cart', component: Cart},

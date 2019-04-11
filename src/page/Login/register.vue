@@ -59,14 +59,12 @@
     </div>
   </div>
 </template>
-<script src="../../../static/geetest/gt.js"></script>
 <script>
   import YFooter from '/common/footer'
   import YButton from '/components/YButton'
-  import {register, geetest} from '/api/index.js'
-
+  import {register} from '/api/index.js'
+  import {setStore} from '/utils/storage.js'
   require('../../../static/geetest/gt.js')
-  var captcha
   export default {
     data () {
       return {
@@ -131,18 +129,6 @@
           this.registxt = '注册'
           return false
         }
-        // if (!this.agreement) {
-        //   this.message('您未勾选同意我们的相关注册协议!')
-        //   this.registxt = '注册'
-        //   return false
-        // }
-
-        // var result = captcha.getValidate()
-        // if (!result) {
-        //   this.message('请完成验证')
-        //   this.registxt = '注册'
-        //   return false
-        // }
         console.log('账号：' + userName + '密码：' + userPwd)
         register({
           userPhone: userName,
@@ -150,45 +136,16 @@
         }).then(res => {
           console.log(res[0])
           if (res.status === 'success') {
+            console.log('注册账号' + userName)
+            setStore('userId', userName)
             this.$router.push({
               path: '/'
             })
           } else {
             this.open('注册失败')
           }
-          if (res.success === true) {
-            this.messageSuccess()
-            this.toLogin()
-          } else {
-            this.message(res.message)
-            captcha.reset()
-            this.regist = '注册'
-            return false
-          }
-        })
-      },
-      init_geetest () {
-        geetest().then(res => {
-          this.statusKey = res.statusKey
-          window.initGeetest({
-            gt: res.gt,
-            challenge: res.challenge,
-            new_captcha: res.new_captcha,
-            offline: !res.success,
-            product: 'popup',
-            width: '100%'
-          }, function (captchaObj) {
-            captcha = captchaObj
-            captchaObj.appendTo('#captcha')
-            captchaObj.onReady(function () {
-              document.getElementById('wait').style.display = 'none'
-            })
-          })
         })
       }
-    },
-    mounted () {
-      this.init_geetest()
     },
     components: {
       YFooter,
