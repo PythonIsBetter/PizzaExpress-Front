@@ -102,7 +102,8 @@
                                  margin-top: -20%;
                                  margin-right: 58%;
                                 "
-                          >¥ {{item.salePrice}}</div>
+                          >¥ {{item.salePrice}}
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -115,7 +116,8 @@
                 <div class="cart-bar-operation">
                   <div>
                     <div class="choose-all">
-                      <span :class="{'checkbox-on':checkAllFlag}" class="blue-checkbox-new" @click="editCheckAll"></span>
+                      <span :class="{'checkbox-on':checkAllFlag}" class="blue-checkbox-new"
+                            @click="editCheckAll"></span>
                       <span @click="editCheckAll">全选</span>
                     </div>
                     <div class="delete-choose-goods" @click="delChecked">删除选中的商品</div>
@@ -178,8 +180,14 @@
   </div>
 </template>
 <script>
-  import {addressList, addressUpdate, addressAdd, addressDel, submitOrder, delCartChecked, getCartList} from '/api/goods'
-  import { mapMutations, mapState } from 'vuex'
+  import {
+    addressList,
+    addressUpdate,
+    addressAdd,
+    addressDel,
+    submitOrder
+  } from '/api/goods'
+  import {mapMutations, mapState} from 'vuex'
   import YShelf from '/components/shelf'
   import YButton from '/components/YButton'
   import YPopup from '/components/popup'
@@ -249,6 +257,7 @@
             totalPrice += (item.productNum * item.salePrice)
           }
         })
+        this.orderTotal = totalPrice
         return totalPrice
       },
       // 选中的商品数量
@@ -259,7 +268,6 @@
             checkNum += (item.productNum)
           }
         })
-
         return checkNum
       }
     },
@@ -354,6 +362,10 @@
       },
       // 付款
       payment () {
+        this.cartList.forEach(item => {
+          let productId = item.productId
+          this.EDIT_CART({productId})
+        })
         this.$router.push({
           path: '/order/payment',
           query: {
@@ -439,20 +451,9 @@
         this.EDIT_CART({productId})
       },
       delChecked () {
-        getCartList({userId: getStore('userId')}).then(res => {
-          if (res.success === true) {
-            res.result.forEach(item => {
-              if (item.checked === '1') {
-                let productId = item.productId
-                this.EDIT_CART({productId})
-              }
-            })
-          }
-        })
-        delCartChecked({userId: this.userId}).then(res => {
-          if (res.success !== true) {
-            this.message('删除失败')
-          }
+        this.cartList.forEach(item => {
+          let productId = item.productId
+          this.EDIT_CART({productId})
         })
       }
     },
@@ -733,7 +734,7 @@
       line-height: 5px;
       cursor: pointer;
       position: relative;
-      margin-left:-10px;
+      margin-left: -10px;
     }
     .blue-checkbox-new, .blue-checkbox-new.checkbox-disable, .blue-checkbox-new.checkbox-on {
       display: inline-block;

@@ -6,20 +6,26 @@
           <img v-lazy="msg.imgPath" :alt="msg.name" :key="msg.imgPath">
         </a>
       </div>
+      <div style="position:relative;text-align: center">
         <h6 class="good-title" v-html="msg.name" style="float: right;margin: 20px">{{msg.name}}</h6>
-        <h3 class="sub-title ellipsis" style="float: right;margin-top: 20px">{{msg.introduce}}</h3>
+      </div>
+       <div style="margin-left:5%;width: 90%">
+         <h3 class="sub-title ellipsis" style="float: right;margin-top: 20px">{{msg.introduce}}</h3>
+       </div>
       <div class="good-price pr">
-        <div class="ds pa">
+        <div class="ds pa" style="position:absolute;text-align: center;margin-top: 25%;margin-left: 50%">
           <a @click="openProduct(msg.id)">
-            <y-button text="查看详情" style="margin-top: 50px"></y-button>
+            <y-button text="查看详情"></y-button>
           </a>
           <y-button text="加入购物车"
-                    style="margin-left: 20px"
+                    style="margin-left: 10px"
                     @btnClick="addCart(msg.id,msg.prize,msg.name,msg.imgPath)"
                     classStyle="main-btn"
           ></y-button>
         </div>
-        <p><span style="font-size:14px">￥</span>{{Number(msg.prize).toFixed(2)}}</p>
+        <div style="position:absolute;text-align: center;margin-top: 15%;margin-left: 75%">
+          <p><span style="font-size:14px">￥</span>{{Number(msg.prize).toFixed(2)}}</p>
+        </div>
       </div>
     </div>
   </div>
@@ -91,22 +97,6 @@
     height: 70%;
     padding: 0 0 25px;
     margin: 10px auto;
-    &:hover {
-      transform: translateY(-3px);
-      box-shadow: 1px 1px 20px #999;
-      .good-price p {
-        display: none;
-      }
-      .ds {
-        display: flex;
-      }
-    }
-    .ds {
-      @extend %block-center;
-      width: 100%;
-      display: none;
-    }
-
     .good-img {
       img {
         margin: 12px;
@@ -125,13 +115,8 @@
       font-weight: 700;
     }
     .good-title {
-      line-height: 1.0;
       font-size: 16px;
       color: #424242;
-      margin: 0 auto;
-      padding: 0 14px;
-      text-align: right;
-      overflow: hidden;
     }
     h3 {
       font-size: 12px;

@@ -43,7 +43,7 @@
                       </div>
                       <!--删除按钮-->
                       <div class="operation">
-                        <a class="items-delete-btn" @click="cartdel(item.productId)"></a>
+                        <a class="items-delete-btn" style="margin-bottom: 10px" @click="cartdel(item.productId)"></a>
                       </div>
                       <!--商品数量-->
                       <div>
@@ -118,15 +118,12 @@
               <y-button text="现在选购" style="width: 150px;height: 40px;line-height: 38px;color: #8d8d8d"></y-button>
             </router-link>
           </div>
-
         </div>
       </div>
     </div>
-
   </div>
 </template>
 <script>
-  import { getCartList, delCartChecked } from '/api/goods'
   import { mapMutations, mapState } from 'vuex'
   import YButton from '/components/YButton'
   import YHeader from '/common/header'
@@ -233,6 +230,7 @@
       },
       // 删除整条购物车
       cartdel (productId) {
+        console.log('呜啦啦啦啦' + productId)
         this.EDIT_CART({productId})
       },
       checkout () {
@@ -241,20 +239,9 @@
         this.$router.push({path: 'checkout'})
       },
       delChecked () {
-        getCartList({userId: getStore('userId')}).then(res => {
-          if (res.success === true) {
-            res.result.forEach(item => {
-              if (item.checked === '1') {
-                let productId = item.productId
-                this.EDIT_CART({productId})
-              }
-            })
-          }
-        })
-        delCartChecked({userId: this.userId}).then(res => {
-          if (res.success !== true) {
-            this.message('删除失败')
-          }
+        this.cartList.forEach(item => {
+          let productId = item.productId
+          this.EDIT_CART({productId})
         })
       }
     },

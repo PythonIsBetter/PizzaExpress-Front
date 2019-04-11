@@ -88,8 +88,8 @@
     },
     created () {
       this.userId = getStore('userId')
-      // this.orderId = this.$route.query.orderId
-      // this.orderTotal = this.$route.query.orderTotal
+      this.orderId = this.$route.query.orderId
+      this.orderTotal = this.$route.query.orderTotal
     },
     components: {
       YShelf,
