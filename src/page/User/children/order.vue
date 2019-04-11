@@ -18,7 +18,7 @@
                       <div class="f-bc">
                         <span class="price">单价</span>
                         <span class="num">数量</span>
-                        <span class="operation">商品操作</span>
+                        <!--<span class="operation">商品操作</span>-->
                       </div>
                     </div>
                     <div class="last">
@@ -35,10 +35,10 @@
                         </div>
                         <div class="cart-l-r">
                           <!--<div>¥ {{Number(good.actualUnitPrice).toFixed(2)}}</div>-->
-                          <div class="num">¥{{(good.actualUnitPrize)}}</div>
-                          <div class="num">{{good.num}}</div>
+                          <div class="num">¥{{(good.orderItem.actualUnitPrize)}}</div>
+                          <div class="num">{{good.orderItem.num}}</div>
                           <div class="type">
-                            <el-button style="margin-left:20px" @click="_delOrder(item.orderId,i)" type="danger" size="small" v-if="j<1" class="del-order">删除此订单</el-button>
+                            <el-button style="margin-left:20px" @click="_delOrder(item.orderId,i)" type="danger" size="mini" v-if="j<1" class="del-order">删除此订单</el-button>
                             <!-- <a @click="_delOrder(item.orderId,i)" href="javascript:;" v-if="j<1" class="del-order">删除此订单</a> -->
                           </div>
                         </div>
@@ -199,12 +199,13 @@
 
   .gray-sub-title {
     height: 38px;
-    padding: 0 24px;
+    padding: 0 5px;
     background: #EEE;
     border-top: 1px solid #DBDBDB;
     border-bottom: 1px solid #DBDBDB;
     line-height: 38px;
-    font-size: 12px;
+    font-size: 8px;
+    text-align: center;
     color: #666;
     display: flex;
     span {
@@ -217,7 +218,7 @@
       flex: 1;
       .f-bc {
         > span {
-          width: 60px;
+          width: 25px;
           text-align: center;
         }
       }
@@ -242,17 +243,18 @@
   }
 
   .order-id {
-    margin-left: 25px;
   }
 
   .cart {
     display: flex;
+    width: 80%;
+    font-size: 75%;
     justify-content: space-between;
     align-items: center;
-    padding: 0 24px;
     &:hover {
       .del-order {
         display: block;
+        width: 60%;
       }
     }
     .del-order {
@@ -262,7 +264,7 @@
       display: flex;
       align-items: center;
       flex: 1;
-      padding: 15px 0;
+      /*padding: 5px 0;*/
       justify-content: space-between;
       position: relative;
       &:before {
@@ -275,21 +277,21 @@
         height: 100%;
       }
       .ellipsis {
-        margin-left: 20px;
-        width: 220px;
+        margin-left: 3px;
+        width: 40px;
       }
       .img-box {
         border: 1px solid #EBEBEB;
       }
       img {
         display: block;
-        @include wh(80px);
+        @include wh(40px);
       }
       .cart-l-r {
         display: flex;
         > div {
           text-align: center;
-          width: 112px;
+          width: 52px;
         }
       }
       .car-l-l {
@@ -298,7 +300,7 @@
       }
     }
     .cart-r {
-      width: 230px;
+      width: 100px;
       display: flex;
       span {
         text-align: center;
@@ -308,17 +310,18 @@
   }
 
   .prod-operation {
-    height: 110px;
+    /*height: 110px;*/
     display: flex;
+    font-size: 80%;
     align-items: center;
     justify-content: center;
-    width: 254px;
+    width: 64px;
     div {
-      width: 100%;
+      width: 90%;
       text-align: center;
     }
     div:last-child {
-      padding-right: 24px;
+      padding-right: 5px;
     }
   }
 </style>

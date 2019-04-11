@@ -59,10 +59,10 @@
         // 修改为服务器路径
         sliders: [
           {
-            img: 'http://192.168.0.8:8080/images/1.jpg'
+            img: 'http://3.80.255.90:8081/foreground/pizzaImages/3.jpg'
           },
           {
-            img: 'http://192.168.0.8:8080/images/2.jpg'
+            img: 'http://3.80.255.90:8081/foreground/pizzaImages/4.jpg'
           },
           {
             img: 'http://192.168.0.8:8080/images/3.jpg'

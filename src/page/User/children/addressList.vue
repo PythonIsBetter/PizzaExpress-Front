@@ -178,7 +178,6 @@
 <style scoped lang="scss">
   .table-title {
     position: relative;
-    font-size: 25%;
     z-index: 1;
     line-height: 38px;
     height: 38px;
@@ -212,22 +211,23 @@
     align-items: center;
     height: 65px;
     text-align: center;
-    font-size: 70%;
+    font-size: 100%;
     .name {
       width: 30px;
-      margin-left: 25px;
+      margin-left: 35px;
 
     }
     .address-msg {
       /*flex: 1;*/
-      width: 80px;
+      margin-left: 10px;
+      width: 100px;
     }
     .telephone {
       width: 50px;
-      margin-left: 20px;
+      margin-left: 5px;
     }
     .defalut {
-      width: 50px;
+      width: 40px;
       > a {
         text-align: center;
         /*display: none;*/
