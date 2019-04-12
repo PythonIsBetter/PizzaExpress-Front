@@ -48,7 +48,7 @@
                         <span></span>
                       </div>
                     </div>
-                    <div class="prod-operation pa" style="right: 0;top: 0;">
+                    <div class="prod-operation pa" style="right: 0;top: 20px;">
                       <div class="total">¥ {{item.orderTotal}}</div>
                       <div v-if="item.orderStatus === '0'">
                         <el-button @click="orderPayment(item.orderId)" type="primary" size="small">现在付款</el-button>

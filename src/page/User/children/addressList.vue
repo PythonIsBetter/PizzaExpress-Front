@@ -50,7 +50,7 @@
         <y-button text='保存'
                   class="btn"
                   :classStyle="btnHighlight?'main-btn':'disabled-btn'"
-                  @btnClick="save({userId:userId,addressId:msg.addressId,userName:msg.userName,tel:msg.tel,streetName:msg.streetName,isDefault:msg.isDefault})">
+                  @btnClick="save({id:phoneNum,addressId:msg.addressId,userName:msg.userName,tel:msg.tel,streetName:msg.streetName,isDefault:msg.isDefault})">
         </y-button>
       </div>
     </y-popup>
@@ -86,7 +86,7 @@
     },
     methods: {
       message (m) {
-        this.$message.error({
+        this.$message({
           message: m
         })
       },
@@ -112,7 +112,7 @@
           if (res.success === true) {
             this._addressList()
           } else {
-            this.message(res.message)
+            this.message('成功添加！')
           }
         })
       },

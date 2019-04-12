@@ -39,8 +39,8 @@
             <ul>
               <li class="status-title"><h5>订单状态：进行中，请耐心等待订单制作</h5></li>
               <li class="button">
-                <el-button @click="orderPayment(orderId)" type="primary" size="small">修改订单</el-button>
-                <el-button @click="_cancelOrder()" size="small">取消订单</el-button>
+                <!--<el-button @click="orderPayment(orderId)" type="primary" size="small">修改订单</el-button>-->
+                <el-button @click="_cancelOrder()" type="primary" size="small">取消订单</el-button>
               </li>
             </ul>
             <p class="realtime">

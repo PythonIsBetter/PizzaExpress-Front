@@ -448,12 +448,12 @@
   }
   .header-box {
     background: $head-bgc;
-    background-image: -webkit-linear-gradient(#000, #121212);
-    background-image: linear-gradient(#000, #121212);
+    /*background-image: -webkit-linear-gradient(#000, #121212);*/
+    /*background-image: linear-gradient(#000, #121212);*/
     width: 100%;
   }
   header {
-    height: 60px;
+    height: 70px;
     z-index: 30;
     position: relative;
   }
@@ -471,7 +471,7 @@
         background: url(../../static/images/icon.png) no-repeat 50%;
         background-size: cover;
         display: block;
-        @include wh(50px, 50px);
+        @include wh(60px, 65px);
         text-indent: -9999px;
         background-position: 0 0;
       }
