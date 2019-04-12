@@ -31,10 +31,6 @@ export const upload = (params) => {
 export const updateheadimage = (params) => {
   return http.fetchPost('http://3.80.255.90:8081/foreground/member/updateheadimage', params)
 }
-// 捐赠列表
-export const thanksList = (params) => {
-  return http.fetchGet('http://3.80.255.90:8081/foreground/member/thanks', params)
-}
 // 首页接口
 export const productHome = (params) => {
   return http.fetchGet('http://3.80.255.90:8081/foreground/goods/home', params)
@@ -50,10 +46,6 @@ export const thank = (params) => {
 // 极验验证码
 export const geetest = (params) => {
   return http.fetchGet('http://3.80.255.90:8081/foreground/member/geetestInit?t=' + (new Date()).getTime(), params)
-}
-// 用戶請求訂單
-export const orderList = (params) => {
-  return http.fetchGet('http://3.80.255.90:8081/foreground/user/orderList' + (new Date()).getTime(), params)
 }
 // 用户确认收货
 export const orderComplete = (params) => {
