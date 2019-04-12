@@ -147,14 +147,14 @@
         }
       },
       _orderList () {
-        let params = {
-          // params: {
-          userId: this.userId
-            // size: this.pageSize,
-            // page: this.currentPage
-          // }
-        }
-        orderList(params).then(res => {
+        // let params = {
+        //   // params: {
+        //   userId: this.userId
+        //     // size: this.pageSize,
+        //     // page: this.currentPage
+        //   // }
+        // }
+        orderList({userId: this.userId}).then(res => {
           console.log(res)
           this.orderList = res
           this.total = res.orderTotal

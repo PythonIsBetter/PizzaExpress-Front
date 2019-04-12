@@ -71,7 +71,7 @@ export const getOrderDet = (params) => {
 export const cancelOrder = (params) => {
   return http.fetchPost('http://3.80.255.90:8081/foreground/member/cancelOrder', params)
 }
-// 商品详情|
+// 商品详情
 export const productDet = (params) => {
   return http.fetchPost('http://3.80.255.90:8081/foreground/Home/itemInfo', params)
 }
