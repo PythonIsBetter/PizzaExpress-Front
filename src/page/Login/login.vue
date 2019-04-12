@@ -61,11 +61,6 @@
                       style="marginTop: 10px;marginBottom: 15px;width: 100%;height: 48px;font-size: 18px;line-height: 48px">
             </y-button>
           </div>
-          <!--<div class="border"></div>-->
-          <!--<div class="footer">-->
-          <!--<div class="other">其它账号登录：</div>-->
-          <!--<span id="qqLoginBtn"></span>-->
-          <!--</div>-->
         </div>
       </div>
     </div>
@@ -194,9 +189,6 @@
         this.cart = cartArr
       },
       logintype1 () {
-        // const Component = Vue.component('loginType1')
-        // const instance = new Component()
-        // instance.$mount('#container')
         this.loginPart1Show = true
         this.loginPart2Show = false
         this.ruleForm.userName = ''
@@ -262,11 +254,6 @@
       login () {
         this.logintxt = '登录中...'
         this.rememberPass()
-        // if (!this.ruleForm.userName || !this.ruleForm.userPwd) {
-        //   // this.ruleForm.errMsg = '账号或者密码不能为空!'
-        //   this.message('账号或者密码不能为空!')
-        //   return false
-        // }
         userLogin({
           userName: this.ruleForm.userName,
           userPwd: this.ruleForm.userPwd,
@@ -284,53 +271,8 @@
             this.open('账号密码输入错误')
             this.logintxt = '登录'
           }
-          // if (res.result.state === 1) {
-          //   setStore('token', res.result.token)
-          //   setStore('userId', res.result.id)
-          //   // 登录后添加当前缓存中的购物车
-          //   if (this.cart.length) {
-          //     for (var i = 0; i < this.cart.length; i++) {
-          //       addCart(this.cart[i]).then(res => {
-          //         if (res.success === true) {
-          //         }
-          //       })
-          //     }
-          //     removeStore('buyCart')
-          //     this.$router.push({
-          //       path: '/'
-          //     })
-          //   } else {
-          //     this.$router.push({
-          //       path: '/'
-          //     })
-          //   }
-          // } else {
-          //   this.logintxt = '登录'
-          //   this.message(res.result.message)
-          //   captcha.reset()
-          //   return false
-          // }
         })
       }
-      // init_geetest () {
-      //   geetest().then(res => {
-      //     this.statusKey = res.statusKey
-      //     window.initGeetest({
-      //       gt: res.gt,
-      //       challenge: res.challenge,
-      //       new_captcha: res.new_captcha,
-      //       offline: !res.success,
-      //       product: 'popup',
-      //       width: '100%'
-      //     }, function (captchaObj) {
-      //       captcha = captchaObj
-      //       captchaObj.appendTo('#captcha')
-      //       captchaObj.onReady(function () {
-      //         document.getElementById('wait').style.display = 'none'
-      //       })
-      //     })
-      //   })
-      // }
     },
     mounted () {
       this.getRemembered()
@@ -417,7 +359,7 @@
     }
 
     .wrapper {
-      background: url(/static/images/bg_9b9dcb65ff.png) repeat;
+      background: url(../../../static/images/bg_9b9dcb65ff.png) repeat;
       background-size: 100px;
       min-height: 800px;
       min-width: 630px;
@@ -438,7 +380,7 @@
       overflow: visible;
       box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
       position: relative;
-      background-image: url(/static/images/icon.png);
+      background-image: url(../../../static/images/icon.png);
       background-size: 120px;
       background-position: top center;
       background-repeat: no-repeat;
@@ -546,7 +488,7 @@
   @media screen and (min-width: 737px),
   screen and (-webkit-max-device-pixel-ratio: 1.9) and (max-width: 736px) and (min-device-width: 737px) {
     .wrapper {
-      background: url(/static/images/con-bg_04f25dbf8e.jpg) repeat-x;
+      background: url(../../../static/images/con-bg_04f25dbf8e.jpg) repeat-x;
       position: absolute;
       top: 0;
       bottom: 0;
@@ -554,7 +496,7 @@
       right: 0;
     }
     .dialog {
-      background: url(/static/images/dialog-gray-bg.png) #fff bottom repeat-x;
+      background: url(../../../static/images/dialog-gray-bg.png) #fff bottom repeat-x;
       border-radius: 12px;
       display: none;
       margin: -163px 0 0 -218px;

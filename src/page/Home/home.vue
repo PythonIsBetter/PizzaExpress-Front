@@ -59,19 +59,19 @@
         // 修改为服务器路径
         sliders: [
           {
-            img: 'http://3.80.255.90:8081/foreground/pizzaImages/3.jpg'
+            img: 'http://3.80.255.90:8081/foreground/pizzaImages/a.jpg'
           },
           {
-            img: 'http://3.80.255.90:8081/foreground/pizzaImages/4.jpg'
+            img: 'http://3.80.255.90:8081/foreground/pizzaImages/b.jpg'
           },
           {
-            img: 'http://192.168.0.8:8080/images/3.jpg'
+            img: 'http://3.80.255.90:8081/foreground/pizzaImages/c.jpg'
           },
           {
-            img: 'http://172.29.174.1:8080/images/4.jpg'
+            img: 'http://3.80.255.90:8081/foreground/pizzaImages/d.jpg'
           },
           {
-            img: 'http://172.29.174.1:8080/images/5.jpg'
+            img: 'http://3.80.255.90:8081/foreground/pizzaImages/e.jpg'
           }
         ],
         currentIndex: 1,
