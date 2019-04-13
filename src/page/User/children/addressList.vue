@@ -42,7 +42,7 @@
           <input type="number" placeholder="手机号码" v-model="msg.tel">
         </div>
         <div>
-          <input type="text" placeholder="收货地址" v-model="msg.streetName">
+          <input type="text" placeholdei="收货地址" v-model="msg.streetName">
         </div>
         <!--<div>-->
           <!--<el-checkbox class="auto-login" v-model="msg.isDefault">设为默认</el-checkbox>-->
@@ -50,7 +50,7 @@
         <y-button text='保存'
                   class="btn"
                   :classStyle="btnHighlight?'main-btn':'disabled-btn'"
-                  @btnClick="save({userId:userId,addressId:msg.addressId,userName:msg.userName,tel:msg.tel,streetName:msg.streetName,isDefault:msg.isDefault})">
+                  @btnClick="save({id:phoneNum,addressId:msg.addressId,userName:msg.userName,tel:msg.tel,streetName:msg.streetName})">
         </y-button>
       </div>
     </y-popup>

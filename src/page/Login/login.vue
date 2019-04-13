@@ -256,8 +256,17 @@
         }
       },
       login () {
+        // if (this.ruleForm.userName.length !== 11) {
+        //   this.open('手机号长度不对')
+        //   return
+        // }
+        // if (!/^[0-9]+$/.test(this.ruleForm.userName)) {
+        //   this.open('手机号不能包含字符')
+        //   return
+        // }
         this.logintxt = '登录中...'
         this.rememberPass()
+
         // if (!this.ruleForm.userName || !this.ruleForm.userPwd) {
         //   // this.ruleForm.errMsg = '账号或者密码不能为空!'
         //   this.message('账号或者密码不能为空!')

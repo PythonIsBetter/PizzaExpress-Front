@@ -3,16 +3,16 @@
     <y-shelf title="账户资料">
       <span slot="right"><y-button text="修改密码" style="margin: 0" @btnClick="updateCode()"></y-button><y-button text="修改账户资料" style="margin: 0" @btnClick="update()"></y-button></span>
       <div slot="content">
-          <div v-if="nickname">
+          <div v-if="data">
             <div style="padding: 20px 0;text-align: left">
-              <p style="margin-left: 40px; font-size: 20px">姓名 {{nickname}}</p>
+              <p style="margin-left: 40px; font-size: 24px;margin-top: 12px">姓名 {{data.nickname}}</p>
               <!--<div class="operation">-->
               <!--<el-button type="primary" icon="edit" size="small"  @click="update(item)"></el-button>-->
-              <!--<el-button type="danger" icon="delete" size="small" :data-id="item.addressId" @click="del(item.addressId,i)"></el-button>-->
+              <!--<el-button ty                                                                                                                                                                                                                                                                                               pe="danger" icon="delete" size="small" :data-id="item.addressId" @click="del(item.addressId,i)"></el-button>-->
             <!--</div>-->
               <!--<p style="margin-left: 40px; font-size: 20px">性别   {{gender}}</p>-->
-              <p style="margin-left: 40px; font-size: 20px">生日    {{birthday}}</p>
-              <p style="margin-left: 40px; font-size: 20px">所在城市 {{city}}</p>
+              <p style="margin-left: 40px; font-size: 24px;margin-top: 12px">生日    {{data.birthday}}</p>
+              <p style="margin-left: 40px; font-size: 24px;margin-top: 12px">所在城市 {{data.city}}</p>
           </div>
         </div>
           <div v-else>
@@ -77,8 +77,9 @@
   import { getStore } from '/utils/storage'
   import { getUserInfo, changePassword, setUserInfo } from '/api/index'
   export default {
-    data () {
+    data: function () {
       return {
+        data: '',
         msg: {
           nickname: '',
           // gender: '',
@@ -97,6 +98,7 @@
         popupOpen2: false,
         // name: '',
         // gender: '',
+        nickname: '',
         city: '',
         birthday: '',
         userId: '',
@@ -159,11 +161,17 @@
       },
       _getUserInfo () {
         getUserInfo({phoneNum: this.phoneNum}).then(res => {
-          console.log(res)
-          this.nickname = res.nickname
-          // this.gender = res.gender
-          this.birthday = res.birthday
-          this.city = res.city
+          this.data = res
+          console.log(this.data)
+          console.log(this.data.nickname)
+          if (this.data.length) {
+            // console.log(this.dataList.length)
+            console.log(this.flag.length)
+            this.nickname = res.nickname
+            // this.gender = res.gender
+            this.birthday = res.birthday
+            this.city = res.city
+          }
         })
       },
       _setUserInfo (item) {
@@ -182,11 +190,11 @@
           city: item.city}).then(res => {
             if (res.status === 'success') {
             // this.$router.push({
-              this.open('密码修改成功')
+              this.open('账户信息修改成功')
             //   path: '/'
             // })
             } else {
-              this.open('密码修改失败')
+              this.open('账户信息修改失败')
             }
           })
       },

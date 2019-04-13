@@ -7,7 +7,6 @@
           <ul>
             <li class="c2"><router-link to="/thanks"><a class="c3">购买指南</a></router-link></li>
             <li class="c2"><a class="c3" @click="open4">支付方式</a></li>
-            <li class="c2"><a class="c3" @click="open5">送货政策</a></li>
           </ul>
         </ul>
 
@@ -45,7 +44,7 @@
       open4 () {
         this.$notify.info({
           title: '支付方式',
-          message: '支持支付宝、微信等方式捐赠'
+          message: '支持支付宝、微信等方式付款'
         })
       },
       open5 () {

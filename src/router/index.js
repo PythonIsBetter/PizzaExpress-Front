@@ -26,6 +26,7 @@ const Wechat = () => import('/page/Order/wechat.vue')
 const QQpay = () => import('/page/Order/qqpay.vue')
 Vue.use(Router)
 export default new Router({
+  base: '/PizzaExpress/',
   routes: [
     {
       path: '/',

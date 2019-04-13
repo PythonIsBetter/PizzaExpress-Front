@@ -466,8 +466,8 @@
   }
   .header-box {
     background: $head-bgc;
-    background-image: -webkit-linear-gradient(#000, #121212);
-    background-image: linear-gradient(#000, #121212);
+    /*background-image: -webkit-linear-gradient(#000, #121212);*/
+    /*background-image: linear-gradient(#000, #121212);*/
     width: 100%;
   }
   header {
