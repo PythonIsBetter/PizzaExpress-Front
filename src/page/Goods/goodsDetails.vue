@@ -5,11 +5,6 @@
       <div class="gallery-wrapper">
         <div class="gallery">
           <div class="thumbnail">
-            <!--<ul>-->
-            <!--<li v-for="(item,i) in small" :key="i" :class="{on:big===item}" @click="big=item">-->
-            <!--<img v-lazy="item" :alt="product.name">-->
-            <!--</li>-->
-            <!--</ul>-->
           </div>
           <div class="thumb">
             <div class="big">
