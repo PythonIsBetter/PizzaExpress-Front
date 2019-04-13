@@ -52,7 +52,6 @@
     },
     created () {
       let userId = getStore('userId')
-      console.log('userID:' + userId)
       if (!userId) { // 登录了 直接存在用户名下
         this.$router.push({path: '/login'})
       } else { // 未登录 vuex

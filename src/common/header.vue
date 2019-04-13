@@ -361,7 +361,7 @@
         }
       },
       openProduct (productId) {
-        window.open('//' + window.location.host + '/#/goodsDetails?productId=' + productId)
+        this.$router.push({path: '/goodsDetails', query: {productId: productId}})
       },
       _getNavList () {
         navList().then(res => {

@@ -41,36 +41,10 @@
                     @btnClick="checkout(product.id)"
                     style="width: 145px;height: 50px;line-height: 48px;margin-left: 10px"></y-button>
         </div>
-
-        <!--<div class="detail">-->
-        <!--<span class="params-name">产品信息</span>-->
-        <!--<div class="img-item" v-if="productMsg">-->
-        <!--<div v-html="productMsg">{{ productMsg }}</div>-->
-        <!--</div>-->
-        <!--<div class="no-info" v-else>-->
-        <!--<img src="/static/images/no-data.png">-->
-        <!--<br>-->
-        <!--该商品暂无内容数据-->
-        <!--</div>-->
       </div>
     </div>
   </div>
-  <!--产品信息-->
-  <!--<div class="item-info">-->
-  <!--<y-shelf title="产品信息">-->
-  <!--<div slot="content">-->
-  <!--<div class="img-item" v-if="productMsg">-->
-  <!--<div v-html="productMsg">{{ productMsg }}</div>-->
-  <!--</div>-->
-  <!--<div class="no-info" v-else>-->
-  <!--<img src="/static/images/no-data.png">-->
-  <!--<br>-->
-  <!--该商品暂无内容数据-->
-  <!--</div>-->
-  <!--</div>-->
-  <!--</y-shelf>-->
-  <!--</div>-->
-  </div>
+
 </template>
 <script>
   import {productDet} from '/api/goods'

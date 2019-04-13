@@ -51,14 +51,14 @@
                         <div class="subtotal" style="font-size: 14px">¥ {{item.salePrice * item.productNum}}</div>
                         <!--数量-->
                         <buy-num :num="item.productNum"
-                                 :id="item.productId"
-                                 :checked="item.checked"
-                                 style="height: 140px;
+                                  :id="item.productId"
+                                  :checked="item.checked"
+                                  style="height: 140px;
                                    display: flex;
                                    align-items: center;
                                    justify-content: center;"
-                                 :limit="item.limitNum"
-                                 @edit-num="EditNum"
+                                  :limit="item.limitNum"
+                                  @edit-num="EditNum"
                         >
                         </buy-num>
                         <!--价格-->

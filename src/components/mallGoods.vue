@@ -42,10 +42,10 @@
     methods: {
       ...mapMutations(['ADD_CART', 'ADD_ANIMATION', 'SHOW_CART']),
       goodsDetails (id) {
-        this.$router.push({path: 'goodsDetails/productId=' + id})
+        this.$router.push({path: '/goodsDetails', query: {productId: id}})
       },
       openProduct (id) {
-        window.open('//' + window.location.host + '/#/goodsDetails?productId=' + id)
+        this.$router.push({path: '/goodsDetails', query: {productId: id}})
       },
       addCart (id, price, name, img) {
         if (!this.showMoveImg) {     // 动画是否在运动
