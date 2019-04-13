@@ -21,6 +21,7 @@
       return {
       }
     },
+
     computed: {
       ...mapState(['userInfo'])
     },
@@ -28,8 +29,14 @@
       ...mapMutations([
         'RECORD_USERINFO'
       ]),
+      message2 (m) {
+        this.$message.success({
+          message: m
+        })
+      },
       editAvatar () {
         removeStore('userId')
+        this.message2('退出成功')
         this.$router.push({
           path: '/'
         })

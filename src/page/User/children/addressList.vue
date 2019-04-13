@@ -42,7 +42,7 @@
           <input type="number" placeholder="手机号码" v-model="msg.tel">
         </div>
         <div>
-          <input type="text" placeholdei="收货地址" v-model="msg.streetName">
+          <input type="text" placeholder="收货地址" v-model="msg.streetName">
         </div>
         <!--<div>-->
           <!--<el-checkbox class="auto-login" v-model="msg.isDefault">设为默认</el-checkbox>-->
@@ -85,8 +85,13 @@
       }
     },
     methods: {
-      message (m) {
+      message1 (m) {
         this.$message.error({
+          message: m
+        })
+      },
+      message2 (m) {
+        this.$message.success({
           message: m
         })
       },
@@ -111,8 +116,9 @@
         addressAdd(params).then(res => {
           if (res.success === true) {
             this._addressList()
+            this.message2('添加成功')
           } else {
-            this.message(res.message)
+            this.message1(res.message)
           }
         })
       },
@@ -138,8 +144,9 @@
         addressDel({addressId: addressId}).then(res => {
           if (res.success === true) {
             this.addList.splice(i, 1)
+            this.message2('删除成功')
           } else {
-            this.message('删除失败')
+            this.message1('删除失败')
           }
         })
       },

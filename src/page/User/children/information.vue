@@ -47,7 +47,7 @@
         </y-button>
       </div>
     </y-popup>
-    <y-popup :open="popupOpen2" @close='popupOpen=false' :title="popupTitle">
+    <y-popup :open="popupOpen2" @close='popupOpen2=false' :title="popupTitle">
       <div slot="content" class="md" :data-id="msg.addressId">
         <div>
           <input type="text" placeholder="旧密码(可为空)" v-model="registered.oldPwd">
@@ -117,8 +117,13 @@
       }
     },
     methods: {
-      message (m) {
+      message1 (m) {
         this.$message.error({
+          message: m
+        })
+      },
+      message2 (m) {
+        this.$message.success({
           message: m
         })
       },
@@ -127,12 +132,12 @@
         let userPwd = this.registered.userPwd
         let userPwd2 = this.registered.userPwd2
         if (!userPwd || !userPwd2) {
-          this.message('账号密码不能为空!')
+          this.message1('账号密码不能为空!')
           this.registxt = '注册'
           return false
         }
         if (userPwd2 !== userPwd) {
-          this.message('两次输入的密码不相同!')
+          this.message1('两次输入的密码不相同!')
           this.registxt = '注册'
           return false
         }
@@ -141,13 +146,13 @@
           phoneNum: this.phoneNum
         }).then(res => {
           console.log(res[0])
-          if (res.status === 'success') {
+          if (res.success === 'true') {
             // this.$router.push({
-            this.open('密码修改成功')
+            this.message2('密码修改成功')
             //   path: '/'
             // })
           } else {
-            this.open('密码修改失败')
+            this.message1('密码修改失败')
           }
           // if (res.success === true) {
           //   this.messageSuccess()
@@ -188,13 +193,13 @@
           // gender: item.gender,
           birthday: item.birthday,
           city: item.city}).then(res => {
-            if (res.status === 'success') {
+            if (res.success === 'true') {
             // this.$router.push({
-              this.open('账户信息修改成功')
+              this.message2('账户信息修改成功')
             //   path: '/'
             // })
             } else {
-              this.open('账户信息修改失败')
+              this.message1('账户信息修改失败')
             }
           })
       },

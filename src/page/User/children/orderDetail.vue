@@ -43,9 +43,9 @@
                 <el-button @click="_cancelOrder()" size="small">取消订单</el-button>
               </li>
             </ul>
-            <p class="realtime">
-              <span>请耐心等待骑手将订单送到您手中。</span>
-            </p>
+            <!--<p class="realtime">-->
+              <!--<span>请耐心等待骑手将订单送到您手中。</span>-->
+            <!--</p>-->
           </div>
 
           <!--已取消的订单-->
@@ -122,13 +122,13 @@
                       <!--style="align-content: center; margin-bottom: 10px">-->
             <!--</y-button>-->
           </div>
-          <div class="gray-sub-title cart-title" v-if="orderStatus === 2">
-            <div class="first">
-              <div>
-                <span class="order-id">骑手信息</span>
-              </div>
-            </div>
-          </div>
+          <!--<div class="gray-sub-title cart-title" v-if="orderStatus === 2">-->
+            <!--<div class="first">-->
+              <!--<div>-->
+                <!--<span class="order-id">骑手信息</span>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
           <!--<div v-if="orderStatus ===2">-->
         <div v-if="orderStatus === 3">
             <!--地图-->
