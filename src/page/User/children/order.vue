@@ -51,7 +51,7 @@
                     <div class="prod-operation pa" style="right: 0;top: 20px;">
                       <div class="total">¥ {{item.orderTotal}}</div>
                       <div v-if="item.orderStatus === '0'">
-                        <el-button @click="orderPayment(item.orderId)" type="primary" size="small">现在付款</el-button>
+                        <el-button @click="orderPayment(item.orderId, item.orderTotal)" type="primary" size="small">现在付款</el-button>
                       </div>
                       <div class="status" v-if="item.orderStatus !== '0'"> {{getOrderStatus(item.orderStatus)}}  </div>
                     </div>
@@ -105,11 +105,17 @@
         this.currentPage = val
         this._orderList()
       },
-      orderPayment (orderId) {
-        window.open(window.location.origin + '#/order/payment?orderId=' + orderId)
+      orderPayment (orderId, orderTotal) {
+        this.$router.push({
+          path: '/order/payment',
+          query: {
+            'orderId': orderId,
+            'orderTotal': orderTotal
+          }
+        })
       },
       goodsDetails (id) {
-        window.open(window.location.origin + '#/goodsDetails?productId=' + id)
+        this.$router.push({path: '/goodsDetails', query: {productId: id}})
       },
       orderDetail (orderId) {
         this.$router.push({
@@ -120,20 +126,6 @@
         })
       },
       getOrderStatus (status) {
-        // if (status === '1') {
-        //   return '支付审核中'
-        // } else if (status === '2') {
-        //   return '待发货'
-        // } else if (status === '3') {
-        //   return '待收货'
-        // } else if (status === '4') {
-        //   return '交易成功'
-        // } else if (status === '5') {
-        //   return '交易关闭'
-        // } else if (status === '6') {
-        //   return '支付失败'
-        // }
-
         if (status === '1') {
           return '订单进行中'
         } else if (status === '2') {
