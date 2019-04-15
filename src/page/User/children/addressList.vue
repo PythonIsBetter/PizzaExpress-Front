@@ -19,7 +19,7 @@
             </div>
             <div class="operation">
               <el-button type="primary" icon="edit" size="small"  @click="update(item)"></el-button>
-              <el-button type="danger" icon="delete" size="small" :data-id="item.addressId" @click="del(item.addressId,i)"></el-button>
+              <el-button type="danger" icon="delete" size="small" :data-id="item.id" @click="del(item.id,i)"></el-button>
             </div>
           </div>
         </div>
@@ -141,8 +141,9 @@
       },
       // 删除
       del (addressId, i) {
+        console.log(addressId)
         addressDel({addressId: addressId}).then(res => {
-          if (res.success === true) {
+          if (res.success === 'true') {
             this.addList.splice(i, 1)
             this.message2('删除成功')
           } else {
