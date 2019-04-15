@@ -22,7 +22,7 @@
             <li class="status-title"><h3>订单状态：待付款</h3></li>
             <li class="button">
               <el-button @click="orderPayment(orderId, orderTotal)" type="primary" size="small">现在付款</el-button>
-              <el-button @click="_cancelOrder()" size="small">取消订单</el-button>
+              <el-button @click="_delOrder(orderId)" size="small">取消订单</el-button>
             </li>
           </ul>
           <p class="realtime">
@@ -38,7 +38,7 @@
             <li class="status-title"><h3>订单状态：进行中，请耐心等待送达</h3></li>
             <li class="button">
               <!--<el-button @click="orderPayment(orderId)" type="primary" size="small">修改订单</el-button>-->
-              <el-button @click="_cancelOrder()" size="small">取消订单</el-button>
+              <el-button @click="_delOrder(orderId)" size="small">取消订单</el-button>
             </li>
           </ul>
         </div>
@@ -127,7 +127,7 @@
   </div>
 </template>
 <script>
-  import {getOrderDet} from '/api/goods'
+  import {getOrderDet, delOrder} from '/api/goods'
   import {orderComplete, orderCancel} from '/api/index.js'
   import YShelf from '/components/shelf'
   import {getStore} from '/utils/storage'
@@ -163,6 +163,11 @@
           message: m
         })
       },
+      message2 (m) {
+        this.$message.success({
+          message: m
+        })
+      },
       orderPayment (orderId, orderTotal) {
         this.$router.push({
           path: '/order/payment',
@@ -186,7 +191,7 @@
           if (res.orderStatus === '0') {
             this.orderStatus = 1
           } else if (res.orderStatus === '1') {
-            this.orderStatus = 2
+            this.orderStatus = 1
           } else if (res.orderStatus === '2') {
             this.orderStatus = 2
           } else if (res.orderStatus === '3') {
@@ -234,7 +239,18 @@
             this.message('提交失败')
           }
         })
+      },
+      _delOrder (orderId, i) {
+        delOrder({orderId: orderId}).then(res => {
+          if (res.success === 'true') {
+            // this.orderList.splice(i, 1)
+            this.message2('取消成功')
+          } else {
+            this.message('取消失败,仅有未支付及未制作完成订单可取消')
+          }
+        })
       }
+
     },
     created () {
       this.userId = getStore('userId')
