@@ -25,11 +25,11 @@
               <el-button @click="_delOrder(orderId)" size="small">取消订单</el-button>
             </li>
           </ul>
-          <p class="realtime">
-            <span>您的付款时间还有 </span>
-            <span class="red"><countDown v-bind:endTime="countTime" endText="已结束"></countDown></span>
-            <span>，超时后订单将自动取消。</span>
-          </p>
+          <!--<p class="realtime">-->
+            <!--<span>您的付款时间还有 </span>-->
+            <!--<span class="red"><countDown v-bind:endTime="countTime" endText="已结束"></countDown></span>-->
+            <!--<span>，超时后订单将自动取消。</span>-->
+          <!--</p>-->
         </div>
 
         <!--进行中的订单-->
@@ -128,7 +128,7 @@
 </template>
 <script>
   import {getOrderDet, delOrder} from '/api/goods'
-  import {orderComplete, orderCancel} from '/api/index.js'
+  import {orderComplete} from '/api/index.js'
   import YShelf from '/components/shelf'
   import {getStore} from '/utils/storage'
   import countDown from '/components/countDown'
@@ -220,15 +220,6 @@
           this.loading = false
         })
       },
-      _cancelOrder () {
-        orderCancel({orderId: this.orderId}).then(res => {
-          if (res.success === 'true') {
-            this._getOrderDet()
-          } else {
-            this.message('对不起，超过十分钟无法取消订单')
-          }
-        })
-      },
       _updateOrder () {
         orderComplete({orderId: this.orderId}).then(res => {
           console.log(res)
@@ -245,6 +236,7 @@
           if (res.success === 'true') {
             // this.orderList.splice(i, 1)
             this.message2('取消成功')
+            this._getOrderDet()
           } else {
             this.message('取消失败,仅有未支付及未制作完成订单可取消')
           }

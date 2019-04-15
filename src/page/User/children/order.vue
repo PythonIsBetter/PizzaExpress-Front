@@ -119,7 +119,7 @@
       },
       getOrderStatus (status) {
         if (status === '1') {
-          return '订单进行中'
+          return '待付款'
         } else if (status === '2') {
           return '待发货'
         } else if (status === '3') {
@@ -150,6 +150,7 @@
           if (res.success === 'true') {
             // this.orderList.splice(i, 1)
             this.message2('取消成功')
+            this._orderList()
           } else {
             this.message('取消失败,仅有未支付及未制作完成订单可取消')
           }
