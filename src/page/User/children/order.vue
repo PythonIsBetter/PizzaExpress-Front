@@ -38,7 +38,7 @@
                           <div class="num">¥{{(good.orderItem.actualUnitPrize)}}</div>
                           <div class="num">{{good.orderItem.num}}</div>
                           <div class="type">
-                            <el-button style="margin-left:20px" @click="_delOrder(item.orderId,i)" type="danger" size="mini" v-if="j<1" class="del-order">删除此订单</el-button>
+                            <el-button style="margin-left:20px" @click="_delOrder(item.orderId,i)" type="danger" size="mini" v-if="j<1" class="del-order">取消订单</el-button>
                             <!-- <a @click="_delOrder(item.orderId,i)" href="javascript:;" v-if="j<1" class="del-order">删除此订单</a> -->
                           </div>
                         </div>
@@ -89,6 +89,11 @@
     methods: {
       message (m) {
         this.$message.error({
+          message: m
+        })
+      },
+      message2 (m) {
+        this.$message.success({
           message: m
         })
       },
@@ -144,14 +149,7 @@
         }
       },
       _orderList () {
-        let params = {
-          // params: {
-          userId: this.userId
-            // size: this.pageSize,
-            // page: this.currentPage
-          // }
-        }
-        orderList(params).then(res => {
+        orderList({userId: this.userId}).then(res => {
           console.log(res)
           this.orderList = res
           this.total = res.orderTotal
@@ -160,13 +158,12 @@
       },
       _delOrder (orderId, i) {
         let params = {
-          params: {
-            orderId: orderId
-          }
+          orderId: orderId
         }
         delOrder(params).then(res => {
-          if (res.success === true) {
-            this.orderList.splice(i, 1)
+          if (res.success === 'true') {
+            // this.orderList.splice(i, 1)
+            this.message2('删除成功')
           } else {
             this.message('删除失败')
           }

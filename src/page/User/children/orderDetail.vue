@@ -23,15 +23,15 @@
             <ul>
               <li class="status-title"><h3>订单状态：待付款</h3></li>
               <li class="button">
-                <el-button @click="orderPayment(orderId)" type="primary" size="small">现在付款</el-button>
-                <el-button @click="_cancelOrder()" size="small">取消订单</el-button>
+                <el-button @click="orderPayment(orderId, orderTotal)" type="primary" size="small">现在付款</el-button>
+                <el-button @click="_delOrder(orderId)" size="small">取消订单</el-button>
               </li>
             </ul>
-            <p class="realtime">
-              <span>您的付款时间还有 </span>
-              <span class="red"><countDown v-bind:endTime="countTime" endText="已结束"></countDown></span>
-              <span>，超时后订单将自动取消。</span>
-            </p>
+            <!--<p class="realtime">-->
+              <!--<span>您的付款时间还有 </span>-->
+              <!--<span class="red"><countDown v-bind:endTime="countTime" endText="已结束"></countDown></span>-->
+              <!--<span>，超时后订单将自动取消。</span>-->
+            <!--</p>-->
           </div>
 
           <!--进行中的订单-->
@@ -40,7 +40,7 @@
               <li class="status-title"><h5>订单状态：进行中，请耐心等待订单制作</h5></li>
               <li class="button">
                 <!--<el-button @click="orderPayment(orderId)" type="primary" size="small">修改订单</el-button>-->
-                <el-button @click="_cancelOrder()" type="primary" size="small">取消订单</el-button>
+                <el-button @click="_delOrder(orderId)" type="primary" size="small">取消订单</el-button>
               </li>
             </ul>
             <p class="realtime">
@@ -147,8 +147,8 @@
   </div>
 </template>
 <script>
-  import {getOrderDet} from '/api/goods'
-  import {orderComplete, orderCancel} from '/api/index.js'
+  import {getOrderDet, delOrder} from '/api/goods'
+  import {orderComplete} from '/api/index.js'
   import YShelf from '/components/shelf'
   import {getStore} from '/utils/storage'
   import countDown from '/components/countDown'
@@ -184,24 +184,33 @@
           message: m
         })
       },
-      orderPayment (orderId) {
-        window.open(window.location.origin + '#/order/payment?orderId=' + orderId)
+      message2 (m) {
+        this.$message.success({
+          message: m
+        })
+      },
+      orderPayment (orderId, orderTotal) {
+        this.$router.push({
+          path: '/order/payment',
+          query: {
+            'orderId': orderId,
+            'orderTotal': orderTotal
+          }
+        })
       },
       goodsDetails (id) {
         window.open(window.location.origin + '#/goodsDetails?productId=' + id)
       },
       _getOrderDet () {
         let params = {
-          // params: {
           orderId: this.orderId
-          // }
         }
         getOrderDet(params).then(res => {
           console.log(res)
           if (res.orderStatus === '0') {
             this.orderStatus = 1
           } else if (res.orderStatus === '1') {
-            this.orderStatus = 2
+            this.orderStatus = 1
           } else if (res.orderStatus === '2') {
             this.orderStatus = 2
           } else if (res.orderStatus === '3') {
@@ -230,12 +239,17 @@
           this.loading = false
         })
       },
-      _cancelOrder () {
-        orderCancel({orderId: this.orderId}).then(res => {
+      _delOrder (orderId, i) {
+        let params = {
+          orderId: orderId
+        }
+        delOrder(params).then(res => {
           if (res.success === 'true') {
+            // this.orderList.splice(i, 1)
+            this.message2('删除成功')
             this._getOrderDet()
           } else {
-            this.message('对不起，超过十分钟无法取消订单')
+            this.message('删除失败')
           }
         })
       },

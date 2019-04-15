@@ -113,6 +113,14 @@
         })
       },
       regist () {
+        if (this.registered.userName.length !== 11) {
+          this.open('手机号长度不对')
+          return
+        }
+        if (!/^[0-9]+$/.test(this.registered.userName)) {
+          this.open('手机号不能包含字符')
+          return
+        }
         this.registxt = '注册中...'
         let userName = this.registered.userName
         let userPwd = this.registered.userPwd

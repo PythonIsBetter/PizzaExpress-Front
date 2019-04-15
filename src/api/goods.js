@@ -77,7 +77,7 @@ export const productDet = (params) => {
 }
 // 删除订单
 export const delOrder = (params) => {
-  return http.fetchGet('http://3.80.255.90:8081/foreground/user/delOrder', params)
+  return http.fetchPost('http://3.80.255.90:8081/foreground/user/delOrder', params)
 }
 // 商品列表
 export const getSearch = (params) => {
