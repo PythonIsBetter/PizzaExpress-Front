@@ -171,10 +171,16 @@
   .window {
     position: relative;
     width: 900px;
-    height: 480px;
+    height: 506px;
     /*margin: 0px 1px 2px 3px;*/
     margin: 0 auto;
     overflow: hidden;
+  }
+
+  img
+  {
+    width: 900px;
+    height: 506px;
   }
 
   .container {

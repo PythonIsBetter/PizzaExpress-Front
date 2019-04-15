@@ -25,7 +25,12 @@
         </div>
         <div class="num">
           <span class="params-name">数量</span>
-          <buy-num @edit-num="editNum" :limit="Number(product.limitNum)"></buy-num>
+          <buy-num :num="product.productNum"
+                   :id="product.id"
+                   :limit="product.limitNum"
+                   @edit-num="editNum"
+          >
+          </buy-num>
         </div>
         <div class="buy">
           <y-button text="加入购物车"
@@ -33,7 +38,7 @@
                     classStyle="main-btn"
                     style="width: 145px;height: 50px;line-height: 48px"></y-button>
           <y-button text="现在购买"
-                    @btnClick="checkout(product.id)"
+                    @btnClick="checkout(product.id,product.prize,product.name,product.imgPath)"
                     style="width: 145px;height: 50px;line-height: 48px;margin-left: 10px"></y-button>
         </div>
       </div>
@@ -106,8 +111,21 @@
           }
         }
       },
-      checkout (productId) {
-        this.$router.push({path: '/checkout', query: {productId, num: this.productNum}})
+      checkout (id, price, name, img) {
+        let userId = getStore('userId') // 获取用户id
+        console.log('userID:' + userId)
+        if (!userId) { // 没登陆直接跳转到登陆页面
+          this.$router.push({path: '/login'})
+        } else { // 已登录则允许添加到购物车
+          this.ADD_CART({
+            productId: id,
+            salePrice: price,
+            productName: name,
+            productImg: img,
+            productNum: this.productNum
+          })
+          this.$router.push({path: 'checkout'})
+        }
       },
       editNum (num) {
         this.productNum = num

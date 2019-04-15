@@ -16,8 +16,10 @@
                     <li v-for="i in numList" :key="i">{{i}}</li>
                   </ul>
       </span>
-      <span class="up" :class="{'up-disabled':Num>=limit}"
-            @click.stop.prevent="up()">+</span>
+      <span class="up"
+            :class="{'up-disabled':Num>=limit}"
+            @click.stop.prevent="up()">+
+      </span>
     </div>
   </div>
 </template>

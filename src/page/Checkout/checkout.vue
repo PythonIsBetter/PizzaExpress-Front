@@ -197,13 +197,8 @@
         })
       },
       goodsDetails (id) {
-        window.open(window.location.origin + '#/goodsDetails?productId=' + id)
+        this.$router.push({path: '/goodsDetails', query: {productId: id}})
       },
-      // _getCartList () {
-      //   getCartList({userId: this.userId}).then(res => {
-      //     this.cartList = res.result
-      //   })
-      // },
       _addressList () {
         addressList({phoneNum: this.userId}).then(res => {
           let data = res
@@ -260,14 +255,8 @@
         }
         for (var i = 0; i < this.cartList.length; i++) {
           if (this.cartList[i].checked === '1') {
-            // let _productId = this.cartList[i].productId
-            // let _checked = this.cartList[i].checked
-            // let _productNum = this.cartList[i].productNu
             console.log(this.cartList[i])
             array.push(this.cartList[i])
-            // this.EDIT_CART({
-            //   _productId
-            // })
           }
         }
         let params = {
@@ -289,6 +278,10 @@
       },
       // 付款
       payment () {
+        this.cartList.forEach(item => {
+          let productId = item.productId
+          this.EDIT_CART({productId})
+        })
         this.$router.push({
           path: '/order/payment',
           query: {
@@ -350,14 +343,6 @@
     created () {
       this.userId = getStore('userId')
       console.log(this.userId)
-      // let query = this.$route.query
-      // if (query.productId && query.num) {
-      //   this.productId = query.productId
-      //   this.num = query.num
-      //   this._productDet(this.productId)
-      // } else {
-      //   this._getCartList()
-      // }
       this._addressList()
     },
     components: {

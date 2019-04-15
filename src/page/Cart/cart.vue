@@ -189,7 +189,7 @@
         })
       },
       goodsDetails (id) {
-        window.open(window.location.origin + '#/goodsDetails?productId=' + id)
+        this.$router.push({path: '/goodsDetails', query: {productId: id}})
       },
       // 全选
       editCheckAll () {
@@ -228,9 +228,6 @@
       },
       // 删除整条购物车
       cartdel (productId) {
-        // cartDel({userId: this.userId, productId}).then(res => {
-        //   this.EDIT_CART({productId})
-        // })
         this.EDIT_CART({productId})
       },
       checkout () {
