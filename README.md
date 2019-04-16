@@ -38,25 +38,25 @@
 
 ![image](https://github.com/PythonIsBetter/PizzaExpress-Front/blob/master/jietu/01.PNG)
 
-![image](https://github.com/PythonIsBetter/PizzaExpress-Front/blob/master/jietu/02.PNG)
+![image](https://github.com/PythonIsBetter/PizzaExpress-Front/blob/master/jietu/02.png)
 
-![image](https://github.com/PythonIsBetter/PizzaExpress-Front/blob/master/jietu/03.PNG)
+![image](https://github.com/PythonIsBetter/PizzaExpress-Front/blob/master/jietu/03.png)
 
-![image](https://github.com/PythonIsBetter/PizzaExpress-Front/blob/master/jietu/04.PNG)
+![image](https://github.com/PythonIsBetter/PizzaExpress-Front/blob/master/jietu/04.png)
 
-![image](https://github.com/PythonIsBetter/PizzaExpress-Front/blob/master/jietu/05.PNG)
+![image](https://github.com/PythonIsBetter/PizzaExpress-Front/blob/master/jietu/05.png)
 
-![image](https://github.com/PythonIsBetter/PizzaExpress-Front/blob/master/jietu/06.PNG)
+![image](https://github.com/PythonIsBetter/PizzaExpress-Front/blob/master/jietu/06.png)
 
-![image](https://github.com/PythonIsBetter/PizzaExpress-Front/blob/master/jietu/07.PNG)
+![image](https://github.com/PythonIsBetter/PizzaExpress-Front/blob/master/jietu/07.png)
 
-![image](https://github.com/PythonIsBetter/PizzaExpress-Front/blob/master/jietu/08.PNG)
+![image](https://github.com/PythonIsBetter/PizzaExpress-Front/blob/master/jietu/08.png)
 
-![image](https://github.com/PythonIsBetter/PizzaExpress-Front/blob/master/jietu/09.PNG)
+![image](https://github.com/PythonIsBetter/PizzaExpress-Front/blob/master/jietu/09.png)
 
-![image](https://github.com/PythonIsBetter/PizzaExpress-Front/blob/master/jietu/10.PNG)
+![image](https://github.com/PythonIsBetter/PizzaExpress-Front/blob/master/jietu/10.png)
 
-![image](https://github.com/PythonIsBetter/PizzaExpress-Front/blob/master/jietu/11.PNG)
+![image](https://github.com/PythonIsBetter/PizzaExpress-Front/blob/master/jietu/11.png)
 
-![image](https://github.com/PythonIsBetter/PizzaExpress-Front/blob/master/jietu/12.PNG)
+![image](https://github.com/PythonIsBetter/PizzaExpress-Front/blob/master/jietu/12.png)
 
