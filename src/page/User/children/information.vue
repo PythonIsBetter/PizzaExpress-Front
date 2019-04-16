@@ -47,7 +47,7 @@
         </y-button>
       </div>
     </y-popup>
-    <y-popup :open="popupOpen2" @close='popupOpen=false' :title="popupTitle">
+    <y-popup :open="popupOpen2" @close='popupOpen2=false' :title="popupTitle">
       <div slot="content" class="md" :data-id="msg.addressId">
         <div>
           <input type="text" placeholder="旧密码(可为空)" v-model="registered.oldPwd">

@@ -5,7 +5,7 @@
         <!--暂时去除-->
         <!--<div v-loading="loading" element-loading-text="加载中..." style="min-height: 10vw;" v-if="orderList.length">-->
           <div class="orderStatus" v-if="orderStatus !== -1 && orderStatus !== 6">
-            <el-steps :space="125" :active="orderStatus">
+            <el-steps :space="130" :active="orderStatus">
               <el-step title="下单" v-bind:description="createTime"></el-step>
               <el-step title="付款" v-bind:description="payTime"></el-step>
               <el-step title="制作" description=""></el-step>

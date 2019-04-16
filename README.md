@@ -22,7 +22,7 @@
 
 10.修改、取消订单
 
-12.骑手线路展示和计算预定送达时间
+11.手线路展示和计算预定送达时间
 
 目前所用到的技术
 
@@ -33,3 +33,30 @@
 3.对Model，View和Controller都提供了对应的组件的 Struts
 
 4.开放源代码的对象关系映射框架 Hibernate
+
+项目实际截图如下所示：
+
+![image](https://github.com/PythonIsBetter/PizzaExpress-Front/blob/mobile/jietu/01.jpg)
+
+![image](https://github.com/PythonIsBetter/PizzaExpress-Front/blob/mobile/jietu/02.jpg)
+
+![image](https://github.com/PythonIsBetter/PizzaExpress-Front/blob/mobile/jietu/03.jpg)
+
+![image](https://github.com/PythonIsBetter/PizzaExpress-Front/blob/mobile/jietu/04.jpg)
+
+![image](https://github.com/PythonIsBetter/PizzaExpress-Front/blob/mobile/jietu/05.jpg)
+
+![image](https://github.com/PythonIsBetter/PizzaExpress-Front/blob/mobile/jietu/06.jpg)
+
+![image](https://github.com/PythonIsBetter/PizzaExpress-Front/blob/mobile/jietu/07.jpg)
+
+![image](https://github.com/PythonIsBetter/PizzaExpress-Front/blob/mobile/jietu/08.jpg)
+
+![image](https://github.com/PythonIsBetter/PizzaExpress-Front/blob/mobile/jietu/09.jpg)
+
+![image](https://github.com/PythonIsBetter/PizzaExpress-Front/blob/mobile/jietu/10.jpg)
+
+![image](https://github.com/PythonIsBetter/PizzaExpress-Front/blob/mobile/jietu/11.jpg)
+
+![image](https://github.com/PythonIsBetter/PizzaExpress-Front/blob/mobile/jietu/12.jpg)
+
