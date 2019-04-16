@@ -4,7 +4,7 @@
       <div slot="content">
         <div class="box-inner order-info">
           <div class="explain">
-            <img class="fn-left" src="/static/images/wechatPay.jpg" alt="扫一扫">
+            <img class="fn-left" src="../../../static/images/wechatPay.jpg" alt="扫一扫">
           </div>
         </div>
         <div>
