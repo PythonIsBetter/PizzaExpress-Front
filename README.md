@@ -36,27 +36,27 @@
 
 项目实际截图如下所示：
 
-![image](http://github.com/itmyhome2013/readme_add_pic/raw/master/images/nongshalie.jpg)
+![image](https://github.com/PythonIsBetter/PizzaExpress-Front/blob/master/jietu/01.PNG)
 
-![image](http://github.com/itmyhome2013/readme_add_pic/raw/master/images/nongshalie.jpg)
+![image](https://github.com/PythonIsBetter/PizzaExpress-Front/blob/master/jietu/02.PNG)
 
-![image](http://github.com/itmyhome2013/readme_add_pic/raw/master/images/nongshalie.jpg)
+![image](https://github.com/PythonIsBetter/PizzaExpress-Front/blob/master/jietu/03.PNG)
 
-![image](http://github.com/itmyhome2013/readme_add_pic/raw/master/images/nongshalie.jpg)
+![image](https://github.com/PythonIsBetter/PizzaExpress-Front/blob/master/jietu/04.PNG)
 
-![image](http://github.com/itmyhome2013/readme_add_pic/raw/master/images/nongshalie.jpg)
+![image](https://github.com/PythonIsBetter/PizzaExpress-Front/blob/master/jietu/05.PNG)
 
-![image](http://github.com/itmyhome2013/readme_add_pic/raw/master/images/nongshalie.jpg)
+![image](https://github.com/PythonIsBetter/PizzaExpress-Front/blob/master/jietu/06.PNG)
 
-![image](http://github.com/itmyhome2013/readme_add_pic/raw/master/images/nongshalie.jpg)
+![image](https://github.com/PythonIsBetter/PizzaExpress-Front/blob/master/jietu/07.PNG)
 
-![image](http://github.com/itmyhome2013/readme_add_pic/raw/master/images/nongshalie.jpg)
+![image](https://github.com/PythonIsBetter/PizzaExpress-Front/blob/master/jietu/08.PNG)
 
-![image](http://github.com/itmyhome2013/readme_add_pic/raw/master/images/nongshalie.jpg)
+![image](https://github.com/PythonIsBetter/PizzaExpress-Front/blob/master/jietu/09.PNG)
 
-![image](http://github.com/itmyhome2013/readme_add_pic/raw/master/images/nongshalie.jpg)
+![image](https://github.com/PythonIsBetter/PizzaExpress-Front/blob/master/jietu/10.PNG)
 
-![image](http://github.com/itmyhome2013/readme_add_pic/raw/master/images/nongshalie.jpg)
+![image](https://github.com/PythonIsBetter/PizzaExpress-Front/blob/master/jietu/11.PNG)
 
-![image](http://github.com/itmyhome2013/readme_add_pic/raw/master/images/nongshalie.jpg)
+![image](https://github.com/PythonIsBetter/PizzaExpress-Front/blob/master/jietu/12.PNG)
 
